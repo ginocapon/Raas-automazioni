@@ -48,12 +48,15 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 | **Lingue** | Italiano (principale), Inglese (in sviluppo) |
 | **Target** | PMI, professionisti, startup — B2B |
 | **Mercato** | Italia, focus locale + nazionale |
-| **Hosting attuale** | Serverplan (migrazione a GitHub Pages in corso) |
+| **Hosting** | GitHub Pages (migrazione da Serverplan in corso) |
 | **Garanzia** | PageSpeed 95+ garantito, prezzi bloccati per sempre |
 
-### 2.2 Struttura File Sito (public_html/)
+### 2.2 Struttura File Sito (root — GitHub Pages)
 ```
-public_html/
+/
+├── CLAUDE.md                   # Istruzioni automatiche per Claude
+├── SKILL.md                    # Questo file — unica fonte di verita'
+├── .nojekyll                   # Disabilita Jekyll su GitHub Pages
 ├── index.html                  # Homepage (hero, servizi, prezzi, FAQ, stats)
 ├── blog.html                   # Pagina blog principale
 ├── bandi.html                  # Aggregatore bandi (150+ fonti ufficiali)
@@ -63,7 +66,7 @@ public_html/
 ├── privacy.html                # Privacy Policy GDPR
 ├── cookie.html                 # Cookie Policy
 ├── sitemap.xml                 # 43 URL indicizzate
-├── htaccess                    # Regole server
+├── htaccess                    # Regole server (da rinominare .htaccess se serve)
 ├── talk.txt                    # File testo
 ├── favicon.ico / .svg / .png   # Icone sito
 ├── apple-touch-icon.png        # Icona iOS
@@ -71,11 +74,11 @@ public_html/
 ├── css/
 │   └── styles.css              # Foglio stile principale
 │
-├── assets/                     # Risorse statiche (immagini, media)
-├── data/                       # Dati strutturati
+├── assets/                     # Risorse statiche (immagini, media, script)
+├── data/                       # Dati strutturati (bandi.json)
 ├── mail-template/              # Template email
 │
-├── blog/articoli/              # Articoli blog
+├── blog/articoli/              # Articoli blog (4 HTML + 3 TXT da convertire)
 │   ├── 5-automazioni-risparmiare-20-ore-settimana.html
 │   ├── lead-generation-50-lead-qualificati-automazione.html
 │   ├── pagespeed-95-dati-roi.html
@@ -85,7 +88,7 @@ public_html/
 │   └── pagespeed-95-guida-ottimizzazione-2026.txt
 │
 ├── offerta-creator/            # Tool creazione offerte
-├── playzone/                   # Sezione giochi interattivi
+├── playzone/                   # Sezione giochi interattivi (20+ pagine)
 ├── quiz/quale-tiktoker-sei/    # Quiz virale
 ├── tools/generatore-username/  # Generatore username
 └── webstats/                   # Statistiche web
@@ -431,9 +434,13 @@ Inoltre, Infatti, Di conseguenza, In particolare, Tuttavia, Pertanto, Nonostante
 ## 7. TODO — Azioni Future
 
 ### Migrazione GitHub
-- [ ] Copiare public_html/ da Serverplan a questo repo
-- [ ] Configurare GitHub Pages
-- [ ] Aggiornare DNS: puntare raasautomazioni.it a GitHub Pages
+- [x] Copiare file sito nel repo (71 file)
+- [x] Spostare da public_html/ a root per GitHub Pages
+- [x] Aggiungere .nojekyll
+- [ ] Attivare GitHub Pages nelle impostazioni repo (branch main, root /)
+- [ ] Aggiungere custom domain raasautomazioni.it
+- [ ] Aggiornare DNS su Serverplan: puntare a GitHub Pages
+- [ ] Verificare HTTPS con certificato GitHub
 - [ ] Verificare che tutte le 43 pagine funzionino
 - [ ] Testare PageSpeed post-migrazione
 

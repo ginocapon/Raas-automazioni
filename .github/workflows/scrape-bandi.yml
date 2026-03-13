@@ -1,0 +1,40 @@
+name: Scrape Bandi Agevolazioni
+
+on:
+  schedule:
+    # Ogni lunedi alle 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installa dipendenze
+        run: npm install @supabase/supabase-js
+
+      - name: Esegui scraping bandi
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scripts/scrape-bandi.mjs
+
+      - name: Committa e pusha bandi.json aggiornato
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/bandi.json
+          git diff --cached --quiet || git commit -m "Aggiorna bandi.json - scraping automatico $(date +'%Y-%m-%d')"
+          git push

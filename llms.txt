@@ -1,0 +1,36 @@
+# RaaS Automazioni
+
+> Web agency italiana specializzata in siti web in codice puro (no WordPress), automazioni business e aggregatore bandi a fondo perduto per PMI.
+
+RaaS Automazioni realizza siti web professionali in HTML/CSS/JS puro, senza framework o CMS. Garantisce PageSpeed 95+ e prezzi bloccati per sempre (nessun rincaro). Offre anche un aggregatore gratuito di bandi e finanziamenti italiani con oltre 150 fonti ufficiali monitorate.
+
+Sede: Limena (PD), Italia. Fondata da Gino Capon. Target: PMI, professionisti, startup italiane (B2B).
+
+## Servizi e Prezzi
+
+- [Homepage - Servizi e Prezzi](https://www.raasautomazioni.it/): Siti web professionali da 199 euro/anno. Tre pacchetti: Essential (199 euro), Business (249 euro), Professional (299 euro). Prezzo bloccato per sempre.
+- [Aggregatore Bandi Italia](https://www.raasautomazioni.it/bandi.html): Oltre 500 bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane. Aggiornamento automatico da Invitalia, SIMEST, INAIL, 20 Regioni, 105+ CCIAA.
+
+## Blog - Guide e Strategie
+
+- [Codice Puro vs WordPress 2026](https://www.raasautomazioni.it/blog/articoli/codice-puro-vs-wordpress-2026): Confronto tecnico completo tra sviluppo in codice puro e WordPress con dati PageSpeed, sicurezza e costi verificati.
+- [Lead Generation 30-50 Lead al Mese](https://www.raasautomazioni.it/blog/articoli/lead-generation-30-50-lead-mese-2026): Guida completa con strategie testate per PMI italiane su SEO locale, landing page e conversione.
+- [PageSpeed 95+ Guida Ottimizzazione](https://www.raasautomazioni.it/blog/articoli/pagespeed-95-guida-ottimizzazione-2026): Come raggiungere PageSpeed 95+ con Core Web Vitals, LCP, CLS e strategie testate.
+- [50 Lead Qualificati con Automazione](https://www.raasautomazioni.it/blog/articoli/lead-generation-50-lead-qualificati-automazione): Strategie per ottenere 50+ contatti qualificati al mese con funnel automatizzati.
+- [5 Automazioni per Risparmiare 20 Ore](https://www.raasautomazioni.it/blog/articoli/5-automazioni-risparmiare-20-ore-settimana): Le automazioni business piu' efficaci per PMI italiane.
+- [PageSpeed 95 Dati e ROI](https://www.raasautomazioni.it/blog/articoli/pagespeed-95-dati-roi): Dati reali su come PageSpeed 95+ impatta conversioni e fatturato.
+- [Sito Vetrina come Macchina Business](https://www.raasautomazioni.it/blog/articoli/sito-vetrina-macchina-business-90-giorni): Come trasformare un sito vetrina in una macchina di lead generation in 90 giorni.
+
+## Dati Chiave
+
+- 150+ progetti completati
+- 98% soddisfazione clienti
+- PageSpeed 95+ garantito (o lavoriamo gratis)
+- Prezzo bloccato per sempre (clausola contrattuale anti-rincaro)
+- Zero WordPress, zero plugin, zero vulnerabilita' CMS
+- Codice proprietario: HTML, CSS, JS vanilla
+
+## Contatti
+
+- [Privacy Policy](https://www.raasautomazioni.it/privacy): Privacy Policy GDPR completa.
+- [Cookie Policy](https://www.raasautomazioni.it/cookie): Informativa cookie tecnici e analitici.

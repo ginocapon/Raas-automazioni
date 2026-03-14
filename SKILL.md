@@ -452,10 +452,10 @@ Inoltre, Infatti, Di conseguenza, In particolare, Tuttavia, Pertanto, Nonostante
 - [ ] Aggiornare dati competitors con preventivi Q1 2026
 
 ### SEO & Visibilita'
-- [ ] Registrare/aggiornare Google Business Profile
-- [ ] Schema.org su tutte le pagine
-- [ ] Open Graph tags su tutte le pagine
-- [ ] Verificare robots.txt permissivo per AI bots
+- [x] Registrare/aggiornare Google Business Profile
+- [x] Schema.org su tutte le pagine
+- [x] Open Graph tags su tutte le pagine
+- [x] Verificare robots.txt permissivo per AI bots
 
 ### Tecnico
 - [ ] Collegare form contatti a backend email
@@ -463,9 +463,108 @@ Inoltre, Infatti, Di conseguenza, In particolare, Tuttavia, Pertanto, Nonostante
 - [ ] Critical CSS inline per LCP <2s
 - [ ] Verificare HTTPS su GitHub Pages
 
+### GEO & AI Agents (Nuovo)
+- [x] Creare robots.txt con whitelist AI bots
+- [x] Creare llms.txt
+- [ ] Creare llms-full.txt
+- [ ] Aggiungere AggregateRating schema su testimonial homepage
+- [ ] Aggiungere LocalBusiness schema su homepage
+- [ ] Aggiungere Person schema per fondatore e team
+- [ ] Aggiungere author bio su articoli blog
+- [ ] Aggiungere Table of Contents su articoli blog
+- [ ] Aggiungere date "Ultimo aggiornamento" visibili su blog
+- [ ] Usare BlogPosting invece di Article su blog
+- [ ] Aggiungere ItemList schema su bandi.html
+- [ ] Embed video YouTube su pagine chiave
+- [ ] Creare VideoObject schema per video
+- [ ] Aggiungere pulsanti share social su blog
+- [ ] Creare humans.txt
+- [ ] Creare .well-known/security.txt
+- [ ] Creare manifest.json PWA base
+- [ ] Monitoring citazioni AI (ChatGPT/Perplexity) — settimanale
+
 ---
 
-## 8. CHANGELOG
+## 8. STRATEGIA GEO — GENERATIVE ENGINE OPTIMIZATION
+
+### 8.1 Cos'e' il GEO
+Ottimizzazione dei contenuti affinche' le piattaforme AI (ChatGPT, Perplexity, Gemini, Google AI Overviews, Claude) **citino e raccomandino** il brand nelle risposte agli utenti.
+
+**Dati chiave:**
+- Sessioni AI +527% anno su anno (fonte: Averi 2025)
+- Sovrapposizione Google/AI scesa dal 70% al 20% (fonte: Profound)
+- 96% citazioni AI Overviews da fonti con forti segnali E-E-A-T (fonte: Wellows)
+- Schema markup = 2.5x piu' probabilita' di apparire in risposte AI (fonte: Stackmatix)
+
+### 8.2 I 7 Pilastri GEO
+1. **Crawling AI** — robots.txt con whitelist per GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, GoogleOther
+2. **Struttura per Sintesi** — Risposta diretta nelle prime 2 righe, poi approfondimento
+3. **Contenuti Citabili** — Dati proprietari, benchmark, case study con numeri unici
+4. **Prompt-style** — Ottimizzare per domande conversazionali, non solo keyword
+5. **Consenso Multi-Fonte** — Presenza coerente su directory, review, forum, social
+6. **Aggiornamento Costante** — Date "ultimo aggiornamento", refresh trimestrale
+7. **Dominio di Nicchia** — Profondita' tematica su argomenti specifici
+
+### 8.3 File Speciali per AI Agents
+| File | Posizione | Scopo | Stato |
+|------|-----------|-------|-------|
+| `robots.txt` | `/robots.txt` | Whitelist crawler AI | FATTO |
+| `llms.txt` | `/llms.txt` | Info sito leggibile da AI | FATTO |
+| `llms-full.txt` | `/llms-full.txt` | Contenuto completo in Markdown | DA FARE |
+| `humans.txt` | `/humans.txt` | Crediti team, trasparenza | DA FARE |
+| `security.txt` | `/.well-known/security.txt` | Policy sicurezza | DA FARE |
+| `manifest.json` | `/manifest.json` | PWA base | DA FARE |
+
+### 8.4 Schema.org Priorita' per AI
+| Schema | Pagina | Impatto | Stato |
+|--------|--------|---------|-------|
+| Organization | Homepage | CRITICO | FATTO |
+| LocalBusiness | Homepage | CRITICO | DA FARE |
+| FAQPage | Tutte con FAQ | ALTO | PARZIALE |
+| Service + Offer | Homepage | ALTO | FATTO |
+| AggregateRating | Homepage | ALTO | DA FARE |
+| BreadcrumbList | Tutte | MEDIO | PARZIALE |
+| BlogPosting | Blog | MEDIO | DA FARE |
+| Person | Blog, Chi Siamo | MEDIO | DA FARE |
+| VideoObject | Pagine con video | MEDIO | DA FARE |
+| ItemList | Bandi | MEDIO | DA FARE |
+
+### 8.5 E-E-A-T — Segnali Implementabili
+**Experience:** Immagini originali, case study reali, video propri
+**Expertise:** Contenuti 2500+ parole, terminologia tecnica corretta
+**Authoritativeness:** Backlink, directory, recensioni terze, NAP consistente
+**Trustworthiness:** Contatti chiari, team reale, prezzi trasparenti, fonti citate, HTTPS
+
+### 8.6 Video — Checklist Implementazione
+- [ ] Embed YouTube con `youtube-nocookie.com` (GDPR)
+- [ ] `loading="lazy"` su iframe
+- [ ] VideoObject schema per ogni video
+- [ ] Trascrizione testuale sotto il video
+- [ ] Cross-link YouTube <-> sito
+
+### 8.7 Monitoring AI Visibility
+Verificare settimanalmente se il brand appare nelle risposte di:
+- ChatGPT: "Quale web agency italiana ha prezzi fissi?"
+- Perplexity: "Migliore aggregatore bandi Italia"
+- Google AI: "Siti web codice puro vs WordPress prezzo"
+- Claude: "Web agency italiana con PageSpeed 95+"
+
+> **Riferimento completo:** Vedi `REPORT-GEO-AI-2026.md` per dettagli, fonti e checklist riutilizzabili.
+
+---
+
+## 9. CHANGELOG
+
+### v1.1 - 14 Marzo 2026 (GEO & AI Agents)
+- Aggiunta Sezione 8: Strategia GEO completa
+- Aggiunta sezione TODO "GEO & AI Agents"
+- Creato robots.txt con whitelist AI bots
+- Creato llms.txt per AI agents
+- Convertiti 3 articoli .txt in .html con GA4
+- Aggiunto OG tags, canonical, theme-color a tutte le pagine
+- Aggiunto Schema.org JSON-LD a blog.html e bandi.html
+- Aggiornato sitemap.xml con 6 nuovi URL
+- Creato REPORT-GEO-AI-2026.md riutilizzabile
 
 ### v1.0 - 13 Marzo 2026 (Setup iniziale)
 - Creazione SKILL.md unificata per RaaS Automazioni
@@ -479,6 +578,6 @@ Inoltre, Infatti, Di conseguenza, In particolare, Tuttavia, Pertanto, Nonostante
 
 ---
 
-**VERSIONE:** 1.0 RaaS Automazioni
-**ULTIMO AGGIORNAMENTO:** Marzo 2026
+**VERSIONE:** 1.1 RaaS Automazioni
+**ULTIMO AGGIORNAMENTO:** 14 Marzo 2026
 **PROSSIMO REVIEW:** Giugno 2026 (aggiornamento prezzi Q2)

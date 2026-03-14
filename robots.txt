@@ -1,0 +1,22 @@
+# robots.txt — RaaS Automazioni
+# Permissivo per motori di ricerca e AI bots
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /supabase/
+
+# AI Bots — permessi per GEO (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.raasautomazioni.it/sitemap.xml

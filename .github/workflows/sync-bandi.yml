@@ -1,0 +1,62 @@
+name: Sincronizza Bandi
+
+on:
+  schedule:
+    # Ogni lunedi alle 08:00 UTC (10:00 ora italiana)
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Esegui senza salvare (dry run)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Scrape nuovi bandi
+        id: scrape
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            node tools/scrape-bandi.js --dry-run
+          else
+            node tools/scrape-bandi.js
+          fi
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - name: Sync con Supabase
+        if: github.event.inputs.dry_run != 'true'
+        run: node tools/sync-bandi.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - name: Commit e push aggiornamenti
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "BandiItalia Bot"
+          git config user.email "bot@raasautomazioni.it"
+          git add data/bandi.json
+          if git diff --staged --quiet; then
+            echo "Nessuna modifica da committare"
+          else
+            git commit -m "Aggiornamento automatico bandi — $(date +%Y-%m-%d)"
+            git push
+          fi

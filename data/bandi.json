@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "3.0.0",
-    "generated_at": "2026-02-09T10:00:00Z",
-    "total_bandi": 45,
+    "version": "4.0.0",
+    "generated_at": "2026-03-13T23:30:48.055Z",
+    "total_bandi": 33,
     "sources": [
       "invitalia",
       "mimit",
@@ -13,6 +13,8 @@
       "regione_lazio",
       "cciaa_roma",
       "cciaa_milano",
+      "contributieuropa",
+      "europainnovazione",
       "aggregatore"
     ]
   },
@@ -34,10 +36,24 @@
       "contributo_max": 1500000,
       "percentuale": 80,
       "tipo_contributo": "misto",
-      "beneficiari": ["startup_innovative"],
-      "settori": ["tutti"],
-      "finalita": ["innovazione", "avvio_impresa", "tecnologia"],
-      "keywords": ["invitalia", "startup", "innovazione", "tasso zero", "mezzogiorno"],
+      "beneficiari": [
+        "startup_innovative"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "innovazione",
+        "avvio_impresa",
+        "tecnologia"
+      ],
+      "keywords": [
+        "invitalia",
+        "startup",
+        "innovazione",
+        "tasso zero",
+        "mezzogiorno"
+      ],
       "descrizione": "Finanziamento fino a €1,5M per startup innovative. Mix finanziamento tasso zero + fondo perduto fino 30% al Sud.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "invitalia"
@@ -59,10 +75,27 @@
       "contributo_max": 3000000,
       "percentuale": 90,
       "tipo_contributo": "misto",
-      "beneficiari": ["giovani", "donne", "startup"],
-      "settori": ["tutti"],
-      "finalita": ["avvio_impresa", "sviluppo", "imprenditoria_femminile", "imprenditoria_giovanile"],
-      "keywords": ["invitalia", "donne", "giovani", "tasso zero", "nuove imprese"],
+      "beneficiari": [
+        "giovani",
+        "donne",
+        "startup"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "avvio_impresa",
+        "sviluppo",
+        "imprenditoria_femminile",
+        "imprenditoria_giovanile"
+      ],
+      "keywords": [
+        "invitalia",
+        "donne",
+        "giovani",
+        "tasso zero",
+        "nuove imprese"
+      ],
       "descrizione": "Incentivo per giovani e donne. Finanziamento tasso zero + contributo fondo perduto. Copertura fino al 90%.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "invitalia"
@@ -84,10 +117,24 @@
       "contributo_max": 200000,
       "percentuale": 75,
       "tipo_contributo": "misto",
-      "beneficiari": ["giovani", "under35"],
-      "settori": ["tutti"],
-      "finalita": ["mezzogiorno", "avvio_impresa", "sud_italia"],
-      "keywords": ["resto al sud", "mezzogiorno", "giovani", "under 35"],
+      "beneficiari": [
+        "giovani",
+        "under35"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "mezzogiorno",
+        "avvio_impresa",
+        "sud_italia"
+      ],
+      "keywords": [
+        "resto al sud",
+        "mezzogiorno",
+        "giovani",
+        "under 35"
+      ],
       "descrizione": "Voucher fino €50.000 + contributi fino 75% per under 35 nel Mezzogiorno. Regioni: Abruzzo, Basilicata, Calabria, Campania, Molise, Puglia, Sardegna, Sicilia.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "invitalia"
@@ -109,10 +156,25 @@
       "contributo_max": 4000000,
       "percentuale": 4,
       "tipo_contributo": "tasso_agevolato",
-      "beneficiari": ["PMI", "micro_imprese"],
-      "settori": ["tutti"],
-      "finalita": ["investimenti", "beni_strumentali", "digitalizzazione"],
-      "keywords": ["sabatini", "macchinari", "4.0", "green", "investimenti"],
+      "beneficiari": [
+        "PMI",
+        "micro_imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "investimenti",
+        "beni_strumentali",
+        "digitalizzazione"
+      ],
+      "keywords": [
+        "sabatini",
+        "macchinari",
+        "4.0",
+        "green",
+        "investimenti"
+      ],
       "descrizione": "Contributo conto interessi 2,75% (3,575% per 4.0/green) su finanziamenti bancari per beni strumentali.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
@@ -127,17 +189,32 @@
       "url_bando": "https://www.mimit.gov.it/it/incentivi/transizione-50",
       "url_domanda": "https://www.mimit.gov.it/it/incentivi/transizione-50",
       "data_apertura": "2024-01-01",
-      "data_scadenza": "2025-12-31",
+      "data_scadenza": "2026-12-31",
       "stato": "aperto",
       "dotazione": 6300000000,
       "contributo_min": null,
       "contributo_max": null,
       "percentuale": 45,
       "tipo_contributo": "credito_imposta",
-      "beneficiari": ["imprese", "PMI", "grandi_imprese"],
-      "settori": ["tutti"],
-      "finalita": ["efficienza_energetica", "digitalizzazione", "green"],
-      "keywords": ["transizione 5.0", "credito imposta", "risparmio energetico", "industria 4.0"],
+      "beneficiari": [
+        "imprese",
+        "PMI",
+        "grandi_imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "efficienza_energetica",
+        "digitalizzazione",
+        "green"
+      ],
+      "keywords": [
+        "transizione 5.0",
+        "credito imposta",
+        "risparmio energetico",
+        "industria 4.0"
+      ],
       "descrizione": "Credito d'imposta 5-45% per investimenti in beni 4.0 con risparmio energetico certificato almeno 3%.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
@@ -159,10 +236,26 @@
       "contributo_max": 40000000,
       "percentuale": 60,
       "tipo_contributo": "misto",
-      "beneficiari": ["imprese", "organismi_ricerca"],
-      "settori": ["manifatturiero", "digitale", "telecomunicazioni"],
-      "finalita": ["ricerca", "sviluppo", "innovazione"],
-      "keywords": ["accordi innovazione", "R&S", "ricerca", "sviluppo"],
+      "beneficiari": [
+        "imprese",
+        "organismi_ricerca"
+      ],
+      "settori": [
+        "manifatturiero",
+        "digitale",
+        "telecomunicazioni"
+      ],
+      "finalita": [
+        "ricerca",
+        "sviluppo",
+        "innovazione"
+      ],
+      "keywords": [
+        "accordi innovazione",
+        "R&S",
+        "ricerca",
+        "sviluppo"
+      ],
       "descrizione": "Contributi fino 60% + finanziamento agevolato per grandi progetti R&S. Investimento €5-40M, durata 18-36 mesi.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
@@ -184,10 +277,24 @@
       "contributo_max": 2500000,
       "percentuale": 20,
       "tipo_contributo": "misto",
-      "beneficiari": ["PMI", "imprese_esportatrici"],
-      "settori": ["tutti"],
-      "finalita": ["export", "internazionalizzazione", "mercati_esteri"],
-      "keywords": ["simest", "export", "internazionalizzazione", "mercati esteri"],
+      "beneficiari": [
+        "PMI",
+        "imprese_esportatrici"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "export",
+        "internazionalizzazione",
+        "mercati_esteri"
+      ],
+      "keywords": [
+        "simest",
+        "export",
+        "internazionalizzazione",
+        "mercati esteri"
+      ],
       "descrizione": "Finanziamento agevolato 0,319% + fondo perduto fino 20% per apertura strutture commerciali all'estero.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "simest"
@@ -209,10 +316,23 @@
       "contributo_max": 500000,
       "percentuale": 10,
       "tipo_contributo": "misto",
-      "beneficiari": ["PMI"],
-      "settori": ["tutti"],
-      "finalita": ["digitalizzazione", "export", "e-commerce"],
-      "keywords": ["simest", "e-commerce", "export digitale", "marketplace"],
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "digitalizzazione",
+        "export",
+        "e-commerce"
+      ],
+      "keywords": [
+        "simest",
+        "e-commerce",
+        "export digitale",
+        "marketplace"
+      ],
       "descrizione": "Finanziamento agevolato per sviluppo soluzioni e-commerce per vendita su mercati esteri.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "simest"
@@ -228,16 +348,35 @@
       "url_domanda": "https://www.inail.it/portale/prevenzione-e-sicurezza/it/prevenzione-e-sicurezza/finanziamenti-per-la-sicurezza/incentivi-alle-imprese.html",
       "data_apertura": "2026-03-01",
       "data_scadenza": "2026-05-31",
-      "stato": "in_arrivo",
+      "stato": "aperto",
       "dotazione": 600000000,
       "contributo_min": 5000,
       "contributo_max": 130000,
       "percentuale": 65,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["imprese", "artigiani", "agricoltori"],
-      "settori": ["tutti", "agricoltura", "manifatturiero"],
-      "finalita": ["sicurezza_lavoro", "macchinari", "amianto", "DPI"],
-      "keywords": ["inail", "isi", "sicurezza", "prevenzione", "click day"],
+      "beneficiari": [
+        "imprese",
+        "artigiani",
+        "agricoltori"
+      ],
+      "settori": [
+        "tutti",
+        "agricoltura",
+        "manifatturiero"
+      ],
+      "finalita": [
+        "sicurezza_lavoro",
+        "macchinari",
+        "amianto",
+        "DPI"
+      ],
+      "keywords": [
+        "inail",
+        "isi",
+        "sicurezza",
+        "prevenzione",
+        "click day"
+      ],
       "descrizione": "Contributo a fondo perduto 65% (80% agricoltura giovani) per miglioramento sicurezza lavoro. Dotazione €600M. Click day previsto.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "inail"
@@ -259,10 +398,23 @@
       "contributo_max": 500000,
       "percentuale": 25,
       "tipo_contributo": "misto",
-      "beneficiari": ["startup", "PMI"],
-      "settori": ["tutti"],
-      "finalita": ["avvio_impresa", "innovazione"],
-      "keywords": ["veneto", "startup", "competitività", "finanziamento agevolato"],
+      "beneficiari": [
+        "startup",
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "avvio_impresa",
+        "innovazione"
+      ],
+      "keywords": [
+        "veneto",
+        "startup",
+        "competitività",
+        "finanziamento agevolato"
+      ],
       "descrizione": "25% fondo perduto + tasso zero per startup e imprese innovative del Veneto.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_veneto"
@@ -284,10 +436,23 @@
       "contributo_max": 300000,
       "percentuale": 20,
       "tipo_contributo": "misto",
-      "beneficiari": ["PMI"],
-      "settori": ["tutti"],
-      "finalita": ["efficienza_energetica", "green", "fotovoltaico"],
-      "keywords": ["veneto", "energia", "efficientamento", "green"],
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "efficienza_energetica",
+        "green",
+        "fotovoltaico"
+      ],
+      "keywords": [
+        "veneto",
+        "energia",
+        "efficientamento",
+        "green"
+      ],
       "descrizione": "20% contributo + finanziamento agevolato per interventi di efficientamento energetico nelle imprese venete.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_veneto"
@@ -309,10 +474,25 @@
       "contributo_max": 1000000,
       "percentuale": 40,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["imprese", "enti_pubblici", "cittadini"],
-      "settori": ["energia"],
-      "finalita": ["rinnovabili", "CER", "sostenibilità"],
-      "keywords": ["CER", "comunità energetiche", "rinnovabili", "veneto"],
+      "beneficiari": [
+        "imprese",
+        "enti_pubblici",
+        "cittadini"
+      ],
+      "settori": [
+        "energia"
+      ],
+      "finalita": [
+        "rinnovabili",
+        "CER",
+        "sostenibilità"
+      ],
+      "keywords": [
+        "CER",
+        "comunità energetiche",
+        "rinnovabili",
+        "veneto"
+      ],
       "descrizione": "Contributi per realizzazione impianti fino 1 MW in Comunità Energetiche Rinnovabili. Dotazione €6M.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_veneto"
@@ -334,10 +514,24 @@
       "contributo_max": 10000,
       "percentuale": 50,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["nuove_imprese", "startup", "professionisti"],
-      "settori": ["tutti"],
-      "finalita": ["avvio_impresa", "autoimprenditorialità"],
-      "keywords": ["lombardia", "nuova impresa", "startup", "avvio attività"],
+      "beneficiari": [
+        "nuove_imprese",
+        "startup",
+        "professionisti"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "avvio_impresa",
+        "autoimprenditorialità"
+      ],
+      "keywords": [
+        "lombardia",
+        "nuova impresa",
+        "startup",
+        "avvio attività"
+      ],
       "descrizione": "Contributi 50% (€1.500-10.000) per avvio nuove imprese e lavoratori autonomi in Lombardia.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_lombardia"
@@ -359,10 +553,23 @@
       "contributo_max": 250000,
       "percentuale": 45,
       "tipo_contributo": "misto",
-      "beneficiari": ["MPMI"],
-      "settori": ["tutti"],
-      "finalita": ["efficienza_energetica", "rinnovabili", "green"],
-      "keywords": ["lombardia", "efficienza energetica", "green", "sostenibilità"],
+      "beneficiari": [
+        "MPMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "efficienza_energetica",
+        "rinnovabili",
+        "green"
+      ],
+      "keywords": [
+        "lombardia",
+        "efficienza energetica",
+        "green",
+        "sostenibilità"
+      ],
       "descrizione": "Contributo fino 45% + garanzia regionale 70% per investimenti in riduzione impatto ambientale.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_lombardia"
@@ -384,10 +591,23 @@
       "contributo_max": 100000,
       "percentuale": 80,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["imprese_femminili", "donne"],
-      "settori": ["tutti"],
-      "finalita": ["imprenditoria_femminile", "sviluppo"],
-      "keywords": ["lazio", "donne", "impresa femminile", "fondo perduto"],
+      "beneficiari": [
+        "imprese_femminili",
+        "donne"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "imprenditoria_femminile",
+        "sviluppo"
+      ],
+      "keywords": [
+        "lazio",
+        "donne",
+        "impresa femminile",
+        "fondo perduto"
+      ],
       "descrizione": "Contributi fondo perduto fino €100.000 per PMI femminili nel Lazio. Dotazione €3M dal FESR 2021-2027.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "regione_lazio"
@@ -402,17 +622,31 @@
       "url_bando": "https://www.rm.camcom.it/archivio43_bandi-altri-bandi_0_262.html",
       "url_domanda": "https://www.rm.camcom.it/archivio43_bandi-altri-bandi_0_262.html",
       "data_apertura": "2025-01-01",
-      "data_scadenza": "2025-12-31",
+      "data_scadenza": "2026-12-31",
       "stato": "aperto",
       "dotazione": 10000000,
       "contributo_min": 3000,
       "contributo_max": 10000,
       "percentuale": 70,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["MPMI"],
-      "settori": ["tutti"],
-      "finalita": ["digitalizzazione", "efficienza_energetica", "industria_4.0"],
-      "keywords": ["roma", "voucher digitale", "4.0", "transizione", "PID"],
+      "beneficiari": [
+        "MPMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "digitalizzazione",
+        "efficienza_energetica",
+        "industria_4.0"
+      ],
+      "keywords": [
+        "roma",
+        "voucher digitale",
+        "4.0",
+        "transizione",
+        "PID"
+      ],
       "descrizione": "Voucher 70% (max €10.000) per digitalizzazione e efficientamento energetico MPMI provincia di Roma.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "cciaa_roma"
@@ -434,10 +668,23 @@
       "contributo_max": 10000,
       "percentuale": 60,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["PMI"],
-      "settori": ["tutti"],
-      "finalita": ["internazionalizzazione", "digital_marketing", "export"],
-      "keywords": ["milano", "internazionalizzazione", "export", "digital marketing"],
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "internazionalizzazione",
+        "digital_marketing",
+        "export"
+      ],
+      "keywords": [
+        "milano",
+        "internazionalizzazione",
+        "export",
+        "digital marketing"
+      ],
       "descrizione": "Contributo 60% (max €10.000) per presenza su mercati esteri tramite digital marketing.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "cciaa_milano"
@@ -459,10 +706,23 @@
       "contributo_max": 7000,
       "percentuale": 70,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["MPMI"],
-      "settori": ["tutti"],
-      "finalita": ["digitalizzazione", "industria_4.0"],
-      "keywords": ["venezia", "rovigo", "voucher digitale", "4.0", "PID"],
+      "beneficiari": [
+        "MPMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "digitalizzazione",
+        "industria_4.0"
+      ],
+      "keywords": [
+        "venezia",
+        "rovigo",
+        "voucher digitale",
+        "4.0",
+        "PID"
+      ],
       "descrizione": "Voucher 70% per tecnologie digitali I4.0 nelle MPMI di Venezia e Rovigo.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "cciaa_venezia"
@@ -484,10 +744,24 @@
       "contributo_max": 100000000,
       "percentuale": 60,
       "tipo_contributo": "credito_imposta",
-      "beneficiari": ["imprese"],
-      "settori": ["tutti"],
-      "finalita": ["investimenti", "mezzogiorno", "sviluppo"],
-      "keywords": ["ZES", "sud", "credito imposta", "mezzogiorno", "investimenti"],
+      "beneficiari": [
+        "imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "investimenti",
+        "mezzogiorno",
+        "sviluppo"
+      ],
+      "keywords": [
+        "ZES",
+        "sud",
+        "credito imposta",
+        "mezzogiorno",
+        "investimenti"
+      ],
       "descrizione": "Credito d'imposta 15-60% per investimenti in Abruzzo, Basilicata, Calabria, Campania, Molise, Puglia, Sardegna, Sicilia. Cumulabile con Transizione 5.0 dal 2026.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
@@ -509,10 +783,24 @@
       "contributo_max": 140000,
       "percentuale": 80,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["PMI", "startup_innovative"],
-      "settori": ["tutti"],
-      "finalita": ["brevetti", "proprietà_intellettuale", "innovazione"],
-      "keywords": ["brevetti", "brevetti+", "proprietà intellettuale", "IP"],
+      "beneficiari": [
+        "PMI",
+        "startup_innovative"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "brevetti",
+        "proprietà_intellettuale",
+        "innovazione"
+      ],
+      "keywords": [
+        "brevetti",
+        "brevetti+",
+        "proprietà intellettuale",
+        "IP"
+      ],
       "descrizione": "Contributo fondo perduto 80% per valorizzazione brevetti. Massimo €140.000 per impresa.",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
@@ -534,13 +822,517 @@
       "contributo_max": 9000,
       "percentuale": 90,
       "tipo_contributo": "fondo_perduto",
-      "beneficiari": ["PMI"],
-      "settori": ["tutti"],
-      "finalita": ["marchi", "proprietà_intellettuale", "internazionalizzazione"],
-      "keywords": ["marchi", "marchi+", "trademark", "EUIPO", "OMPI"],
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "marchi",
+        "proprietà_intellettuale",
+        "internazionalizzazione"
+      ],
+      "keywords": [
+        "marchi",
+        "marchi+",
+        "trademark",
+        "EUIPO",
+        "OMPI"
+      ],
       "descrizione": "Contributo 80-90% per registrazione marchi UE e internazionali. Max €6.000 (UE) o €9.000 (internazionale).",
       "data_scraping": "2026-02-09T10:00:00Z",
       "fonte_scraping": "mimit"
+    },
+    {
+      "id": "inv004netzero",
+      "titolo": "Contratto di Sviluppo Net Zero",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/contratto-di-sviluppo",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/contratto-di-sviluppo",
+      "data_apertura": "2025-01-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": 1738000000,
+      "contributo_min": 3000000,
+      "contributo_max": null,
+      "percentuale": 75,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese",
+        "grandi_imprese",
+        "PMI"
+      ],
+      "settori": [
+        "manifatturiero",
+        "energia",
+        "green"
+      ],
+      "finalita": [
+        "transizione_ecologica",
+        "net_zero",
+        "industria"
+      ],
+      "keywords": [
+        "contratto sviluppo",
+        "net zero",
+        "PNRR",
+        "transizione ecologica",
+        "invitalia"
+      ],
+      "descrizione": "Dotazione €1,738 miliardi PNRR per grandi progetti industriali finalizzati alla transizione ecologica e tecnologie a zero emissioni nette. Contributo fino 75% con mix fondo perduto e finanziamento agevolato.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
+    },
+    {
+      "id": "inv005culturacresce",
+      "titolo": "Cultura Cresce",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/cultura-cresce",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/cultura-cresce",
+      "data_apertura": "2025-06-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": 150000000,
+      "contributo_min": 50000,
+      "contributo_max": 1000000,
+      "percentuale": 80,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "MPMI",
+        "terzo_settore",
+        "no_profit"
+      ],
+      "settori": [
+        "cultura",
+        "creativita",
+        "turismo"
+      ],
+      "finalita": [
+        "cultura",
+        "creativita",
+        "impresa_sociale"
+      ],
+      "keywords": [
+        "cultura cresce",
+        "invitalia",
+        "settore culturale",
+        "creatività",
+        "no profit"
+      ],
+      "descrizione": "€150M per MPMI e terzo settore culturale/creativo. Contributi fino 80% tra fondo perduto e finanziamento agevolato.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
+    },
+    {
+      "id": "inv006economiacircolare",
+      "titolo": "Economia Circolare - Fondo Crescita Sostenibile",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/economia-circolare",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/economia-circolare",
+      "data_apertura": "2025-01-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": 150000000,
+      "contributo_min": 500000,
+      "contributo_max": 2000000,
+      "percentuale": 60,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese",
+        "PMI"
+      ],
+      "settori": [
+        "manifatturiero",
+        "riciclo",
+        "green"
+      ],
+      "finalita": [
+        "economia_circolare",
+        "sostenibilita",
+        "riconversione"
+      ],
+      "keywords": [
+        "economia circolare",
+        "crescita sostenibile",
+        "riconversione",
+        "riciclo"
+      ],
+      "descrizione": "€150M per riconvertire processi produttivi in chiave circolare. Contributi €500K-2M dal Fondo per la crescita sostenibile.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
+    },
+    {
+      "id": "inv007impresafemminile",
+      "titolo": "Fondo Impresa Femminile",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/fondo-impresa-femminile",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/fondo-impresa-femminile",
+      "data_apertura": "2024-05-07",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 5000,
+      "contributo_max": 400000,
+      "percentuale": 80,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese_femminili",
+        "donne"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "imprenditoria_femminile",
+        "avvio_impresa",
+        "sviluppo"
+      ],
+      "keywords": [
+        "fondo impresa femminile",
+        "donne",
+        "PNRR",
+        "imprenditoria femminile"
+      ],
+      "descrizione": "Incentivo PNRR per imprenditorialita femminile. Contributi fondo perduto + finanziamento agevolato fino 80%.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
+    },
+    {
+      "id": "inv008voucher3i",
+      "titolo": "Voucher 3I - Brevetti per Startup",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/voucher-3i",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/voucher-3i",
+      "data_apertura": "2024-01-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 1000,
+      "contributo_max": 4000,
+      "percentuale": 100,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "startup_innovative",
+        "micro_imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "brevetti",
+        "proprieta_intellettuale",
+        "innovazione"
+      ],
+      "keywords": [
+        "voucher 3I",
+        "brevetti",
+        "startup",
+        "proprietà intellettuale"
+      ],
+      "descrizione": "Contributo 100% fondo perduto per brevettazione: €1K anteriorita, €2K brevetto nazionale, €3K europeo, €4K internazionale PCT.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
+    },
+    {
+      "id": "mimit006greennewdeal",
+      "titolo": "Green New Deal Italia",
+      "ente": "MIMIT - Ministero Imprese e Made in Italy",
+      "tipo_ente": "ministero",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.mimit.gov.it/it/incentivi/green-new-deal",
+      "url_domanda": "https://www.mimit.gov.it/it/incentivi/green-new-deal",
+      "data_apertura": "2022-11-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 3000000,
+      "contributo_max": 40000000,
+      "percentuale": 15,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese",
+        "PMI",
+        "grandi_imprese"
+      ],
+      "settori": [
+        "green",
+        "energia",
+        "innovazione"
+      ],
+      "finalita": [
+        "transizione_ecologica",
+        "ricerca",
+        "economia_circolare"
+      ],
+      "keywords": [
+        "green new deal",
+        "transizione ecologica",
+        "sostenibilità",
+        "ricerca"
+      ],
+      "descrizione": "Investimenti €3-40M con mix finanziamento agevolato 0,5%, fondo perduto fino 15% e finanziamento bancario 20%. Aperto fino ad esaurimento fondi.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "contributieuropa"
+    },
+    {
+      "id": "simest003fiere",
+      "titolo": "SIMEST - Partecipazione Fiere ed Eventi",
+      "ente": "SIMEST - Gruppo CDP",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.simest.it/per-le-imprese/finanziamenti-agevolati/finanziamenti-agevolati-internazionalizzazione/fiere-ed-eventi/",
+      "url_domanda": "https://www.simest.it/per-le-imprese/finanziamenti-agevolati/finanziamenti-agevolati-internazionalizzazione/fiere-ed-eventi/",
+      "data_apertura": null,
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 10000,
+      "contributo_max": 500000,
+      "percentuale": 20,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "PMI",
+        "imprese_esportatrici"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "export",
+        "internazionalizzazione",
+        "fiere"
+      ],
+      "keywords": [
+        "simest",
+        "fiere",
+        "eventi",
+        "internazionalizzazione",
+        "export"
+      ],
+      "descrizione": "Finanziamento agevolato + fondo perduto fino 20% per partecipazione a fiere ed eventi internazionali.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "simest"
+    },
+    {
+      "id": "simest004transdigitale",
+      "titolo": "SIMEST - Transizione Digitale ed Ecologica",
+      "ente": "SIMEST - Gruppo CDP",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.simest.it/per-le-imprese/finanziamenti-agevolati/finanziamenti-agevolati-internazionalizzazione/transizione-digitale-ecologica/",
+      "url_domanda": "https://www.simest.it/per-le-imprese/finanziamenti-agevolati/finanziamenti-agevolati-internazionalizzazione/transizione-digitale-ecologica/",
+      "data_apertura": null,
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 10000,
+      "contributo_max": 1000000,
+      "percentuale": 20,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "digitalizzazione",
+        "green",
+        "internazionalizzazione"
+      ],
+      "keywords": [
+        "simest",
+        "transizione digitale",
+        "ecologica",
+        "PMI"
+      ],
+      "descrizione": "Finanziamento agevolato + fondo perduto fino 20% per transizione digitale ed ecologica delle PMI con vocazione internazionale.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "simest"
+    },
+    {
+      "id": "euipo001fondopmi",
+      "titolo": "Fondo PMI EUIPO - Voucher Marchi e Brevetti UE",
+      "ente": "EUIPO - Ufficio UE Proprietà Intellettuale",
+      "tipo_ente": "ente_ue",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.euipo.europa.eu/it/discover-ip/sme-fund",
+      "url_domanda": "https://www.euipo.europa.eu/it/discover-ip/sme-fund",
+      "data_apertura": "2026-01-13",
+      "data_scadenza": "2026-12-19",
+      "stato": "aperto",
+      "dotazione": 25000000,
+      "contributo_min": 500,
+      "contributo_max": 3000,
+      "percentuale": 75,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "marchi",
+        "brevetti",
+        "proprieta_intellettuale"
+      ],
+      "keywords": [
+        "EUIPO",
+        "fondo PMI",
+        "marchi",
+        "brevetti",
+        "UE",
+        "voucher IP"
+      ],
+      "descrizione": "Voucher UE fino 75% per registrazione marchi, brevetti e design. €25M disponibili. Aperto a tutte le PMI europee.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "europainnovazione"
+    },
+    {
+      "id": "mimit007digitaltransformation",
+      "titolo": "Digital Transformation - Digitalizzazione PMI",
+      "ente": "MIMIT - Ministero Imprese e Made in Italy",
+      "tipo_ente": "ministero",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.mimit.gov.it/it/incentivi/digital-transformation",
+      "url_domanda": "https://www.mimit.gov.it/it/incentivi/digital-transformation",
+      "data_apertura": "2023-09-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": 100000000,
+      "contributo_min": 50000,
+      "contributo_max": 500000,
+      "percentuale": 50,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "manifatturiero",
+        "servizi",
+        "turismo",
+        "commercio"
+      ],
+      "finalita": [
+        "digitalizzazione",
+        "industria_4.0",
+        "innovazione"
+      ],
+      "keywords": [
+        "digital transformation",
+        "digitalizzazione",
+        "4.0",
+        "cloud",
+        "AI",
+        "cybersecurity"
+      ],
+      "descrizione": "10% fondo perduto + 40% finanziamento agevolato tasso zero per tecnologie I4.0: cloud, cybersecurity, big data, IoT, AI, e-commerce. Progetti €50-500K.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "contributieuropa"
+    },
+    {
+      "id": "cciaa004connessi2026",
+      "titolo": "Bando CONneSSi 2026 - Marketing Internazionale",
+      "ente": "Unioncamere / Sistema Camerale",
+      "tipo_ente": "cciaa",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.reteagevolazioni.it/bando-connessi-2026/",
+      "url_domanda": "https://www.reteagevolazioni.it/bando-connessi-2026/",
+      "data_apertura": "2026-01-15",
+      "data_scadenza": "2026-09-30",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 2000,
+      "contributo_max": 10000,
+      "percentuale": 60,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "PMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "internazionalizzazione",
+        "digital_marketing",
+        "SEO",
+        "export"
+      ],
+      "keywords": [
+        "connessi 2026",
+        "digital marketing",
+        "export",
+        "SEO",
+        "internazionalizzazione"
+      ],
+      "descrizione": "Contributo 60% fondo perduto per marketing internazionale e SEO. Voucher per consulenza, piattaforme digitali e presenza online su mercati esteri.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "contributieuropa"
+    },
+    {
+      "id": "inv009incentiviecsociale",
+      "titolo": "Incentivi Economia Sociale",
+      "ente": "Invitalia",
+      "tipo_ente": "ente_nazionale",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.invitalia.it/incentivi-e-strumenti/incentivi-economia-sociale",
+      "url_domanda": "https://www.invitalia.it/incentivi-e-strumenti/incentivi-economia-sociale",
+      "data_apertura": "2025-01-01",
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 100000,
+      "contributo_max": 10000000,
+      "percentuale": 70,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese_sociali",
+        "cooperative",
+        "terzo_settore"
+      ],
+      "settori": [
+        "sociale",
+        "cultura",
+        "welfare"
+      ],
+      "finalita": [
+        "economia_sociale",
+        "impresa_sociale",
+        "inclusione"
+      ],
+      "keywords": [
+        "economia sociale",
+        "cooperativa",
+        "terzo settore",
+        "impresa sociale"
+      ],
+      "descrizione": "Finanziamenti agevolati e contributi a fondo perduto per investimenti €100K-10M in impresa sociale e cooperazione.",
+      "data_scraping": "2026-03-13T12:00:00Z",
+      "fonte_scraping": "invitalia"
     }
   ]
 }

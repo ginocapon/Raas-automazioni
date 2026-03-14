@@ -196,6 +196,27 @@ Ogni pagina ha `<link rel="alternate" hreflang="it" href="...">` e `<link rel="a
 | **Robot 3D** | Stile Star Wars, CSS puro, animazione float, braccio che indica il video |
 | **Newsletter EN** | Sopra il footer nella pagina /en/, form Formspree |
 
+### 2.8 Sistema Bandi — Verifica Link con AI
+Il sistema bandi usa un orchestratore **Claude + Perplexity** per verificare automaticamente che ogni URL corrisponda alla pagina ufficiale del bando.
+
+| Componente | Dettaglio |
+|---|---|
+| **Scraper** | `tools/scrape-bandi.js` — scraping da fonti ufficiali |
+| **Verificatore** | `tools/verify-links-perplexity.js` — Claude + Perplexity sonar-pro |
+| **Sync** | `tools/sync-bandi.js` — sincronizzazione con Supabase |
+| **Cron** | GitHub Actions ogni lunedi 08:00 UTC |
+| **API Keys** | `ANTHROPIC_API_KEY` + `PERPLEXITY_API_KEY` (GitHub Secrets) |
+
+**Flusso verifica:**
+1. Lo scraper trova nuovi bandi
+2. Per ogni bando, Claude chiede a Perplexity di cercare il link ufficiale
+3. Claude valida il risultato e aggiorna `url_bando` se trova un URL migliore
+4. Ogni bando ha campo `link_verificato` (boolean) e `data_verifica` (ISO date)
+
+**Flag CLI:**
+- `--skip-verify` — salta la verifica Perplexity (utile per test rapidi)
+- `--dry-run` — non salva modifiche
+
 ---
 
 ## 3. STRATEGIA SEO & CONTENUTI BLOG

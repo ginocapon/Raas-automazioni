@@ -25,7 +25,7 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 5. **Aggiorna** sitemap.xml quando aggiungi/rimuovi pagine
 6. **Performance** — mai animazioni sull'elemento LCP; usare opacity/transform, mai filter
 7. **CTA contrast** — minimo 4.5:1 (WCAG AA)
-8. **Prezzi bloccati** — ogni riferimento ai prezzi deve essere coerente: Essential 199€/anno, Business 249€/anno, Professional 299€/anno
+8. **Prezzi bloccati** — ogni riferimento ai prezzi deve essere coerente: Base 299€/anno, E-commerce 399€/anno + 3% commissione performance
 9. **Dati verificati** — ogni dato numerico DEVE avere fonte citata. Se non hai fonte, scrivi "dato non disponibile"
 10. **Zero claim inventati** — nessuna percentuale o statistica senza fonte verificabile
 11. **Anti-plagio bandi** — i titoli dei bandi in data/bandi.json devono essere parafrasi originali, MAI copiati dal sito ufficiale. Formato: "NomeBando — Descrizione Breve Originale". I link devono corrispondere esattamente alla pagina ufficiale verificata
@@ -100,12 +100,40 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 └── webstats/                   # Statistiche web
 ```
 
-### 2.3 Pacchetti e Prezzi (UFFICIALI)
-| Pacchetto | Prezzo/Anno | Target |
+### 2.3 Modello di Business — RaaS (Revenue as a Service)
+**Il sito e' la porta d'ingresso. Il vero valore e' portare clienti.**
+
+| Componente | Dettaglio |
+|---|---|
+| **Fee d'ingresso (sito)** | Base 299€/anno, E-commerce 399€/anno |
+| **Commissione performance** | 3% sul fatturato totale generato dai nuovi lead/contatti portati |
+| **Dashboard trasparenza** | Ogni cliente accede a una pagina per verificare performance, lead, contatti generati |
+| **Contratto** | Lock-in con doppia sottoscrizione (Art. 1341 c.c.), penale decrescente, diritto audit |
+
+**Pacchetti sito (fee d'ingresso):**
+| Pacchetto | Prezzo/Anno | Incluso |
 |---|---|---|
-| **Essential** | 199€ | Sito vetrina base |
-| **Business** | 249€ | Sito aziendale completo |
-| **Professional** | 299€ | Sito avanzato con automazioni |
+| **Base** | 299€ | Sito vetrina/aziendale, hosting, SSL, PageSpeed 95+, SEO base, chatbot AI |
+| **E-commerce** | 399€ | Tutto Base + catalogo prodotti, carrello, pagamenti, gestione ordini |
+
+**Il modello performance (3% commissione):**
+- Commissione calcolata sul fatturato totale generato da nuovi contatti/lead portati tramite il sito e le campagne RaaS
+- Tracking via UTM, form dedicati, numeri telefono tracciati, CRM integrato
+- Riconciliazione trimestrale con dati verificabili
+- Dashboard cliente con accesso in tempo reale a tutte le metriche
+- Diritto di audit contrattuale per entrambe le parti
+
+**Riferimenti modelli simili nel mondo:**
+- Wunderkind (USA): $204.7M fatturato 2024, pioniere "Revenue as a Service"
+- Il 3% e' aggressivamente competitivo (mercato: 5-15%)
+- Fee d'ingresso 299-399€ molto bassa (mercato: $2.500-$10.000+)
+
+**Clausole contrattuali obbligatorie (legge italiana):**
+- Doppia sottoscrizione specifica per clausola lock-in (Art. 1341 c.c.)
+- Penale di recesso proporzionale e decrescente (Art. 1384 c.c.)
+- Definizione chiara attribuzione lead e meccanismo audit
+- Data portability garantita (evitare Art. 9, L.192/1998 — dipendenza economica)
+- Durata massima consigliata: 24 mesi
 
 **Claim verificati:**
 - 150+ progetti completati
@@ -115,11 +143,39 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 
 ### 2.4 Servizi Core
 - Realizzazione siti web in codice puro (no WordPress)
+- **Lead generation e acquisizione clienti** (servizio primario)
+- Dashboard performance trasparente per ogni cliente
 - Garanzia PageSpeed 95+
-- Prezzo bloccato per sempre (anti-rincaro)
+- Prezzo sito bloccato per sempre (anti-rincaro)
+- SEO + GEO (Generative Engine Optimization)
 - Aggregatore bandi: monitoraggio 150+ fonti ufficiali
 - Automazioni business
-- Lead generation
+- Sito bilingue IT/EN
+
+### 2.5 Messaging Core
+**Messaggio primario (IT):** "Ti portiamo clienti. Guadagniamo solo se guadagni tu."
+**Messaggio primario (EN):** "We bring you clients. We only earn when you earn."
+
+**Gerarchia messaggi:**
+1. Performance-based: portiamo clienti, paghi solo sui risultati
+2. Trasparenza: dashboard verificabile, tutto nero su bianco
+3. Tecnologia: codice puro, AI, SEO/GEO, PageSpeed 95+
+4. Prezzo d'ingresso accessibile: 299-399€/anno per il sito
+
+**NON dire mai:**
+- "Vendiamo siti web" (il sito e' il mezzo, non il prodotto)
+- "Garantiamo X lead" (senza contratto specifico)
+- Percentuali inventate
+- Attacchi a concorrenti
+
+### 2.6 Struttura Sito Bilingue
+```
+/                    → Italiano (default)
+/en/                 → English
+/en/index.html       → Homepage EN
+/en/blog.html        → Blog EN (futuro)
+```
+Ogni pagina ha `<link rel="alternate" hreflang="it" href="...">` e `<link rel="alternate" hreflang="en" href="...">`
 
 ---
 

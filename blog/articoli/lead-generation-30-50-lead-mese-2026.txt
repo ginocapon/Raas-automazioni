@@ -142,7 +142,7 @@
 
     <p>«Il mio sito è bello ma non genera contatti.» È la frase che sentiamo più spesso. Il motivo è quasi sempre lo stesso: il sito è stato progettato per essere esteticamente gradevole, non per convertire visitatori in clienti. Infatti la lead generation è una disciplina specifica che richiede strategie mirate.</p>
 
-    <p>In questo articolo analizziamo le strategie di lead generation più efficaci nel 2026 per le PMI italiane. Quando parliamo di 30-50 lead al mese, parliamo di contatti qualificati: persone che hanno compilato un modulo, chiamato o inviato un messaggio perché realmente interessate. Per capire quanto impatta la tecnologia del sito sulla conversione, leggi il nostro <a href="/blog/codice-puro-vs-wordpress-2026.html" style="color:var(--accent);font-weight:600;">confronto Codice Puro vs WordPress</a>.</p>
+    <p>In questo articolo analizziamo le strategie di lead generation più efficaci nel 2026 per le PMI italiane. Quando parliamo di 30-50 lead al mese, parliamo di contatti qualificati: persone che hanno compilato un modulo, chiamato o inviato un messaggio perché realmente interessate. Per capire quanto impatta la tecnologia del sito sulla conversione, leggi il nostro <a href="/blog/codice-puro-vs-wordpress-2026" style="color:var(--accent);font-weight:600;">confronto Codice Puro vs WordPress</a>.</p>
 
     <h2>📊 Lead Generation: I Numeri del Mercato Italiano</h2>
 
@@ -182,7 +182,7 @@
 
     <p>La social proof è fondamentale: landing page con almeno 3 recensioni convertono il 34% in più (Spiegel Research Center). Il modulo deve avere massimo 4 campi. Il bottone deve essere specifico: "Richiedi Preventivo Gratuito" converte il 30% in più di "Invia".</p>
 
-    <p>La velocità è cruciale: ogni secondo di ritardo costa il 7% di conversioni. Per approfondire come raggiungere tempi di caricamento ottimali, leggi la nostra <a href="/blog/pagespeed-95-guida-ottimizzazione-2026.html" style="color:var(--accent);font-weight:600;">guida al PageSpeed 90+</a>. Il design deve essere mobile-first (65%+ traffico da mobile in Italia). Infine, offrire canali multipli (form, click-to-call, WhatsApp) aumenta le conversioni del 20-40%.</p>
+    <p>La velocità è cruciale: ogni secondo di ritardo costa il 7% di conversioni. Per approfondire come raggiungere tempi di caricamento ottimali, leggi la nostra <a href="/blog/pagespeed-95-guida-ottimizzazione-2026" style="color:var(--accent);font-weight:600;">guida al PageSpeed 90+</a>. Il design deve essere mobile-first (65%+ traffico da mobile in Italia). Infine, offrire canali multipli (form, click-to-call, WhatsApp) aumenta le conversioni del 20-40%.</p>
 
     <h2>💰 Costo per Lead per Settore</h2>
 
@@ -220,7 +220,7 @@
     </div>
     <p class="table-source">Fonte: Google Analytics 4 e Search Console, settembre 2025 - gennaio 2026. Anonimizzato.</p>
 
-    <p>L'aumento da 3 a 47 lead (+1.467%) è stato ottenuto senza advertising. Per capire quanto puoi risparmiare rispetto a un sito tradizionale, consulta il nostro <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba.html" style="color:var(--accent);font-weight:600;">confronto prezzi Web Agency 2026</a>.</p>
+    <p>L'aumento da 3 a 47 lead (+1.467%) è stato ottenuto senza advertising. Per capire quanto puoi risparmiare rispetto a un sito tradizionale, consulta il nostro <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba" style="color:var(--accent);font-weight:600;">confronto prezzi Web Agency 2026</a>.</p>
 
     <div class="callout">
         <div class="callout-title">📊 ROI dell'Investimento</div>
@@ -284,17 +284,17 @@
     <div class="related-articles">
         <h3>📚 Leggi Anche</h3>
         <div class="related-grid">
-            <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba.html" class="related-card">
+            <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba" class="related-card">
                 <div class="tag" style="color:#00d4aa;">📊 Confronto Prezzi</div>
                 <h4>Prezzi Web Agency 2026: RaaS vs Aruba [+506%]</h4>
                 <p>Confronto trasparente con preventivi ufficiali su 5 anni.</p>
             </a>
-            <a href="/blog/codice-puro-vs-wordpress-2026.html" class="related-card">
+            <a href="/blog/codice-puro-vs-wordpress-2026" class="related-card">
                 <div class="tag" style="color:#e94560;">⚡ Confronto Tecnico</div>
                 <h4>Codice Puro vs WordPress: Performance e Sicurezza</h4>
                 <p>Dati PageSpeed reali, sicurezza, costi manutenzione 5 anni.</p>
             </a>
-            <a href="/blog/pagespeed-95-guida-ottimizzazione-2026.html" class="related-card">
+            <a href="/blog/pagespeed-95-guida-ottimizzazione-2026" class="related-card">
                 <div class="tag" style="color:#f59e0b;">⚡ Guida Tecnica</div>
                 <h4>PageSpeed 90+: Guida Completa Ottimizzazione</h4>
                 <p>Core Web Vitals, strategie testate, errori da evitare.</p>

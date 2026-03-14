@@ -19,7 +19,7 @@ Dashboard personale per ogni cliente. Riconciliazione trimestrale con diritto di
 
 - [Homepage IT](https://www.raasautomazioni.it/): Modello RaaS, prezzi, dashboard, come funziona.
 - [Homepage EN](https://www.raasautomazioni.it/en/): English version — Revenue as a Service model.
-- [Aggregatore Bandi Italia](https://www.raasautomazioni.it/bandi.html): Oltre 500 bandi a fondo perduto per PMI italiane. 150+ fonti ufficiali.
+- [Aggregatore Bandi Italia](https://www.raasautomazioni.it/bandi): Oltre 500 bandi a fondo perduto per PMI italiane. 150+ fonti ufficiali.
 - [RaaS Assistant](https://www.raasautomazioni.it/brobot): Chatbot bilingue IT/EN per informazioni sul modello RaaS.
 
 ### Pacchetti

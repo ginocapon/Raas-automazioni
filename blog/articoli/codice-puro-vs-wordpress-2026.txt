@@ -142,7 +142,7 @@
 
     <p>La domanda che ogni imprenditore si pone prima di commissionare un sito web è sempre la stessa: «meglio WordPress o un sito sviluppato su misura?». La risposta, nel 2026, non è più così scontata. Infatti i dati mostrano un trend chiaro: WordPress sta perdendo quote di mercato a favore di soluzioni più leggere e performanti, e le ragioni sono sia tecniche che economiche.</p>
 
-    <p>In questo articolo analizziamo nel dettaglio le differenze tra un sito realizzato in codice puro (HTML, CSS e JavaScript nativi) e uno costruito con WordPress, esaminando performance, sicurezza, costi di manutenzione e impatto sul posizionamento Google. Per un confronto specifico sui prezzi delle diverse soluzioni, puoi consultare il nostro <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba.html" style="color:var(--accent);font-weight:600;">confronto prezzi Web Agency 2026</a>.</p>
+    <p>In questo articolo analizziamo nel dettaglio le differenze tra un sito realizzato in codice puro (HTML, CSS e JavaScript nativi) e uno costruito con WordPress, esaminando performance, sicurezza, costi di manutenzione e impatto sul posizionamento Google. Per un confronto specifico sui prezzi delle diverse soluzioni, puoi consultare il nostro <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba" style="color:var(--accent);font-weight:600;">confronto prezzi Web Agency 2026</a>.</p>
 
     <h2>📉 WordPress nel 2026: Un Colosso che Perde Terreno</h2>
 
@@ -152,7 +152,7 @@
 
     <h2>⚡ Performance a Confronto: I Numeri Parlano Chiaro</h2>
 
-    <p>Il confronto più oggettivo è quello basato su Google PageSpeed Insights. Abbiamo testato 20 siti: 10 in codice puro RaaS e 10 WordPress su hosting standard. Per approfondire come raggiungere questi punteggi, leggi la nostra <a href="/blog/pagespeed-95-guida-ottimizzazione-2026.html" style="color:var(--accent);font-weight:600;">guida completa al PageSpeed 90+</a>.</p>
+    <p>Il confronto più oggettivo è quello basato su Google PageSpeed Insights. Abbiamo testato 20 siti: 10 in codice puro RaaS e 10 WordPress su hosting standard. Per approfondire come raggiungere questi punteggi, leggi la nostra <a href="/blog/pagespeed-95-guida-ottimizzazione-2026" style="color:var(--accent);font-weight:600;">guida completa al PageSpeed 90+</a>.</p>
 
     <div class="table-wrapper">
         <table>
@@ -281,17 +281,17 @@
     <div class="related-articles">
         <h3>📚 Leggi Anche</h3>
         <div class="related-grid">
-            <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba.html" class="related-card">
+            <a href="/blog/prezzi-web-agency-2026-raas-vs-aruba" class="related-card">
                 <div class="tag" style="color:#00d4aa;">📊 Confronto Prezzi</div>
                 <h4>Prezzi Web Agency 2026: RaaS vs Aruba [+506%]</h4>
                 <p>Confronto trasparente con preventivi ufficiali su 5 anni.</p>
             </a>
-            <a href="/blog/pagespeed-95-guida-ottimizzazione-2026.html" class="related-card">
+            <a href="/blog/pagespeed-95-guida-ottimizzazione-2026" class="related-card">
                 <div class="tag" style="color:#f59e0b;">⚡ Guida Tecnica</div>
                 <h4>PageSpeed 90+: Guida Completa Ottimizzazione</h4>
                 <p>Core Web Vitals, strategie testate, errori da evitare e case study.</p>
             </a>
-            <a href="/blog/lead-generation-30-50-lead-mese-2026.html" class="related-card">
+            <a href="/blog/lead-generation-30-50-lead-mese-2026" class="related-card">
                 <div class="tag" style="color:#10b981;">🎯 Lead Generation</div>
                 <h4>Come Ottenere 30-50 Lead Qualificati al Mese</h4>
                 <p>SEO locale, landing page, conversione per PMI italiane.</p>

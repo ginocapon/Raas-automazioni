@@ -2,7 +2,7 @@
 
 ## Istruzione Primaria
 **LEGGI SEMPRE `SKILL.md` prima di qualsiasi operazione.**
-SKILL.md e' l'unica fonte di verita' per questo progetto.
+SKILL.md (versione 2.0) e' l'unica fonte di verita' per questo progetto.
 
 ## Regole Automatiche
 
@@ -16,19 +16,18 @@ SKILL.md e' l'unica fonte di verita' per questo progetto.
 - No `filter: blur` su animazioni — solo `opacity` e `transform`
 - No `will-change` permanente
 - CTA contrasto minimo 4.5:1 (WCAG AA)
-- Nessun CDN esterno
 
 ### Contenuti Blog:
-- Seguire template e checklist in SKILL.md Sezione 3 e 5
-- 2500+ parole, 28 H2/H3, 35% transition words
+- Seguire template e checklist in SKILL.md Sezione 6 e 7
+- 2500+ parole, 15+ H2/H3, 35% transition words
 - OGNI dato numerico DEVE avere fonte verificata
 - Zero claim inventati, zero dialetto, tono B2B professionale
-- Prezzi: Essential 199€, Business 249€, Professional 299€ (bloccati)
+- Prezzi: Base 299€/anno, E-commerce 399€/anno + 3% commissione performance (bloccati)
 
 ### Dopo ogni modifica:
 - Aggiornare sitemap.xml se pagine aggiunte/rimosse
 - Commit in italiano, descrittivo
-- Verificare checklist automatiche in SKILL.md Sezione 5
+- Verificare checklist automatiche in SKILL.md Sezione 7
 
 ### Pubblicazione:
 - Regola d'oro: "Se non hai fonte verificabile, NON inserire il dato"

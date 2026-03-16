@@ -402,7 +402,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 <section class="preview-section" id="previewSection">
     <div class="preview-header">
         <h2>&#x1F4CB; Ultimi Bandi Inseriti</h2>
-        <p>Anteprima gratuita degli ultimi 3 bandi caricati nel nostro database</p>
+        <p>Anteprima degli ultimi 3 bandi caricati nel nostro database</p>
     </div>
     <div id="loading-preview" class="loading"><div class="loading-spinner"></div><p>Caricamento bandi...</p></div>
     <div id="preview-grid" class="preview-grid" style="display:none;"></div>
@@ -435,7 +435,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 <section class="register-section" id="registerSection">
     <div class="container">
         <h2>&#x1F4EC; Resta Aggiornato sui Bandi</h2>
-        <p class="section-desc">Registrati gratuitamente per ricevere aggiornamenti settimanali sui nuovi bandi e opportunit&agrave; di finanziamento.</p>
+        <p class="section-desc">Registrati ora per ricevere aggiornamenti settimanali sui nuovi bandi e opportunit&agrave; di finanziamento.</p>
         <div class="register-form" id="registerForm">
             <div class="form-row">
                 <div class="form-group"><label>Nome *</label><input type="text" id="reg-nome" required placeholder="Mario"></div>
@@ -447,7 +447,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
                 <div class="form-group"><label>Regione Interesse</label><select id="reg-regione"><option value="">Seleziona...</option><option value="tutte">Tutte</option><option value="nazionale">Solo nazionali</option><option value="Veneto">Veneto</option><option value="Lombardia">Lombardia</option><option value="Emilia-Romagna">Emilia-Romagna</option><option value="Toscana">Toscana</option><option value="Lazio">Lazio</option><option value="Campania">Campania</option><option value="Puglia">Puglia</option><option value="Sicilia">Sicilia</option><option value="Sardegna">Sardegna</option><option value="Altra">Altra</option></select></div>
             </div>
             <div class="form-group"><div class="form-checkbox"><input type="checkbox" id="reg-privacy" required><label for="reg-privacy">Accetto la <a href="/privacy" target="_blank">Privacy Policy</a> *</label></div></div>
-            <button class="btn btn-primary" onclick="submitRegistration()" style="width:100%;margin-top:.5rem"><i class="fas fa-paper-plane"></i> Iscriviti Gratis</button>
+            <button class="btn btn-primary" onclick="submitRegistration()" style="width:100%;margin-top:.5rem"><i class="fas fa-paper-plane"></i> Iscriviti Ora</button>
         </div>
         <div class="register-success" id="registerSuccess"><i class="fas fa-check-circle"></i><h3>Registrazione Completata!</h3><p>Riceverai aggiornamenti sui nuovi bandi via email.</p></div>
     </div>
@@ -938,13 +938,13 @@ const chatQA=[
 {k:["europa","fondi europei","eu"],a:"<b>Fondi UE</b>: Horizon Europe (€95 mld), COSME/SMP, LIFE, Creative Europe, Digital Europe, FESR. Gestiti da UE e tramite bandi nazionali/regionali."},
 {k:["horizon","horizon europe"],a:"<b>Horizon Europe</b> 2021-2027 (€95 mld): ERC grants, azioni collaborative, EIC Accelerator (fino a €2.5M equity + €2.5M grant). Molto competitivo."},
 {k:["zes","zona economica speciale"],a:"<b>ZES Unica Mezzogiorno</b> (2024): credito d'imposta investimenti nelle 8 regioni Sud. Beni strumentali nuovi. Aliquota variabile per dimensione."},
-{k:["fondo garanzia","garanzia pmi"],a:"<b>Fondo Garanzia PMI</b> (MCC): garanzia pubblica fino all'80% su prestiti fino a €5M. Gratuito per PMI e startup. Non è un finanziamento diretto."},
+{k:["fondo garanzia","garanzia pmi"],a:"<b>Fondo Garanzia PMI</b> (MCC): garanzia pubblica fino all'80% su prestiti fino a €5M. Senza costi per PMI e startup. Non è un finanziamento diretto."},
 {k:["abbonamento","quanto costa","prezzo","costo"],a:"Abbonamento: <b>€50 + IVA</b>/anno (€61 totali). Accesso completo, filtri avanzati, aggiornamenti giornalieri, newsletter. Un caffè al mese per migliaia di opportunità!"},
 {k:["come abbonare","come mi abbono","pagamento"],a:"Clicca <b>'Attiva Abbonamento'</b>. Paga con <b>PayPal</b> o <b>carta Stripe</b>. Accesso immediato per 12 mesi."},
 {k:["fonti","quante fonti"],a:"Oltre <b>150 fonti</b>: 6+ Ministeri, Invitalia, SIMEST, INAIL, SACE, CDP, 20 Regioni, 105+ CCIAA, incentivi.gov.it, RNA, OpenCoesione, fondi UE."},
 {k:["aggiornamento","ogni quanto"],a:"Database aggiornato <b>ogni giorno</b> tramite scraping automatico. Nuovi bandi inseriti entro 24 ore dalla pubblicazione."},
-{k:["consulenza","aiuto","assistenza"],a:"<b>Consulenza gratuita</b> per clienti RaaS: identificazione bandi, documentazione, compilazione domande. <a href='/#contatti'>Contattaci</a>."},
-{k:["newsletter","email"],a:"Registrati gratis per <b>newsletter settimanale</b> con nuovi bandi. Abbonati premium ricevono alert personalizzati. Iscriviti in basso!"},
+{k:["consulenza","aiuto","assistenza"],a:"<b>Consulenza dedicata</b> per clienti RaaS: identificazione bandi, documentazione, compilazione domande. <a href='/#contatti'>Contattaci</a>."},
+{k:["newsletter","email"],a:"Registrati per la <b>newsletter settimanale</b> con nuovi bandi. Abbonati premium ricevono alert personalizzati. Iscriviti in basso!"},
 {k:["raas","raas automazioni","chi siete"],a:"<b>RaaS Automazioni</b>: digital agency italiana, siti web ad alte prestazioni + automazioni. BandiItalia nasce dalla nostra esperienza in aggregazione dati."},
 {k:["business plan","piano aziendale"],a:"<b>Business plan</b> richiesto per la maggior parte dei bandi: descrizione progetto, analisi mercato, piano finanziario 3-5 anni, team, investimenti. Invitalia ha template specifici."},
 {k:["documentazione","documenti necessari"],a:"Documenti tipici: visura camerale, bilanci 2-3 anni, DURC, dichiarazione de minimis, business plan, preventivi, CV team, carta d'identità."},
@@ -966,7 +966,7 @@ const chatQA=[
 {k:["cup","codice unico progetto"],a:"<b>CUP</b>: codice identificativo progetto investimento pubblico. Generato su cupweb.rgs.mef.gov.it. Va riportato su tutti i documenti."},
 {k:["grazie","ok","capito","perfetto"],a:"Di nulla! Altre domande? Puoi anche <a href='/#contatti'>contattarci</a> per consulenza personalizzata."},
 {k:["ciao","salve","buongiorno","buonasera"],a:"Ciao! Come posso aiutarti? Chiedi su bandi, finanziamenti, requisiti, procedure, o qualsiasi altra cosa!"},
-{k:["contatti","telefono","email contatto"],a:"Contattaci dalla pagina <a href='/#contatti'>Contatti</a>. Consulenza gratuita per clienti RaaS."},
+{k:["contatti","telefono","email contatto"],a:"Contattaci dalla pagina <a href='/#contatti'>Contatti</a>. Consulenza dedicata per clienti RaaS."},
 {k:["edilizia","ristrutturazione","costruzioni"],a:"<b>Edilizia</b>: Bando ISI INAIL, bonus fiscali, bandi regionali rigenerazione, PNRR efficientamento. Contributi CCIAA botteghe."},
 {k:["banda ultralarga","fibra","connettività"],a:"Piano <b>Banda Ultralarga</b> PNRR: voucher connettività MIMIT fino €2.500 per upgrade a 30+ Mbps."},
 {k:["mini pia","programma integrato"],a:"<b>Mini PIA</b>: bandi regionali (soprattutto Puglia/Sud) per progetti complessi con investimenti + formazione + innovazione. Fino al 60-70%."},
@@ -1086,8 +1086,8 @@ const chatQA=[
 {k:["sovraindebitamento","debiti","crisi impresa"],a:"Per imprese in <b>difficoltà</b>: composizione negoziata crisi (CCI), accordi ristrutturazione, concordato preventivo. Non ci sono bandi a fondo perduto, ma strumenti legali per ristrutturare i debiti."},
 {k:["successione","passaggio generazionale"],a:"Per il <b>passaggio generazionale</b>: alcuni bandi regionali finanziano consulenza e accompagnamento, voucher CCIAA, credito d'imposta per investimenti post-successione. Tema importante per PMI familiari."},
 {k:["certificazione parità genere","gender equality"],a:"La <b>certificazione parità di genere</b> (UNI/PdR 125) dà punteggio extra in molti bandi pubblici e sgravi contributivi (fino a €50.000/anno). Investimento nella certificazione finanziabile con voucher CCIAA."},
-{k:["rating legalità","rating esg"],a:"Il <b>Rating di Legalità</b> (AGCM) dà punteggio extra nei bandi pubblici e facilita accesso al credito. Gratuito, dura 2 anni. Richiesto online su agcm.it. Fortemente consigliato per chi fa bandi."},
-{k:["firma digitale","spid","pec","identità digitale"],a:"<b>SPID, PEC e firma digitale</b> sono indispensabili per partecipare ai bandi online. SPID gratuito (Poste, InfoCert), PEC ~€5/anno, firma digitale ~€30/anno. Senza questi non puoi inviare domande."},
+{k:["rating legalità","rating esg"],a:"Il <b>Rating di Legalità</b> (AGCM) dà punteggio extra nei bandi pubblici e facilita accesso al credito. Senza oneri, dura 2 anni. Richiesto online su agcm.it. Fortemente consigliato per chi fa bandi."},
+{k:["firma digitale","spid","pec","identità digitale"],a:"<b>SPID, PEC e firma digitale</b> sono indispensabili per partecipare ai bandi online. SPID senza costi (Poste, InfoCert), PEC ~€5/anno, firma digitale ~€30/anno. Senza questi non puoi inviare domande."},
 {k:["fattura proforma","preventivo","offerta"],a:"I <b>preventivi</b> dei fornitori sono quasi sempre richiesti nei bandi: almeno 2-3 preventivi comparativi per ogni voce di spesa. Devono essere dettagliati (descrizione, quantità, prezzo unitario, totale)."},
 {k:["cofinanziamento","quota propria"],a:"Il <b>cofinanziamento</b> è la parte di investimento che l'impresa deve sostenere con fondi propri. Se un bando copre il 50%, il restante 50% è a tuo carico. Può essere coperto con prestito bancario (garanzia MCC)."},
 {k:["anticipazione","prefinanziamento"],a:"L'<b>anticipazione bancaria</b> su contributi è possibile: la banca ti anticipa il contributo approvato, che poi rimborserai quando l'ente eroga. Il Fondo Garanzia MCC copre anche queste operazioni."},
@@ -1097,10 +1097,10 @@ const chatQA=[
 {k:["proroga","estensione termini"],a:"Le <b>proroghe</b> sono spesso concesse: si richiede prima della scadenza, motivando il ritardo. La maggior parte degli enti concede 3-6 mesi di proroga. Meglio chiederla per tempo."},
 {k:["procura speciale","delegato"],a:"La <b>procura speciale</b> serve quando un consulente presenta la domanda per conto dell'impresa: documento notarile o firmato digitalmente che autorizza il delegato. Richiesta in quasi tutti i bandi."},
 {k:["fascicolo aziendale","agea","sian"],a:"Il <b>Fascicolo Aziendale</b> AGEA/SIAN è obbligatorio per tutti i bandi agricoli: contiene i dati dell'azienda agricola. Si costituisce presso un CAA (Centro Assistenza Agricola) convenzionato."},
-{k:["aiuto","non so quale bando","quale bando"],a:"Non sai quale bando fa per te? Dipende da: dove sei (regione), cosa fai (settore), cosa vuoi fare (investimento), quanto vuoi investire, e se sei startup/donna/giovane. <a href='/#contatti'>Contattaci</a> per una consulenza gratuita e ti guidiamo!"},
-{k:["troppo complicato","difficile","non capisco"],a:"Capisco che i bandi possano sembrare complicati! Ma con la giusta guida diventano accessibili. Noi possiamo aiutarti passo passo: dalla scelta del bando alla presentazione della domanda. <a href='/#contatti'>Chiedi una consulenza</a>, è gratuita!"},
+{k:["aiuto","non so quale bando","quale bando"],a:"Non sai quale bando fa per te? Dipende da: dove sei (regione), cosa fai (settore), cosa vuoi fare (investimento), quanto vuoi investire, e se sei startup/donna/giovane. <a href='/#contatti'>Contattaci</a> per una consulenza personalizzata e ti guidiamo!"},
+{k:["troppo complicato","difficile","non capisco"],a:"Capisco che i bandi possano sembrare complicati! Ma con la giusta guida diventano accessibili. Noi possiamo aiutarti passo passo: dalla scelta del bando alla presentazione della domanda. <a href='/#contatti'>Chiedi una consulenza</a>, è senza impegno!"},
 {k:["quanto si guadagna","conviene","vale la pena"],a:"<b>Assolutamente sì</b>! Anche un piccolo bando da €10.000 a fondo perduto sono soldi che non restituisci. Con €50 di abbonamento puoi scoprire opportunità da decine o centinaia di migliaia di euro. Il ritorno sull'investimento è enorme."},
-{k:["gratuito","gratis","free","prova"],a:"Puoi vedere <b>3 bandi in anteprima gratuita</b> e usare il chatbot gratis. Per l'accesso completo con filtri avanzati e tutti i 500+ bandi, l'abbonamento costa solo €50+IVA/anno. Puoi anche registrarti gratis alla newsletter!"}
+{k:["gratuito","gratis","free","prova"],a:"Puoi vedere <b>3 bandi in anteprima</b> e provare il chatbot. Per l'accesso completo con filtri avanzati e tutti i 500+ bandi, l'abbonamento costa solo €50+IVA/anno. Puoi anche registrarti alla newsletter settimanale!"}
 ];
 
 // Fuzzy match function
@@ -1124,7 +1124,7 @@ function findAnswer(query){
             }
         }
     }
-    return "Non ho trovato una risposta specifica. Prova a riformulare o scegli tra i suggerimenti. Per domande dettagliate <a href='/#contatti'>contattaci</a> per consulenza gratuita!";
+    return "Non ho trovato una risposta specifica. Prova a riformulare o scegli tra i suggerimenti. Per domande dettagliate <a href='/#contatti'>contattaci</a> per una consulenza dedicata!";
 }
 // === COOKIE BANNER ===
 function acceptCookies(){

@@ -466,7 +466,7 @@ footer a:hover{text-decoration:underline}
     <h1>Il Tuo Sito Web Non È una Vetrina. <span class="highlight">È una Macchina che Porta Clienti</span></h1>
     <p class="hero-sub">Il 40% delle PMI italiane non ha un sito web (fonte: ISTAT). Chi ce l'ha, nella maggior parte dei casi non genera nemmeno un contatto al mese. Nel 2026, un sito statico non basta: serve una macchina digitale che attrae, qualifica e converte clienti in automatico.</p>
     <div class="hero-cta">
-      <a href="#contatti" class="cta-main">Richiedi Analisi Gratuita</a>
+      <a href="#contatti" class="cta-main">Richiedi Analisi Personalizzata</a>
       <span class="cta-sub">Risposta entro 24 ore · Senza impegno · Sito da 399€/anno</span>
     </div>
     <div class="stats-bar">
@@ -607,7 +607,7 @@ footer a:hover{text-decoration:underline}
           <li>Tracking UTM e CRM integrato</li>
           <li>Riconciliazione trimestrale con audit</li>
         </ul>
-        <a href="#contatti" class="price-cta price-cta-secondary">Richiedi Analisi Gratuita</a>
+        <a href="#contatti" class="price-cta price-cta-secondary">Richiedi Analisi Personalizzata</a>
       </div>
       <div class="price-card featured reveal">
         <span class="price-badge">E-commerce PMI</span>
@@ -625,7 +625,7 @@ footer a:hover{text-decoration:underline}
           <li>Tracking UTM e CRM integrato</li>
           <li>Riconciliazione trimestrale con audit</li>
         </ul>
-        <a href="#contatti" class="price-cta price-cta-primary">Richiedi Analisi Gratuita</a>
+        <a href="#contatti" class="price-cta price-cta-primary">Richiedi Analisi Personalizzata</a>
       </div>
     </div>
   </div>
@@ -678,7 +678,7 @@ footer a:hover{text-decoration:underline}
           <label for="privacy">Ho letto e accetto la <a href="/privacy" target="_blank">Privacy Policy</a>. Autorizzo il trattamento dei miei dati personali ai sensi del GDPR. *</label>
         </div>
         <input type="hidden" name="_subject" value="Nuova richiesta da Landing Sito Web PMI 2026">
-        <button type="submit" class="form-submit">Richiedi Analisi Gratuita del Tuo Sito</button>
+        <button type="submit" class="form-submit">Richiedi Analisi Personalizzata del Tuo Sito</button>
       </form>
     </div>
   </div>
@@ -963,7 +963,7 @@ if(!document.cookie.includes('cookie_consent=')){
       fetch('https://formspree.io/f/xaqdydbp',{method:'POST',body:formData,headers:{'Accept':'application/json'}})
         .then(function(r){
           if(r.ok){
-            addMessage('Grazie '+nome+'! Ti contatteremo entro 24 ore con un\'analisi gratuita.','bot');
+            addMessage('Grazie '+nome+'! Ti contatteremo entro 24 ore con un\'analisi personalizzata.','bot');
             showQuickReplies();
           }else{
             addMessage('Si è verificato un errore. Prova a compilare il form nella pagina.','bot');
@@ -981,7 +981,7 @@ if(!document.cookie.includes('cookie_consent=')){
     addMessage(labels[key],'user');
     if(key==='contact'){
       setTimeout(function(){
-        addMessage('Perfetto! Compila questi dati e ti ricontatteremo entro 24 ore con un\'analisi gratuita del tuo sito:','bot');
+        addMessage('Perfetto! Compila questi dati e ti ricontatteremo entro 24 ore con un\'analisi personalizzata del tuo sito:','bot');
         showMiniForm();
       },400);
     }else if(responses[key]){

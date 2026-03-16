@@ -212,10 +212,29 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 | Componente | Dettaglio |
 |---|---|
 | **Scraper** | `tools/scrape-bandi.js` — scraping da fonti ufficiali |
+| **Edge Function** | `supabase/functions/manutenzione-bandi/index.ts` — 55+ fonti, anti-plagio descrizioni |
 | **Verificatore** | `tools/verify-links-perplexity.js` — Claude + Perplexity sonar-pro |
 | **Sync** | `tools/sync-bandi.js` — sincronizzazione con Supabase |
 | **Cron** | GitHub Actions ogni lunedi 08:00 UTC |
 | **API Keys** | `ANTHROPIC_API_KEY` + `PERPLEXITY_API_KEY` (GitHub Secrets) |
+| **Anti-plagio** | Titoli riformattati ("Ente — Descrizione"), descrizioni riscritte con sinonimi + riordino frasi |
+
+### 2.9 Strumenti Scraping e Automazione (Riferimenti)
+
+**Tool di scraping web:**
+| Strumento | Punti di Forza | URL |
+|---|---|---|
+| **Octoparse** | Scraping AI, parallelizzazione massiva, siti dinamici | https://www.octoparse.ai |
+| **NoCoding Data Scraper** | Estrazione HTML in Excel/Sheets, RPA browser | Chrome Web Store |
+| **ZeroWork** | Builder drag-and-drop, anti-bot, AI lead gen | https://www.toolmage.com/en/tool/zerowork/ |
+
+**Piattaforme automazione:**
+| Piattaforma | Punti di Forza | URL |
+|---|---|---|
+| **UiPath** | Drag-and-drop, AI/ML, #1 su G2 (4.6/5, 7000+ recensioni) | https://www.uipath.com |
+| **Automation Anywhere** | Cloud-native, bot AI-powered, analytics avanzati | https://www.automationanywhere.com |
+| **Microsoft Power Automate** | Integrazione Office 365, low-code, scalabile | https://powerautomate.microsoft.com |
+| **Zapier** | 5000+ integrazioni, trigger/actions, no-code puro | https://zapier.com |
 
 ---
 

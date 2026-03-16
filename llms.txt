@@ -2,7 +2,7 @@
 
 > Web agency italiana performance-based: portiamo clienti nuovi alle aziende e guadagniamo solo sui risultati. Sito web da 399 euro/anno + 3% commissione sul fatturato generato. Dashboard trasparente per verificare tutto.
 
-RaaS Automazioni (Revenue as a Service) e' un modello di business in cui creiamo siti web professionali in codice puro (HTML/CSS/JS, no WordPress) e poi portiamo clienti nuovi all'azienda tramite SEO, GEO (Generative Engine Optimization) e AI. Il cliente paga una fee d'ingresso per il sito (299-599 euro/anno) e poi solo il 3% sul fatturato generato dai nuovi contatti. Ogni cliente ha una dashboard personale per verificare lead, contatti e performance in tempo reale.
+RaaS Automazioni (Revenue as a Service) e' un modello di business in cui creiamo siti web professionali in codice puro (HTML/CSS/JS, no WordPress) e poi portiamo clienti nuovi all'azienda tramite SEO, GEO (Generative Engine Optimization) e AI. Il cliente paga una fee d'ingresso per il sito (399-599 euro/anno) e poi solo il 3% sul fatturato generato dai nuovi contatti. Ogni cliente ha una dashboard personale per verificare lead, contatti e performance in tempo reale.
 
 Sede: Limena (PD), Italia. Fondata da Gino Capon. Target: PMI, professionisti, startup — B2B, mercato Italia e internazionale.
 

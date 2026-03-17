@@ -211,6 +211,22 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 .info-card h3{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
 .info-card p{font-size:.9rem;color:var(--text-light);line-height:1.6}
 
+/* TESTIMONIALS */
+.testimonials-section{padding:4rem 0;background:var(--white)}
+.testimonials-section .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;text-align:center}
+.testimonials-carousel{position:relative;max-width:700px;margin:2.5rem auto 0;min-height:200px;overflow:hidden}
+.testimonial-card{position:absolute;inset:0;opacity:0;transform:translateX(40px);transition:all .5s ease;background:var(--bg);border-radius:var(--radius-xl);padding:2.5rem 2rem;border:1px solid var(--border);display:flex;flex-direction:column;align-items:center}
+.testimonial-card.active{opacity:1;transform:translateX(0);position:relative}
+.testimonial-stars{color:var(--accent);font-size:1.3rem;margin-bottom:1rem;letter-spacing:2px}
+.testimonial-text{font-size:1.05rem;color:var(--text);line-height:1.7;font-style:italic;margin-bottom:1.5rem;max-width:550px}
+.testimonial-author{display:flex;align-items:center;gap:1rem}
+.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.testimonial-info h4{font-size:.95rem;font-weight:700;color:var(--dark)}
+.testimonial-info p{font-size:.8rem;color:var(--text-light)}
+.testimonial-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.5rem}
+.testimonial-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .3s;border:none}
+.testimonial-dot.active{background:var(--primary);transform:scale(1.2)}
+
 /* FONTI */
 .fonti-section{padding:4rem 0;background:var(--white)}
 .fonti-section .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;text-align:center}
@@ -317,6 +333,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 .paywall-banner .price{font-size:2.5rem}
 .cta-buttons{flex-direction:column}
 .info-grid{grid-template-columns:1fr}
+.testimonial-card{padding:1.5rem 1.25rem}
+.testimonial-text{font-size:.95rem}
 .fonti-grid{grid-template-columns:repeat(2,1fr)}
 .chatbot-window{width:calc(100% - 2rem);right:1rem;bottom:5.5rem;max-height:70vh}
 .register-form .form-row{grid-template-columns:1fr}
@@ -402,13 +420,13 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 <section class="preview-section" id="previewSection">
     <div class="preview-header">
         <h2>&#x1F4CB; Ultimi Bandi Inseriti</h2>
-        <p>Anteprima degli ultimi 3 bandi caricati nel nostro database</p>
+        <p>Anteprima degli ultimi 12 bandi caricati nel nostro database</p>
     </div>
     <div id="loading-preview" class="loading"><div class="loading-spinner"></div><p>Caricamento bandi...</p></div>
     <div id="preview-grid" class="preview-grid" style="display:none;"></div>
     <div class="paywall-banner" id="paywallBanner" style="display:none;">
         <h2>&#x1F512; Sblocca Tutti i Bandi</h2>
-        <p>Stai vedendo solo <strong>3 bandi in anteprima</strong>. Abbonati per accedere a tutti i <span id="totalBandiCount">500+</span> bandi con filtri avanzati!</p>
+        <p>Stai vedendo solo <strong>12 bandi in anteprima</strong>. Abbonati per accedere a tutti i <span id="totalBandiCount">500+</span> bandi con filtri avanzati!</p>
         <div class="price-box"><div class="price">&euro;50 <span>+ IVA</span></div><div class="price-details">&euro;61 totali &middot; Accesso per 12 mesi</div></div>
         <button class="btn btn-accent" onclick="openPaymentModal()"><i class="fas fa-unlock"></i> Attiva Abbonamento Ora</button>
     </div>
@@ -467,6 +485,36 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
     </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+    <div class="container">
+        <h2 class="section-title">Cosa Dicono i Nostri Clienti</h2>
+        <p class="section-subtitle">Imprese che hanno trovato finanziamenti grazie al nostro aggregatore</p>
+        <div class="testimonials-carousel" id="testimonialsCarousel">
+            <div class="testimonial-card active" data-index="0">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text">"Grazie all'aggregatore di RaaS Automazioni abbiamo individuato un bando regionale da 50.000&euro; a fondo perduto che non avremmo mai trovato da soli. L'abbonamento si &egrave; ripagato centinaia di volte."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div class="testimonial-info"><h4>Marco R.</h4><p>Titolare &mdash; Studio Tecnico, Veneto</p></div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-index="1">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testimonial-text">"Monitoriamo i bandi ogni settimana. Prima perdevamo ore sui siti delle Camere di Commercio, ora con 50&euro; all'anno abbiamo tutto in un unico posto. Servizio indispensabile per la nostra PMI."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">LB</div>
+                    <div class="testimonial-info"><h4>Laura B.</h4><p>CEO &mdash; Innovatech Srl, Lombardia</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots">
+            <button class="testimonial-dot active" onclick="showTestimonial(0)"></button>
+            <button class="testimonial-dot" onclick="showTestimonial(1)"></button>
+        </div>
+    </div>
+</section>
+
 <!-- FONTI -->
 <section class="fonti-section">
     <div class="container">
@@ -500,7 +548,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
         <div class="footer-links">
     <a href="/">Home</a><a href="bandi">Bandi</a><a href="blog">Blog</a><a href="/#contatti">Contatti</a><a href="/privacy">Privacy Policy</a><a href="/cookie">Cookie Policy</a>
 </div>
-        <p>&copy; 2025 RaaS Automazioni. Tutti i diritti riservati.</p>
+        <p>&copy; 2026 RaaS Automazioni. Tutti i diritti riservati.</p>
     </div>
 </footer>
 
@@ -579,7 +627,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 const SUPABASE_URL='https://ieeriszlalrsbfsnarih.supabase.co';
 const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllZXJpc3psYWxyc2Jmc25hcmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjEyNjAsImV4cCI6MjA4MzczNzI2MH0.Sjwu1620mMTAAoKVHgXHQ1cA-m3hFXqtCtqjAQNErQo';
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-const PREVIEW_COUNT=3;const SUBSCRIPTION_DAYS=365;
+const PREVIEW_COUNT=12;const SUBSCRIPTION_DAYS=365;
 let allBandi=[],filteredBandi=[];
 
 function getSubscription(){const s=localStorage.getItem('bandiSubscription');if(!s)return null;try{return JSON.parse(s)}catch{return null}}
@@ -657,23 +705,49 @@ async function submitRegistration(){
     document.getElementById('registerForm').style.display='none';
     document.getElementById('registerSuccess').style.display='block';
 }
+function mapJsonBando(b){
+    return{
+        id:b.id,titolo:b.titolo,ente:b.ente,tipo_ente:b.tipo_ente,regione:b.regione,
+        stato:b.stato,tipo_contributo:b.tipo_contributo,
+        url:b.url_bando||b.url||'#',
+        contributo_max:b.contributo_max?(b.contributo_max>=1000?'\u20AC'+Number(b.contributo_max).toLocaleString('it-IT'):b.contributo_max):null,
+        contributo_min:b.contributo_min?(b.contributo_min>=1000?'\u20AC'+Number(b.contributo_min).toLocaleString('it-IT'):b.contributo_min):null,
+        percentuale:b.percentuale?(b.percentuale+'%'):null,
+        scadenza:b.data_scadenza?new Date(b.data_scadenza).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'}):null,
+        descrizione:b.descrizione,keywords:b.keywords,settori:b.settori,beneficiari:b.beneficiari
+    };
+}
+async function loadBandiFromJson(){
+    var res=await fetch('/data/bandi.json');
+    var data=await res.json();
+    var bandi=(data.bandi||[]).filter(function(b){return b.stato==='aperto'||b.stato==='in_arrivo'});
+    return bandi.map(mapJsonBando);
+}
 async function loadBandi(){
     try{
-        var countRes=await supabaseClient.from('bandi').select('*',{count:'exact',head:true}).eq('attivo',true);
-        var totalCount=countRes.count||0;
-        document.getElementById('stat-bandi').textContent=totalCount;
-        document.getElementById('totalBandiCount').textContent=totalCount;
-        var all=[],offset=0;
-        while(true){
-            var res=await supabaseClient.from('bandi').select('*').eq('attivo',true).order('id',{ascending:false}).range(offset,offset+999);
-            if(res.error)throw res.error;
-            if(!res.data||!res.data.length)break;
-            all=all.concat(res.data);
-            if(res.data.length<1000)break;
-            offset+=1000;
-        }
-        allBandi=all;
-    }catch(e){allBandi=[];document.getElementById('stat-bandi').textContent='0';}
+        var supabasePromise=new Promise(async function(resolve,reject){
+            try{
+                var countRes=await supabaseClient.from('bandi').select('*',{count:'exact',head:true}).eq('attivo',true);
+                var totalCount=countRes.count||0;
+                document.getElementById('stat-bandi').textContent=totalCount;
+                document.getElementById('totalBandiCount').textContent=totalCount;
+                var all=[],offset=0;
+                while(true){
+                    var res=await supabaseClient.from('bandi').select('*').eq('attivo',true).order('id',{ascending:false}).range(offset,offset+999);
+                    if(res.error)throw res.error;
+                    if(!res.data||!res.data.length)break;
+                    all=all.concat(res.data);
+                    if(res.data.length<1000)break;
+                    offset+=1000;
+                }
+                resolve(all);
+            }catch(e){reject(e)}
+        });
+        var timeout=new Promise(function(_,reject){setTimeout(function(){reject(new Error('timeout'))},5000)});
+        allBandi=await Promise.race([supabasePromise,timeout]);
+    }catch(e){
+        try{allBandi=await loadBandiFromJson();document.getElementById('stat-bandi').textContent=allBandi.length;document.getElementById('totalBandiCount').textContent=allBandi.length}catch(e2){allBandi=[];document.getElementById('stat-bandi').textContent='0'}
+    }
 }
 function renderPreview(){
     const grid=document.getElementById('preview-grid'),load=document.getElementById('loading-preview');
@@ -696,7 +770,11 @@ function renderFullList(){
     grid.innerHTML=filteredBandi.map(b=>renderCard(b,false)).join('');
 }
 function renderCard(b,isPreview){
-    return '<article class="bando-card'+(isPreview?' preview-card':'')+'">'+(isPreview?'<span class="card-badge">ANTEPRIMA</span>':'')+'<div class="bando-header"><div class="bando-tags"><span class="tag tag-stato '+b.stato+'">'+getStatoLabel(b.stato)+'</span><span class="tag tag-tipo">'+getTipoLabel(b.tipo_contributo)+'</span>'+(b.regione?'<span class="tag tag-regione">'+b.regione+'</span>':'')+'</div><h3 class="bando-title"><a href="'+(b.url||'#')+'" target="_blank" rel="noopener">'+b.titolo+'</a></h3><div class="bando-ente"><i class="fas fa-building"></i> '+b.ente+'</div></div><div class="bando-body"><div class="bando-details"><div class="detail-item"><span class="detail-label">Contributo Max</span><span class="detail-value highlight">'+(b.contributo_max||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Percentuale</span><span class="detail-value">'+(b.percentuale||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Scadenza</span><span class="detail-value">'+(b.scadenza||'Da definire')+'</span></div><div class="detail-item"><span class="detail-label">Tipo Ente</span><span class="detail-value">'+getTipoEnteLabel(b.tipo_ente)+'</span></div></div></div><div class="bando-footer"><a href="'+(b.url||'#')+'" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Vai al Bando</a></div></article>';
+    var link=b.url||b.url_bando||'#';
+    var scad=b.scadenza||b.data_scadenza||(b.data_scadenza?new Date(b.data_scadenza).toLocaleDateString('it-IT'):'Da definire');
+    var cmax=b.contributo_max;if(typeof cmax==='number')cmax='\u20AC'+cmax.toLocaleString('it-IT');
+    var perc=b.percentuale;if(typeof perc==='number')perc=perc+'%';
+    return '<article class="bando-card'+(isPreview?' preview-card':'')+'">'+(isPreview?'<span class="card-badge">ANTEPRIMA</span>':'')+'<div class="bando-header"><div class="bando-tags"><span class="tag tag-stato '+b.stato+'">'+getStatoLabel(b.stato)+'</span><span class="tag tag-tipo">'+getTipoLabel(b.tipo_contributo)+'</span>'+(b.regione?'<span class="tag tag-regione">'+b.regione+'</span>':'')+'</div><h3 class="bando-title"><a href="'+link+'" target="_blank" rel="noopener">'+b.titolo+'</a></h3><div class="bando-ente"><i class="fas fa-building"></i> '+b.ente+'</div></div><div class="bando-body"><div class="bando-details"><div class="detail-item"><span class="detail-label">Contributo Max</span><span class="detail-value highlight">'+(cmax||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Percentuale</span><span class="detail-value">'+(perc||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Scadenza</span><span class="detail-value">'+(scad||'Da definire')+'</span></div><div class="detail-item"><span class="detail-label">Tipo Ente</span><span class="detail-value">'+getTipoEnteLabel(b.tipo_ente)+'</span></div></div></div><div class="bando-footer"><a href="'+link+'" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Vai al Bando</a></div></article>';
 }
 function getStatoLabel(s){return{aperto:'\ud83d\udfe2 Aperto',chiuso:'\ud83d\udd34 Chiuso',in_arrivo:'\ud83d\udfe1 In arrivo'}[s]||s||'N/D'}
 function getTipoLabel(t){return{fondo_perduto:'\ud83d\udcb0 Fondo Perduto',tasso_agevolato:'\ud83d\udcc9 Tasso Agevolato',misto:'\ud83d\udd04 Misto',credito_imposta:'\ud83d\udccb Credito Imposta'}[t]||t||'N/D'}
@@ -723,6 +801,24 @@ function saveSearchPreferences(){
         try{await supabaseClient.from('user_search_preferences').upsert(prefs,{onConflict:'email'})}catch(e){console.warn('Pref save err:',e)}
     },2000);
 }
+
+// ===== TESTIMONIAL CAROUSEL =====
+let currentTestimonial=0;
+const totalTestimonials=2;
+let testimonialTimer=null;
+function showTestimonial(idx){
+    currentTestimonial=idx;
+    document.querySelectorAll('.testimonial-card').forEach(function(c){c.classList.remove('active')});
+    document.querySelectorAll('.testimonial-dot').forEach(function(d){d.classList.remove('active')});
+    var card=document.querySelector('.testimonial-card[data-index="'+idx+'"]');
+    if(card)card.classList.add('active');
+    var dots=document.querySelectorAll('.testimonial-dot');
+    if(dots[idx])dots[idx].classList.add('active');
+    clearInterval(testimonialTimer);
+    testimonialTimer=setInterval(nextTestimonial,5000);
+}
+function nextTestimonial(){showTestimonial((currentTestimonial+1)%totalTestimonials)}
+testimonialTimer=setInterval(nextTestimonial,5000);
 
 function debounce(fn,w){let t;return function(...a){clearTimeout(t);t=setTimeout(()=>fn(...a),w)}}
 async function initPage(){

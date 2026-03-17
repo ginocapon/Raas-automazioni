@@ -11,6 +11,11 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.raasautomazioni.it/bandi">
     <meta name="theme-color" content="#0a1628">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RaaS Bandi">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -362,6 +367,22 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 .cookie-reject{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
 .cookie-reject:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
 @media(max-width:768px){.cookie-banner{flex-direction:column;text-align:center;padding:16px}.cookie-banner p{font-size:.82rem}}
+
+/* PWA INSTALL BANNER */
+.pwa-install-banner{display:none;position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:1100;background:linear-gradient(135deg,var(--dark),var(--dark-mid));color:var(--white);padding:1rem 1.5rem;border-radius:var(--radius-lg);box-shadow:0 8px 32px rgba(0,0,0,.35);max-width:420px;width:calc(100% - 2rem);align-items:center;gap:1rem;border:1px solid rgba(14,165,233,0.3)}
+.pwa-install-banner.show{display:flex}
+.pwa-install-banner .pwa-icon{font-size:2rem;flex-shrink:0}
+.pwa-install-banner .pwa-text{flex:1}
+.pwa-install-banner .pwa-text strong{display:block;font-size:.95rem;margin-bottom:.2rem}
+.pwa-install-banner .pwa-text span{font-size:.8rem;opacity:.75}
+.pwa-install-banner .pwa-btn{background:var(--primary);color:var(--white);border:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:all .3s}
+.pwa-install-banner .pwa-btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.pwa-install-banner .pwa-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:1.2rem;cursor:pointer;padding:.25rem;line-height:1}
+.pwa-install-banner .pwa-close:hover{color:var(--white)}
+
+/* OFFLINE INDICATOR */
+.offline-bar{display:none;position:fixed;top:56px;left:0;right:0;background:var(--accent);color:var(--dark);padding:.5rem;text-align:center;font-weight:600;font-size:.82rem;z-index:998}
+.offline-bar.show{display:block}
 </style>
 
 <!-- Google tag (gtag.js) -->
@@ -390,6 +411,20 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
         <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
     </div>
 </nav>
+
+<!-- PWA Install Banner -->
+<div class="pwa-install-banner" id="pwaInstallBanner">
+    <div class="pwa-icon"><i class="fas fa-mobile-alt"></i></div>
+    <div class="pwa-text">
+        <strong>Installa RaaS Bandi</strong>
+        <span>Accedi ai bandi anche offline, direttamente dal telefono</span>
+    </div>
+    <button class="pwa-btn" id="pwaInstallBtn">Installa</button>
+    <button class="pwa-close" id="pwaCloseBtn" aria-label="Chiudi">&times;</button>
+</div>
+
+<!-- Offline Indicator -->
+<div class="offline-bar" id="offlineBar"><i class="fas fa-wifi"></i> Modalit&agrave; offline &mdash; stai vedendo i dati salvati</div>
 
 <section class="hero-bandi">
     <div class="hero-particles">
@@ -1268,5 +1303,73 @@ if(!document.cookie.includes('cookie_consent=')){
   </div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=AeBeG13urvj5m4BX-e4gt5xOnCFlrbxStYUmEIZ3d0xrAsULyXSB12-wT3-eMn3vQEtDzHUv_oe1lD-y&currency=EUR"></script>
+
+<!-- PWA: Service Worker + Install Prompt -->
+<script>
+// Registrazione Service Worker
+if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+        navigator.serviceWorker.register('/sw.js').then(function(reg){
+            console.log('SW registrato, scope:',reg.scope);
+        }).catch(function(err){
+            console.warn('SW registrazione fallita:',err);
+        });
+    });
+}
+
+// Install Prompt — intercetta evento beforeinstallprompt
+var deferredPrompt=null;
+var installBanner=document.getElementById('pwaInstallBanner');
+var installBtn=document.getElementById('pwaInstallBtn');
+var closeBtn=document.getElementById('pwaCloseBtn');
+
+window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    deferredPrompt=e;
+    // Non mostrare se l'utente ha gia' chiuso il banner in questa sessione
+    if(!sessionStorage.getItem('pwa-banner-closed')){
+        setTimeout(function(){installBanner.classList.add('show')},3000);
+    }
+});
+
+if(installBtn){
+    installBtn.addEventListener('click',function(){
+        if(!deferredPrompt)return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(choice){
+            if(choice.outcome==='accepted'){
+                console.log('PWA installata');
+                // Traccia installazione in GA4
+                if(typeof gtag==='function')gtag('event','pwa_install',{event_category:'engagement'});
+            }
+            deferredPrompt=null;
+            installBanner.classList.remove('show');
+        });
+    });
+}
+
+if(closeBtn){
+    closeBtn.addEventListener('click',function(){
+        installBanner.classList.remove('show');
+        sessionStorage.setItem('pwa-banner-closed','1');
+    });
+}
+
+// Nascondi banner se gia' installata come PWA
+window.addEventListener('appinstalled',function(){
+    installBanner.classList.remove('show');
+    deferredPrompt=null;
+});
+
+// Offline/Online indicator
+var offlineBar=document.getElementById('offlineBar');
+function updateOnlineStatus(){
+    if(!navigator.onLine){offlineBar.classList.add('show')}
+    else{offlineBar.classList.remove('show')}
+}
+window.addEventListener('online',updateOnlineStatus);
+window.addEventListener('offline',updateOnlineStatus);
+updateOnlineStatus();
+</script>
 </body>
 </html>

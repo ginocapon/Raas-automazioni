@@ -362,6 +362,28 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 .cookie-reject{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
 .cookie-reject:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
 @media(max-width:768px){.cookie-banner{flex-direction:column;text-align:center;padding:16px}.cookie-banner p{font-size:.82rem}}
+
+/* SCARICA APP BUTTON */
+.scarica-app-box{background:rgba(14,165,233,0.12);border:2px solid var(--primary);border-radius:var(--radius-lg);padding:1.2rem;margin-top:1.2rem;text-align:center}
+.scarica-app-box .app-title{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.3rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.scarica-app-box .app-desc{font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:.8rem}
+.scarica-app-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--primary);color:var(--white);border:none;padding:.85rem 2rem;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 4px 20px rgba(14,165,233,.4)}
+.scarica-app-btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 28px rgba(14,165,233,.5)}
+.scarica-app-btn:active{transform:scale(.97)}
+.scarica-app-btn i{font-size:1.2rem}
+.scarica-app-btn .btn-sub{font-size:.7rem;font-weight:400;opacity:.8;display:block}
+.app-installed-msg{display:none;color:var(--success);font-weight:600;font-size:.88rem;padding:.5rem}
+.app-installed-msg i{margin-right:.3rem}
+/* iOS install modal */
+.ios-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;align-items:center;justify-content:center;padding:1.5rem}
+.ios-modal-overlay.show{display:flex}
+.ios-modal{background:var(--dark-mid);border-radius:var(--radius-lg);padding:2rem;max-width:360px;width:100%;color:var(--white);text-align:center;position:relative}
+.ios-modal h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.ios-modal p{font-size:.85rem;opacity:.7;margin-bottom:1.2rem}
+.ios-steps{text-align:left;display:flex;flex-direction:column;gap:.8rem}
+.ios-step{display:flex;align-items:center;gap:.75rem;font-size:.9rem}
+.ios-step .step-n{background:var(--primary);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0}
+.ios-modal .close-ios{background:rgba(255,255,255,.1);border:none;color:var(--white);padding:.6rem 1.5rem;border-radius:50px;cursor:pointer;font-family:inherit;font-size:.85rem;margin-top:1.2rem}
 </style>
 
 <!-- Google tag (gtag.js) -->
@@ -421,8 +443,32 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
                 <i class="fas fa-unlock"></i> Attiva Abbonamento
             </button>
         </div>
+        <!-- SCARICA APP -->
+        <div class="scarica-app-box" id="scaricaAppBox">
+            <div class="app-title"><i class="fas fa-mobile-screen-button"></i> Disponibile come App</div>
+            <div class="app-desc">Installa sul telefono, accedi ai bandi anche offline</div>
+            <button class="scarica-app-btn" id="scaricaAppBtn" onclick="installApp()">
+                <i class="fas fa-download"></i>
+                <span>Scarica App<span class="btn-sub">Gratis &middot; Nessuno store</span></span>
+            </button>
+            <div class="app-installed-msg" id="appInstalled"><i class="fas fa-check-circle"></i> App installata!</div>
+        </div>
     </div>
 </section>
+
+<!-- iOS Install Modal -->
+<div class="ios-modal-overlay" id="iosModal">
+    <div class="ios-modal">
+        <h3><i class="fas fa-mobile-screen-button"></i> Installa RaaS Bandi</h3>
+        <p>Su iPhone/iPad segui questi 3 passi:</p>
+        <div class="ios-steps">
+            <div class="ios-step"><span class="step-n">1</span> Tocca <i class="fas fa-share-from-square" style="color:var(--primary)"></i> <strong>Condividi</strong> (in basso)</div>
+            <div class="ios-step"><span class="step-n">2</span> Scorri e tocca <strong>"Aggiungi a Home"</strong></div>
+            <div class="ios-step"><span class="step-n">3</span> Tocca <strong>"Aggiungi"</strong> in alto a destra</div>
+        </div>
+        <button class="close-ios" onclick="document.getElementById('iosModal').classList.remove('show')">Ho capito</button>
+    </div>
+</div>
 
 <!-- PREVIEW: 3 latest bandi -->
 <section class="preview-section" id="previewSection">
@@ -1268,5 +1314,76 @@ if(!document.cookie.includes('cookie_consent=')){
   </div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=AeBeG13urvj5m4BX-e4gt5xOnCFlrbxStYUmEIZ3d0xrAsULyXSB12-wT3-eMn3vQEtDzHUv_oe1lD-y&currency=EUR"></script>
+
+<!-- SCARICA APP: Service Worker + Install -->
+<script>
+// Registra Service Worker
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+}
+
+// Manifest link
+(function(){
+    var link=document.createElement('link');
+    link.rel='manifest';link.href='/manifest.json';
+    document.head.appendChild(link);
+    var meta1=document.createElement('meta');meta1.name='apple-mobile-web-app-capable';meta1.content='yes';document.head.appendChild(meta1);
+    var meta2=document.createElement('meta');meta2.name='apple-mobile-web-app-title';meta2.content='RaaS Bandi';document.head.appendChild(meta2);
+    var icon=document.createElement('link');icon.rel='apple-touch-icon';icon.href='/icons/icon-192.png';document.head.appendChild(icon);
+})();
+
+// Install logic
+var _deferredInstall=null;
+var _isIos=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+var _isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
+
+// Se gia' installata, nascondi il box
+if(_isStandalone){
+    var box=document.getElementById('scaricaAppBox');
+    if(box){box.querySelector('.scarica-app-btn').style.display='none';
+    box.querySelector('.app-installed-msg').style.display='block'}
+}
+
+// Intercetta prompt nativo (Android/Chrome/Edge)
+window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    _deferredInstall=e;
+});
+
+function installApp(){
+    if(_isStandalone)return;
+
+    if(_isIos){
+        // iOS: mostra modale con istruzioni
+        document.getElementById('iosModal').classList.add('show');
+        return;
+    }
+
+    if(_deferredInstall){
+        // Android/Chrome: installa direttamente
+        _deferredInstall.prompt();
+        _deferredInstall.userChoice.then(function(choice){
+            if(choice.outcome==='accepted'){
+                var btn=document.getElementById('scaricaAppBtn');
+                var msg=document.getElementById('appInstalled');
+                btn.style.display='none';msg.style.display='block';
+                if(typeof gtag==='function')gtag('event','pwa_install',{event_category:'engagement'});
+            }
+            _deferredInstall=null;
+        });
+    }else{
+        // Fallback: apri app.html che ha il suo prompt
+        window.location.href='/app.html';
+    }
+}
+
+// Evento: app installata
+window.addEventListener('appinstalled',function(){
+    var btn=document.getElementById('scaricaAppBtn');
+    var msg=document.getElementById('appInstalled');
+    if(btn)btn.style.display='none';
+    if(msg)msg.style.display='block';
+});
+</script>
 </body>
 </html>

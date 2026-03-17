@@ -573,13 +573,27 @@ body{
 .hero-content{
     position:relative;
     z-index:10;
-    max-width:900px;
+    max-width:1240px;
     margin:0 auto;
-    text-align:center;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:2rem;
     color:var(--white);
     padding:2rem 1.5rem;
     animation:contentFadeIn 1s var(--morph-ease) 0.5s both
 }
+.hero-left{text-align:left}
+.hero-right{display:flex;justify-content:center;align-items:center;position:relative}
+.hero-right img{max-width:100%;height:auto;display:block;-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);position:relative;z-index:2}
+.hero-right::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:2px solid rgba(14,165,233,0.2);animation:heroRingPulse 4s ease-in-out infinite;z-index:1}
+.hero-right::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:450px;height:450px;border-radius:50%;border:1px solid rgba(14,165,233,0.1);animation:heroRingPulse 4s ease-in-out infinite 1s;z-index:1}
+@keyframes heroRingPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.05)}}
+.hero-services{list-style:none;margin:1.5rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.hero-services li{font-size:1rem;opacity:.85;display:flex;align-items:center;gap:.6rem;font-weight:500}
+.hero-services li i{color:var(--accent);font-size:.85rem;width:20px;text-align:center}
+.hero-claim{font-size:1.2rem;font-weight:800;color:var(--primary);margin:1.5rem 0 .25rem;line-height:1.4}
+.hero-claim-sub{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:1.5rem}
 
 @keyframes contentFadeIn{
     from{
@@ -616,10 +630,10 @@ body{
 }
 
 .hero h1{
-    font-size:clamp(2rem,6vw,3.5rem);
+    font-size:clamp(2rem,5vw,3.2rem);
     font-weight:800;
     line-height:1.1;
-    margin-bottom:1.5rem;
+    margin-bottom:1rem;
     letter-spacing:-0.02em
 }
 
@@ -673,9 +687,9 @@ body{
 .hero-stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:1.5rem;
-    max-width:850px;
-    margin:0 auto;
+    gap:1rem;
+    max-width:100%;
+    margin:0;
     perspective:1000px
 }
 
@@ -2240,6 +2254,16 @@ body{
     .mobile-menu-toggle{
         display:block
     }
+    .hero-content{
+        grid-template-columns:1fr;
+        text-align:center
+    }
+    .hero-left{text-align:center}
+    .hero-right{max-width:280px;margin:0 auto}
+    .hero-right::before,.hero-right::after{display:none}
+    .hero-services{align-items:center}
+    .hero-claim,.hero-claim-sub{text-align:center}
+    .hero-cta{justify-content:center}
     .hero-stats{
         grid-template-columns:repeat(2,1fr);
         gap:1rem
@@ -2650,76 +2674,77 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
         
         <div class="container">
+            <!-- Language switcher -->
+            <div style="position:absolute;top:1rem;right:1.5rem;display:flex;gap:0.5rem;z-index:10;">
+                <a href="/" style="font-weight:700;color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;background:rgba(255,255,255,0.2);">IT</a>
+                <a href="/en/" style="color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;opacity:0.7;">EN</a>
+            </div>
+
             <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Revenue as a Service — Modello Performance-Based</span>
-                </div>
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Revenue as a Service</span>
+                    </div>
 
-                <h1>
-    Ti Portiamo <span>Clienti Nuovi</span>.<br>
-    Guadagniamo Solo se Guadagni Tu.
+                    <h1>
+    Il Tuo Marketing<br>&egrave; gi&agrave; <span>Automatizzato</span>.
 </h1>
-                <p class="hero-subtitle" style="font-size:1.15rem;max-width:700px;margin:1rem auto;opacity:0.9;line-height:1.7;">
-                    Creiamo il tuo sito web professionale e ti portiamo clienti tramite SEO, AI e le tecniche piu' avanzate.
-                    Paghi solo il <strong>3% sul fatturato</strong> che generiamo per te. Tutto verificabile nella tua dashboard personale.
-                </p>
 
-                <div class="hero-cta">
-                    <a href="#contatti" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Inizia a Crescere
-                    </a>
-                    <a href="#come-funziona" class="btn btn-secondary" style="border-color:var(--accent);color:var(--accent);">
-                        <i class="fas fa-play-circle"></i>
-                        Come Funziona
-                    </a>
+                    <ul class="hero-services">
+                        <li><i class="fas fa-globe"></i> Sito web professionale in codice puro</li>
+                        <li><i class="fas fa-robot"></i> SEO ottimizzato con AI</li>
+                        <li><i class="fas fa-magnet"></i> Lead generation automatica</li>
+                        <li><i class="fas fa-chart-bar"></i> Dashboard in tempo reale</li>
+                    </ul>
+
+                    <div class="hero-claim">Zero costi fissi.</div>
+                    <div class="hero-claim-sub">Solo il 3% sui risultati.</div>
+
+                    <div class="hero-cta">
+                        <a href="#contatti" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Inizia Ora &mdash; &Egrave; Gratis
+                        </a>
+                        <a href="#come-funziona" class="btn btn-secondary" style="border-color:var(--accent);color:var(--accent);">
+                            <i class="fas fa-play-circle"></i>
+                            Come Funziona
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Clienti attivi</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3%</div>
+                            <div class="stat-label">Fee</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3.2M&euro;</div>
+                            <div class="stat-label">Fatturato</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Soddisfatti</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Language switcher -->
-                <div style="position:absolute;top:1rem;right:1.5rem;display:flex;gap:0.5rem;z-index:10;">
-                    <a href="/" style="font-weight:700;color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;background:rgba(255,255,255,0.2);">IT</a>
-                    <a href="/en/" style="color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;opacity:0.7;">EN</a>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">150+</div>
-                        <div class="stat-label">Clienti attivi</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3%</div>
-                        <div class="stat-label">Solo sui risultati</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3.2M€</div>
-                        <div class="stat-label">Fatturato generato</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Clienti soddisfatti</div>
-                    </div>
+                <div class="hero-right">
+                    <img src="file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni - AI Marketing Automatizzato" width="400" height="580" loading="eager">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- VIDEO SHOWCASE — Foto ingloba il video -->
+    <!-- VIDEO SHOWCASE -->
     <section class="section video-showcase" aria-label="Video presentazione">
         <div class="container">
-            <div class="video-wrap">
-
-                <!-- IMMAGINE grande che avvolge il video -->
-                <div class="video-img-wrap">
-                    <img src="file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni - Ti portiamo clienti" width="400" height="580">
-                </div>
-
-                <!-- Colonna destra: headline + video -->
-                <div class="video-col-right">
-                    <p class="video-headline"><span class="video-headline-auto">Automatizza</span> la tua crescita</p>
-
-                    <!-- VIDEO YouTube — posizionato "nella pancia" della foto -->
-                    <div class="video-frame" id="videoFrame">
+            <div class="video-wrap-centered">
+                <p class="video-headline-centered">Smetti di inseguire clienti.<br><strong>Lascia che vengano da te.</strong></p>
+                <div class="video-frame" id="videoFrame">
                     <div class="video-placeholder" id="videoPlaceholder">
                         <div class="video-play-btn">
                             <svg width="30" height="34" viewBox="0 0 30 34" fill="white"><polygon points="5,2 28,17 5,32"/></svg>
@@ -2728,50 +2753,23 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                         <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin:0;">Caricamento video...</p>
                     </div>
                 </div>
-                </div><!-- /video-col-right -->
             </div>
         </div>
 
         <style>
-            .video-showcase{background:linear-gradient(180deg,#0e2240 0%,#1a2f47 40%,#1a2f47 60%,var(--bg) 100%);padding:4rem 0 3rem;overflow:hidden;position:relative;}
-
-            /* Container relativo: la foto fa da cornice, il video si sovrappone */
-            .video-wrap{position:relative;max-width:1050px;margin:0 auto;display:flex;align-items:center;min-height:420px;}
-
-            /* Foto grande — occupa il lato sinistro e fa da sfondo/cornice */
-            .video-img-wrap{position:relative;z-index:2;width:680px;flex-shrink:0;}
-            .video-img-wrap img{display:block;width:100%;height:auto;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,#000 50%,transparent 100%);mask-image:linear-gradient(to bottom,#000 50%,transparent 100%);}
-
-            /* Colonna destra: headline + video */
-            .video-col-right{position:relative;z-index:4;flex-shrink:0;margin-left:-200px;width:50%;max-width:480px;display:flex;flex-direction:column;}
-
-            /* Frase persuasiva sopra il video */
-            .video-headline{color:#fff;font-size:1.95rem;font-weight:700;line-height:1.2;margin:0 0 16px;text-shadow:0 2px 12px rgba(0,0,0,.5);}
-            .video-headline-auto{display:inline-block;background:linear-gradient(135deg,#e63946,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;font-size:1.1em;}
-
-            /* Video — sovrapposto, entra nella zona della foto */
+            .video-showcase{background:linear-gradient(180deg,#0e2240 0%,#1a2f47 50%,var(--bg) 100%);padding:4rem 0 3rem;overflow:hidden;position:relative;}
+            .video-wrap-centered{max-width:720px;margin:0 auto;text-align:center;}
+            .video-headline-centered{color:#fff;font-size:1.6rem;font-weight:500;line-height:1.4;margin:0 0 2rem;text-shadow:0 2px 12px rgba(0,0,0,.3);}
+            .video-headline-centered strong{font-weight:800;color:var(--accent);}
             .video-frame{position:relative;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 10px 50px rgba(0,0,0,.5);aspect-ratio:16/9;background:linear-gradient(135deg,#0e2240,#1a2f47);}
             .video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:0;transition:opacity .6s ease;}
             .video-frame iframe.loaded{opacity:1;}
-
-            /* Alone luminoso dietro la sovrapposizione */
-            .video-wrap::before{content:'';position:absolute;top:50%;left:480px;transform:translate(-50%,-50%);width:400px;height:130%;background:radial-gradient(ellipse,rgba(230,57,70,.1) 0%,rgba(14,34,64,.25) 45%,transparent 70%);pointer-events:none;z-index:1;}
-
-            /* Placeholder animato */
             .video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;transition:opacity .5s ease;pointer-events:none;}
             .video-placeholder.hidden{opacity:0;}
             .video-play-btn{width:70px;height:70px;background:rgba(230,57,70,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;box-shadow:0 0 25px rgba(230,57,70,.4);animation:pulsePlay 2s ease-in-out infinite;}
-
             @keyframes pulsePlay{0%,100%{transform:scale(1);box-shadow:0 0 25px rgba(230,57,70,.4);}50%{transform:scale(1.08);box-shadow:0 0 40px rgba(230,57,70,.6);}}
-
-            /* MOBILE: foto sparisce, solo video centrato */
             @media(max-width:768px){
-                .video-wrap{min-height:auto;justify-content:center;}
-                .video-img-wrap{display:none;}
-                .video-col-right{margin-left:0;width:100%;max-width:100%;}
-                .video-headline{text-align:center;font-size:1.5rem;}
-                .video-frame{border-radius:16px;width:100%;}
-                .video-wrap::before{display:none;}
+                .video-headline-centered{font-size:1.3rem;}
             }
         </style>
 

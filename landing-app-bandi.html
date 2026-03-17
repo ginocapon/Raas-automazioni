@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--navy:#0a1628;--deep:#0f2035;--blue:#0ea5e9;--blue-dark:#0284c7;--blue-glow:rgba(14,165,233,.2);--gold:#d4a843;--gold-light:#f0d48a;--white:#f8f6f1;--text:#c8cdd5;--text-light:#8b95a5;--green:#2dd4a0;--danger:#ef4444}
+:root{--navy:#0a1628;--deep:#0f2035;--blue:#0ea5e9;--blue-dark:#0284c7;--blue-glow:rgba(14,165,233,.2);--gold:#d4a843;--gold-light:#f0d48a;--white:#f8f6f1;--text:#c8cdd5;--text-light:#8b95a5;--green:#2dd4a0;--danger:#ef4444;--red:#e63946;--red-dark:#c1121f;--red-glow:rgba(230,57,70,.4)}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);overflow-x:hidden}
 
@@ -46,22 +46,43 @@ h1 .highlight{background:linear-gradient(135deg,var(--blue),#38bdf8);-webkit-bac
 
 /* CTA SCARICA APP */
 .cta-download{animation:fadeUp .6s ease .45s both}
+.cta-wrapper{position:relative;display:inline-block}
+
+/* FRECCIA LAMPEGGIANTE */
+.bounce-arrow{
+position:absolute;left:50%;top:-48px;transform:translateX(-50%);
+font-size:2rem;color:var(--red);
+animation:bounceArrow 1s ease-in-out infinite;
+filter:drop-shadow(0 0 8px rgba(230,57,70,.6));
+z-index:2;pointer-events:none;
+}
+@keyframes bounceArrow{0%,100%{transform:translateX(-50%) translateY(0);opacity:1}50%{transform:translateX(-50%) translateY(12px);opacity:.5}}
+
+/* PULSANTE ROSSO */
 .download-btn{
 display:inline-flex;align-items:center;gap:14px;
-padding:20px 44px;border-radius:60px;border:none;cursor:pointer;
-font-family:'DM Sans',sans-serif;font-size:1.2rem;font-weight:800;
-background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:var(--white);
-box-shadow:0 8px 35px rgba(14,165,233,.4),0 0 80px rgba(14,165,233,.1);
+padding:22px 48px;border-radius:60px;border:none;cursor:pointer;
+font-family:'DM Sans',sans-serif;font-size:1.3rem;font-weight:900;
+background:linear-gradient(135deg,var(--red),var(--red-dark));color:var(--white);
+box-shadow:0 8px 40px var(--red-glow),0 0 100px rgba(230,57,70,.12);
 transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+text-transform:uppercase;letter-spacing:.8px;
+animation:pulseBtn 2.5s ease-in-out infinite;
 }
-.download-btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.12);border-radius:50%;transform:translate(-50%,-50%);transition:all .5s ease}
+@keyframes pulseBtn{0%,100%{box-shadow:0 8px 40px var(--red-glow),0 0 100px rgba(230,57,70,.12)}50%{box-shadow:0 8px 60px rgba(230,57,70,.6),0 0 140px rgba(230,57,70,.2)}}
+.download-btn::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:62px;background:linear-gradient(135deg,#ff6b6b,var(--red),var(--red-dark),#ff6b6b);background-size:300% 300%;animation:shimmer 3s linear infinite;z-index:-1}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.download-btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.15);border-radius:50%;transform:translate(-50%,-50%);transition:all .5s ease}
 .download-btn:hover::after{width:500px;height:500px}
-.download-btn:hover{transform:translateY(-4px);box-shadow:0 12px 50px rgba(14,165,233,.5)}
-.download-btn:active{transform:scale(.97)}
-.download-btn i{font-size:1.4rem}
-.download-btn .sub{display:block;font-size:.7rem;font-weight:400;opacity:.7;margin-top:2px}
-.cta-note{display:block;margin-top:14px;font-size:.82rem;color:var(--text-light);animation:fadeUp .6s ease .55s both}
+.download-btn:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 14px 60px rgba(230,57,70,.6),0 0 120px rgba(230,57,70,.2)}
+.download-btn:active{transform:scale(.96)}
+.download-btn i{font-size:1.5rem}
+.download-btn .btn-text{font-size:1.3rem;line-height:1.2}
+.download-btn .sub{display:block;font-size:.72rem;font-weight:500;opacity:.8;margin-top:3px;text-transform:none;letter-spacing:0}
+.cta-note{display:block;margin-top:16px;font-size:.85rem;color:var(--text-light);animation:fadeUp .6s ease .55s both}
 .cta-note i{color:var(--green);margin-right:4px}
+.cta-urgency{display:block;margin-top:10px;font-size:.9rem;color:var(--red);font-weight:700;animation:fadeUp .6s ease .65s both}
+.cta-urgency i{margin-right:4px;animation:pulse 1s infinite}
 
 .app-installed-msg{display:none;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.3);border-radius:14px;padding:1rem 1.5rem;color:var(--green);font-weight:700;font-size:1rem;margin-top:.5rem}
 .app-installed-msg i{margin-right:.4rem}
@@ -136,11 +157,13 @@ section{padding:100px 20px;position:relative;z-index:1}
 
 /* FINAL CTA */
 .final-cta{text-align:center}
-.final-box{max-width:620px;margin:0 auto;padding:56px 36px;background:rgba(14,165,233,.03);border:1px solid rgba(14,165,233,.12);border-radius:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.final-box::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
-.final-box h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--white);margin-bottom:14px;line-height:1.2}
-.final-box p{font-size:1rem;color:var(--text-light);margin-bottom:28px;line-height:1.6}
-.final-box .download-btn{font-size:1.1rem;padding:18px 40px}
+.final-box{max-width:680px;margin:0 auto;padding:60px 40px;background:rgba(230,57,70,.04);border:2px solid rgba(230,57,70,.2);border-radius:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 80px rgba(230,57,70,.06)}
+.final-box::before{content:'';position:absolute;top:-2px;left:10%;right:10%;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.final-box h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:900;color:var(--white);margin-bottom:16px;line-height:1.15}
+.final-box h2 em{font-style:normal;color:var(--red)}
+.final-box p{font-size:1.05rem;color:var(--text-light);margin-bottom:30px;line-height:1.6}
+.final-box .download-btn{font-size:1.15rem;padding:20px 44px}
+.final-box .final-arrow{display:block;font-size:2rem;color:var(--red);margin-bottom:16px;animation:bounceArrow 1s ease-in-out infinite}
 
 /* FOOTER */
 footer{text-align:center;padding:40px 20px;position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.05);font-size:.85rem;color:var(--text-light)}
@@ -173,7 +196,8 @@ footer a:hover{text-decoration:underline}
 .stats-bar{gap:24px}
 .stat-num{font-size:1.8rem}
 section{padding:70px 20px}
-.download-btn{width:100%;max-width:340px;justify-content:center;font-size:1.05rem;padding:18px 30px}
+.download-btn{width:100%;max-width:380px;justify-content:center;font-size:1.1rem;padding:20px 30px}
+.bounce-arrow{font-size:1.6rem;top:-40px}
 }
 
 /* REVEAL */
@@ -205,15 +229,19 @@ gtag('js',new Date());gtag('config','G-4T83494XDB');
 <section class="hero">
 <div class="hero-inner">
     <div class="hero-text">
-        <div class="badge"><span class="dot"></span> App gratuita per imprese</div>
-        <h1>Tutti i <span class="highlight">Bandi e Finanziamenti</span> Italiani in Un'App</h1>
-        <p class="hero-sub">Smetti di cercare bandi su decine di siti diversi. Con l'app RaaS Bandi trovi, filtri e salvi tutti gli incentivi per la tua impresa. Aggiornamento giornaliero da oltre 150 fonti ufficiali.</p>
+        <div class="badge"><span class="dot"></span> Oltre 500 bandi aperti adesso</div>
+        <h1>La Tua Impresa ha Diritto a <span class="highlight">Migliaia di Euro</span>. Li Stai Perdendo.</h1>
+        <p class="hero-sub">Mentre leggi, <strong style="color:var(--white)">decine di bandi stanno scadendo</strong>. Invitalia, SIMEST, MIMIT, Regioni: tutti i fondi per la tua impresa raccolti in un'unica app. <strong style="color:var(--white)">Scaricala ora, ci metti 2 secondi.</strong></p>
         <div class="cta-download">
-            <button class="download-btn" id="downloadBtn" onclick="installApp()">
-                <i class="fas fa-download"></i>
-                <span>Scarica l'App Gratis<span class="sub">Nessuno store &middot; Si installa in 2 secondi</span></span>
-            </button>
+            <div class="cta-wrapper">
+                <div class="bounce-arrow"><i class="fas fa-angles-down"></i></div>
+                <button class="download-btn" id="downloadBtn" onclick="installApp()">
+                    <i class="fas fa-download"></i>
+                    <span class="btn-text">SCARICA ORA &mdash; &Egrave; GRATIS<span class="sub">Un tap e hai l'app sul telefono. Nessuno store.</span></span>
+                </button>
+            </div>
             <div class="app-installed-msg" id="appInstalled"><i class="fas fa-check-circle"></i> App installata con successo!</div>
+            <span class="cta-urgency"><i class="fas fa-fire"></i> 127 imprenditori l'hanno scaricata questa settimana</span>
             <span class="cta-note"><i class="fas fa-check-circle"></i> Gratis per sempre &middot; Funziona offline &middot; Zero pubblicit&agrave;</span>
         </div>
         <div class="stats-bar">
@@ -262,9 +290,9 @@ gtag('js',new Date());gtag('config','G-4T83494XDB');
 <!-- PERCHE L'APP -->
 <section style="background:rgba(15,32,53,.88)">
 <div class="container">
-    <h2 class="section-title reveal">Perch&eacute; Scaricare l'App</h2>
+    <h2 class="section-title reveal">6 Motivi per Scaricarla Subito</h2>
     <div class="section-divider reveal"></div>
-    <p class="section-sub reveal">Tutto quello che ti serve per non perdere neanche un'opportunit&agrave; di finanziamento.</p>
+    <p class="section-sub reveal">Mentre tu cerchi bandi su Google, chi ha l'app li ha gia' trovati.</p>
     <div class="features-grid">
         <div class="feature reveal">
             <div class="feature-icon"><i class="fas fa-bolt"></i></div>
@@ -303,9 +331,9 @@ gtag('js',new Date());gtag('config','G-4T83494XDB');
 <!-- COME FUNZIONA -->
 <section>
 <div class="container">
-    <h2 class="section-title reveal">Come Funziona</h2>
+    <h2 class="section-title reveal">3 Passi. 2 Minuti. Tutti i Bandi.</h2>
     <div class="section-divider reveal"></div>
-    <p class="section-sub reveal">Dal download al bando giusto in 3 passi.</p>
+    <p class="section-sub reveal">Non serve essere esperti. Non serve un consulente. Fai tutto da solo.</p>
     <div class="steps">
         <div class="step reveal">
             <div class="step-icon"><i class="fas fa-download"></i></div>
@@ -357,11 +385,12 @@ gtag('js',new Date());gtag('config','G-4T83494XDB');
 <!-- FINAL CTA -->
 <section class="final-cta">
 <div class="final-box reveal">
-    <h2>Non Perdere il Prossimo Bando</h2>
-    <p>Ogni giorno scadono opportunit&agrave; di finanziamento. Scarica l'app e tieni sotto controllo tutti i bandi per la tua impresa.</p>
+    <div class="final-arrow"><i class="fas fa-angles-down"></i></div>
+    <h2>Ogni Giorno che Aspetti, <em>Perdi Soldi</em></h2>
+    <p>I bandi scadono. I fondi finiscono. Le imprese che si muovono per prime portano a casa i finanziamenti. <strong style="color:var(--white)">Scarica l'app adesso e scopri cosa ti spetta.</strong></p>
     <button class="download-btn" onclick="installApp()">
         <i class="fas fa-download"></i>
-        <span>Scarica l'App Gratis<span class="sub">Pronta in 2 secondi</span></span>
+        <span class="btn-text">SCARICA ORA &mdash; &Egrave; GRATIS<span class="sub">Un tap. 2 secondi. Fatto.</span></span>
     </button>
 </div>
 </section>

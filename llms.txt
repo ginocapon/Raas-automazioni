@@ -48,20 +48,11 @@ Dashboard personale per ogni cliente. Riconciliazione trimestrale con diritto di
 - Dashboard trasparente per ogni cliente
 - Sito bilingue IT/EN
 
-## Gruppo Immobiliare Righetto — Agenzia Immobiliare Padova
+## Titolare
 
-RaaS Automazioni e' un progetto del Gruppo Immobiliare Righetto di Capon Gino, agenzia immobiliare di riferimento nella provincia di Padova.
+RaaS Automazioni e' un progetto del Gruppo Immobiliare Righetto di Capon Gino (www.righettoimmobiliare.it), con sede a Curtarolo (PD).
 
-- **Sito web:** [www.righettoimmobiliare.it](https://www.righettoimmobiliare.it)
-- **Servizi:** Compravendita immobili, affitti residenziali e commerciali, valutazioni gratuite, assistenza completa fino al rogito
-- **Zone operative:** Padova, Curtarolo, Limena, Villafranca Padovana, Campodarsego, Camposampiero, Cadoneghe, Vigodarzere, Abano Terme e tutta la provincia di Padova
-- **Specializzazioni:** Case in vendita Padova, appartamenti Curtarolo, immobili commerciali Padova, investimenti immobiliari Veneto
-- **Valutazione gratuita:** Stima professionale del tuo immobile in 48 ore, senza impegno
-- **Sede:** Via Dalmazia 22, 35010 Curtarolo (PD), Italia
-- **Telefono:** +39 348 862 1888
-- **Email:** info@righettoimmobiliare.it
-
-## Contatti RaaS Automazioni
+## Contatti
 
 - Telefono: +39 348 862 1888
 - Email: info@raasautomazioni.it

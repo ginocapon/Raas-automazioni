@@ -591,9 +591,8 @@ body{
 .hero-right::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:2px solid rgba(14,165,233,0.2);animation:heroRingPulse 4s ease-in-out infinite;z-index:1}
 .hero-right::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:450px;height:450px;border-radius:50%;border:1px solid rgba(14,165,233,0.1);animation:heroRingPulse 4s ease-in-out infinite 1s;z-index:1}
 @keyframes heroRingPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.05)}}
-.hero-services{list-style:none;margin:1.5rem 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
-.hero-services li{font-size:1rem;opacity:.85;display:flex;align-items:center;gap:.6rem;font-weight:500}
-.hero-services li i{color:var(--accent);font-size:.85rem;width:20px;text-align:center}
+.hero-raas{font-size:1.15rem;line-height:1.6;color:var(--accent);margin:0 0 1rem;opacity:0.95}
+.hero-raas strong{color:var(--white);font-size:1.3rem}
 .hero-claim{font-size:1.2rem;font-weight:800;color:var(--primary);margin:1.5rem 0 .25rem;line-height:1.4}
 .hero-claim-sub{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:1.5rem}
 
@@ -2266,8 +2265,8 @@ body{
     .hero-right img{max-width:100%}
     .hero-right::before,.hero-right::after{display:none}
     .hero-bottom{text-align:center;grid-column:1;grid-row:auto;order:3}
-    .hero-services{display:none}
-    .hero-subtitle{display:none}
+    .hero-raas{text-align:center}
+    .hero-subtitle{text-align:center;margin:0 auto 1.5rem}
     .hero-claim,.hero-claim-sub{text-align:center}
     .hero-cta{justify-content:center}
     .hero-stats{
@@ -2694,16 +2693,10 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                     </div>
 
                     <h1>
-    <span>RaaS</span> &mdash; Revenue as a Service<br>Il Tuo Marketing &egrave; gi&agrave; <span>Automatizzato</span>.
+    Il Tuo Marketing &egrave; gi&agrave; <span>Automatizzato</span>.
 </h1>
+                    <p class="hero-raas"><strong>RaaS &mdash; Revenue as a Service</strong><br>Noi ti portiamo clienti. Guadagniamo solo se guadagni tu.</p>
                     <p class="hero-subtitle">Un robot lavora per te 24/7: sito web, SEO, lead generation. Tu paghi solo sui risultati.</p>
-
-                    <ul class="hero-services">
-                        <li><i class="fas fa-globe"></i> <strong>Sito che converte</strong> &mdash; Codice puro, PageSpeed 90+</li>
-                        <li><i class="fas fa-robot"></i> <strong>Trovato su Google</strong> &mdash; SEO e AI lavorano per te</li>
-                        <li><i class="fas fa-magnet"></i> <strong>Nuovi clienti</strong> &mdash; Lead generation automatica 24/7</li>
-                        <li><i class="fas fa-chart-bar"></i> <strong>Tutto sotto controllo</strong> &mdash; Dashboard trasparente in tempo reale</li>
-                    </ul>
                 </div>
 
                 <div class="hero-right">

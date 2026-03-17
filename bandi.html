@@ -147,6 +147,14 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
 .bando-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:all .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border:1px solid var(--border);position:relative}
 .bando-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
 .bando-card.preview-card{border-top:3px solid var(--success)}
+.bando-card.locked-card{border-top:3px solid var(--border);position:relative;pointer-events:none;user-select:none}
+.bando-card.locked-card .bando-body,.bando-card.locked-card .bando-footer,.bando-card.locked-card .bando-title a,.bando-card.locked-card .bando-ente{opacity:.15}
+.bando-card.locked-card .bando-tags{opacity:.4}
+.locked-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;background:rgba(248,250,252,0.6);border-radius:var(--radius-lg);pointer-events:auto;cursor:pointer;transition:all .3s}
+.locked-overlay:hover{background:rgba(248,250,252,0.75)}
+.locked-overlay i{font-size:2rem;color:var(--primary);margin-bottom:.5rem}
+.locked-overlay span{font-size:.85rem;font-weight:700;color:var(--primary);text-align:center;line-height:1.4}
+.locked-overlay .locked-price{font-size:.75rem;font-weight:500;color:var(--text-light);margin-top:.25rem}
 .bando-card .card-badge{position:absolute;top:.75rem;right:.75rem;background:var(--success);color:var(--white);padding:.2rem .65rem;border-radius:20px;font-size:.7rem;font-weight:700;z-index:5}
 .bando-header{padding:1.5rem 1.5rem .75rem}
 .bando-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.75rem}
@@ -426,7 +434,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
     <div id="preview-grid" class="preview-grid" style="display:none;"></div>
     <div class="paywall-banner" id="paywallBanner" style="display:none;">
         <h2>&#x1F512; Sblocca Tutti i Bandi</h2>
-        <p>Stai vedendo solo <strong>12 bandi in anteprima</strong>. Abbonati per accedere a tutti i <span id="totalBandiCount">500+</span> bandi con filtri avanzati!</p>
+        <p>Stai vedendo solo <strong>3 bandi completi</strong>. Abbonati per sbloccare tutti i <span id="totalBandiCount">500+</span> bandi con filtri avanzati!</p>
         <div class="price-box"><div class="price">&euro;50 <span>+ IVA</span></div><div class="price-details">&euro;61 totali &middot; Accesso per 12 mesi</div></div>
         <button class="btn btn-accent" onclick="openPaymentModal()"><i class="fas fa-unlock"></i> Attiva Abbonamento Ora</button>
     </div>
@@ -758,8 +766,11 @@ function renderPreview(){
     const grid=document.getElementById('preview-grid'),load=document.getElementById('loading-preview');
     const latest=allBandi.slice(0,PREVIEW_COUNT);load.style.display='none';
     if(!latest.length){grid.innerHTML='<p style="text-align:center;color:var(--text-light)">Nessun bando disponibile.</p>';grid.style.display='block';return}
-    grid.style.display='grid';grid.innerHTML=latest.map(b=>renderCard(b,true)).join('');
-    if(!isSubscriptionActive()&&allBandi.length>PREVIEW_COUNT)document.getElementById('paywallBanner').style.display='block';
+    var FREE_VISIBLE=3;
+    var sub=isSubscriptionActive();
+    grid.style.display='grid';
+    grid.innerHTML=latest.map(function(b,i){return renderCard(b,true,!sub&&i>=FREE_VISIBLE)}).join('');
+    if(!sub&&allBandi.length>FREE_VISIBLE)document.getElementById('paywallBanner').style.display='block';
 }
 function applyFilters(){
     const s=document.getElementById('search').value.toLowerCase(),r=document.getElementById('filter-regione').value,te=document.getElementById('filter-tipo-ente').value,tc=document.getElementById('filter-tipo-contributo').value,st=document.getElementById('filter-stato').value;
@@ -774,12 +785,17 @@ function renderFullList(){
     empty.style.display='none';grid.style.display='grid';count.textContent=filteredBandi.length+' bandi trovati';
     grid.innerHTML=filteredBandi.map(b=>renderCard(b,false)).join('');
 }
-function renderCard(b,isPreview){
+function renderCard(b,isPreview,locked){
     var link=b.url||b.url_bando||'#';
     var scad=b.scadenza||b.data_scadenza||(b.data_scadenza?new Date(b.data_scadenza).toLocaleDateString('it-IT'):'Da definire');
     var cmax=b.contributo_max;if(typeof cmax==='number')cmax='\u20AC'+cmax.toLocaleString('it-IT');
     var perc=b.percentuale;if(typeof perc==='number')perc=perc+'%';
-    return '<article class="bando-card'+(isPreview?' preview-card':'')+'">'+(isPreview?'<span class="card-badge">ANTEPRIMA</span>':'')+'<div class="bando-header"><div class="bando-tags"><span class="tag tag-stato '+b.stato+'">'+getStatoLabel(b.stato)+'</span><span class="tag tag-tipo">'+getTipoLabel(b.tipo_contributo)+'</span>'+(b.regione?'<span class="tag tag-regione">'+b.regione+'</span>':'')+'</div><h3 class="bando-title"><a href="'+link+'" target="_blank" rel="noopener">'+b.titolo+'</a></h3><div class="bando-ente"><i class="fas fa-building"></i> '+b.ente+'</div></div><div class="bando-body"><div class="bando-details"><div class="detail-item"><span class="detail-label">Contributo Max</span><span class="detail-value highlight">'+(cmax||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Percentuale</span><span class="detail-value">'+(perc||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Scadenza</span><span class="detail-value">'+(scad||'Da definire')+'</span></div><div class="detail-item"><span class="detail-label">Tipo Ente</span><span class="detail-value">'+getTipoEnteLabel(b.tipo_ente)+'</span></div></div></div><div class="bando-footer"><a href="'+link+'" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Vai al Bando</a></div></article>';
+    var cls='bando-card';
+    if(isPreview&&!locked)cls+=' preview-card';
+    if(locked)cls+=' locked-card';
+    var badge=locked?'':'<span class="card-badge">ANTEPRIMA</span>';
+    var overlay=locked?'<div class="locked-overlay" onclick="openPaymentModal()"><i class="fas fa-lock"></i><span>Sblocca questo bando</span><span class="locked-price">\u20AC50/anno \u2014 accesso completo</span></div>':'';
+    return '<article class="'+cls+'">'+badge+overlay+'<div class="bando-header"><div class="bando-tags"><span class="tag tag-stato '+b.stato+'">'+getStatoLabel(b.stato)+'</span><span class="tag tag-tipo">'+getTipoLabel(b.tipo_contributo)+'</span>'+(b.regione?'<span class="tag tag-regione">'+b.regione+'</span>':'')+'</div><h3 class="bando-title"><a href="'+(locked?'#':link)+'" '+(locked?'':'target="_blank" rel="noopener"')+'>'+b.titolo+'</a></h3><div class="bando-ente"><i class="fas fa-building"></i> '+b.ente+'</div></div><div class="bando-body"><div class="bando-details"><div class="detail-item"><span class="detail-label">Contributo Max</span><span class="detail-value highlight">'+(cmax||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Percentuale</span><span class="detail-value">'+(perc||'Variabile')+'</span></div><div class="detail-item"><span class="detail-label">Scadenza</span><span class="detail-value">'+(scad||'Da definire')+'</span></div><div class="detail-item"><span class="detail-label">Tipo Ente</span><span class="detail-value">'+getTipoEnteLabel(b.tipo_ente)+'</span></div></div></div><div class="bando-footer"><a href="'+(locked?'#':link)+'" '+(locked?'':'target="_blank" rel="noopener"')+' class="btn btn-primary">'+(locked?'<i class="fas fa-lock"></i> Abbonati per vedere':'<i class="fas fa-external-link-alt"></i> Vai al Bando')+'</a></div></article>';
 }
 function getStatoLabel(s){return{aperto:'\ud83d\udfe2 Aperto',chiuso:'\ud83d\udd34 Chiuso',in_arrivo:'\ud83d\udfe1 In arrivo'}[s]||s||'N/D'}
 function getTipoLabel(t){return{fondo_perduto:'\ud83d\udcb0 Fondo Perduto',tasso_agevolato:'\ud83d\udcc9 Tasso Agevolato',misto:'\ud83d\udd04 Misto',credito_imposta:'\ud83d\udccb Credito Imposta'}[t]||t||'N/D'}

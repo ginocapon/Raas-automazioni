@@ -585,7 +585,7 @@ body{
 }
 .hero-left{text-align:left}
 .hero-right{display:flex;justify-content:center;align-items:center;position:relative}
-.hero-right img{max-width:100%;height:auto;display:block;-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);position:relative;z-index:2}
+.hero-right img{max-width:130%;height:auto;display:block;transform:scaleX(-1);-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);position:relative;z-index:2}
 .hero-right::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:2px solid rgba(14,165,233,0.2);animation:heroRingPulse 4s ease-in-out infinite;z-index:1}
 .hero-right::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:450px;height:450px;border-radius:50%;border:1px solid rgba(14,165,233,0.1);animation:heroRingPulse 4s ease-in-out infinite 1s;z-index:1}
 @keyframes heroRingPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.05)}}
@@ -2259,7 +2259,8 @@ body{
         text-align:center
     }
     .hero-left{text-align:center}
-    .hero-right{max-width:280px;margin:0 auto}
+    .hero-right{max-width:320px;margin:0 auto}
+    .hero-right img{max-width:100%}
     .hero-right::before,.hero-right::after{display:none}
     .hero-services{align-items:center}
     .hero-claim,.hero-claim-sub{text-align:center}
@@ -2692,14 +2693,14 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
 </h1>
 
                     <ul class="hero-services">
-                        <li><i class="fas fa-globe"></i> Sito web professionale in codice puro</li>
-                        <li><i class="fas fa-robot"></i> SEO ottimizzato con AI</li>
-                        <li><i class="fas fa-magnet"></i> Lead generation automatica</li>
-                        <li><i class="fas fa-chart-bar"></i> Dashboard in tempo reale</li>
+                        <li><i class="fas fa-globe"></i> Ti serve un sito che converte? Codice puro, PageSpeed 90+</li>
+                        <li><i class="fas fa-robot"></i> Vuoi essere trovato online? SEO e AI fanno il lavoro per te</li>
+                        <li><i class="fas fa-magnet"></i> Cerchi nuovi clienti? Lead generation automatica 24/7</li>
+                        <li><i class="fas fa-chart-bar"></i> Vuoi controllare tutto? Dashboard trasparente in tempo reale</li>
                     </ul>
 
-                    <div class="hero-claim">Zero costi fissi.</div>
-                    <div class="hero-claim-sub">Solo il 3% sui risultati.</div>
+                    <div class="hero-claim">Sito da 399&euro;/anno, tutto incluso.</div>
+                    <div class="hero-claim-sub">Poi guadagniamo solo il 3% sui risultati.</div>
 
                     <div class="hero-cta">
                         <a href="#contatti" class="btn btn-primary">
@@ -3989,7 +3990,7 @@ const chatData={questionCount:0,
 qa:{
 'Quanto costa un sito web?':'Due piani: Base 399€/anno, E-commerce 599€/anno. Ma il vero modello e\' il 3% commissione sui clienti nuovi che ti portiamo. Il sito e\' solo la porta d\'ingresso.',
 'Come è possibile questo prezzo?':'Automazione avanzata dei processi, zero intermediari e team specializzato. Abbattiamo i costi operativi per offrirti un servizio accessibile e di alta qualità.',
-'Ci sono costi nascosti?':'ZERO. Hosting, SSL, manutenzione base inclusi. Niente sorprese.',
+'Ci sono costi nascosti?':'Nessun costo nascosto. Il canone da 399\u20AC/anno include hosting, SSL, manutenzione e SEO base. Il 3% si applica solo sul fatturato generato dai nuovi clienti che ti portiamo.',
 'Perché altri costano di più?':'Agenzie tradizionali: uffici costosi, team grandi, marketing aggressivo. Noi: remoto, lean, passaparola.',
 'Quanto costa manutenzione?':'Base inclusa nel piano. Modifiche extra: 50€/ora (raramente servono con codice puro).',
 'Accettate pagamenti rateali?':'Sì! 3 rate senza interessi oppure annuale con sconto 5%.',

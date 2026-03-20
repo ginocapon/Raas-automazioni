@@ -176,6 +176,14 @@
             .table-wrapper th, .table-wrapper td { padding: 10px 12px; }
         }
             /* CTA AGGANCIO */
+        .author-bio { display: flex; gap: 20px; align-items: flex-start; padding: 28px; margin: 40px 0 0; background: var(--bg, #f8fafc); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; }
+        .author-bio-avatar { width: 56px; height: 56px; min-width: 56px; border-radius: 50%; background: var(--primary, #e63946); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+        .author-bio-info { display: flex; flex-direction: column; gap: 2px; }
+        .author-bio-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light, #64748b); font-weight: 600; }
+        .author-bio-name { font-size: 17px; font-weight: 800; color: var(--primary, #e63946); }
+        .author-bio-role { font-size: 13px; color: var(--text-light, #64748b); font-weight: 500; }
+        .author-bio-desc { font-size: 14px; color: var(--text, #1e293b); line-height: 1.6; margin-top: 8px; }
+        @media (max-width: 480px) { .author-bio { flex-direction: column; align-items: center; text-align: center; } }
         .cta-aggancio { background: #e63946; color: white; padding: 56px 24px; margin: 48px -24px 0; text-align: center; position: relative; overflow: hidden; }
         .cta-aggancio::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%); border-radius: 50%; }
         .cta-aggancio::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(0,0,0,0.08), transparent 70%); border-radius: 50%; }
@@ -612,6 +620,8 @@
 
     <p><strong>The most effective lead generation tool in 2026 is not a form. It is a conversation.</strong></p>
 
+    <p class="last-updated-note" style="margin-top: 32px; font-size: 13px; color: var(--text-light, #64748b);"><em>Last updated: March 15, 2026. All statistics verified from published sources.</em></p>
+
     <div class="related-articles">
         <h3>Related Articles</h3>
         <ul>
@@ -623,6 +633,16 @@
     </div>
 
     <!-- CTA HOOK -->
+    <!-- Author Bio -->
+    <div class="author-bio">
+        <div class="author-bio-avatar">GC</div>
+        <div class="author-bio-info">
+            <span class="author-bio-label">Written by</span>
+            <strong class="author-bio-name">Gino Capon</strong>
+            <span class="author-bio-role">Founder, RaaS Automazioni</span>
+            <p class="author-bio-desc">Expert in high-performance web development, lead generation and business automation. Helping SMEs find clients online with a transparent performance-based model.</p>
+        </div>
+    </div>
     <div class="cta-aggancio">
         <div class="cta-aggancio-inner">
             <h2 class="cta-aggancio-title">Found this useful? <em>Get more!</em></h2>

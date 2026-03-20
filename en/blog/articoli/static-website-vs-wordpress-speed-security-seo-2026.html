@@ -172,6 +172,22 @@
             .table-wrapper th, .table-wrapper td { padding: 10px 12px; }
         }
             /* CTA AGGANCIO */
+        .related-articles { margin: 48px 0 0; padding: 36px 0; border-top: 2px solid var(--border, #e2e8f0); }
+        .related-articles h3 { font-size: 20px; font-weight: 800; color: var(--primary, #e63946); margin-bottom: 20px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .related-card { background: var(--white, #fff); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 20px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+        .related-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        .related-card .tag { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+        .related-card h4 { font-size: 15px; font-weight: 700; color: var(--primary, #e63946); line-height: 1.4; margin-bottom: 8px; }
+        .related-card p { font-size: 13px; color: var(--text-light, #64748b); line-height: 1.5; margin: 0; }
+        .author-bio { display: flex; gap: 20px; align-items: flex-start; padding: 28px; margin: 40px 0 0; background: var(--bg, #f8fafc); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; }
+        .author-bio-avatar { width: 56px; height: 56px; min-width: 56px; border-radius: 50%; background: var(--primary, #e63946); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+        .author-bio-info { display: flex; flex-direction: column; gap: 2px; }
+        .author-bio-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light, #64748b); font-weight: 600; }
+        .author-bio-name { font-size: 17px; font-weight: 800; color: var(--primary, #e63946); }
+        .author-bio-role { font-size: 13px; color: var(--text-light, #64748b); font-weight: 500; }
+        .author-bio-desc { font-size: 14px; color: var(--text, #1e293b); line-height: 1.6; margin-top: 8px; }
+        @media (max-width: 480px) { .author-bio { flex-direction: column; align-items: center; text-align: center; } }
         .cta-aggancio { background: #e63946; color: white; padding: 56px 24px; margin: 48px -24px 0; text-align: center; position: relative; overflow: hidden; }
         .cta-aggancio::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%); border-radius: 50%; }
         .cta-aggancio::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(0,0,0,0.08), transparent 70%); border-radius: 50%; }
@@ -646,6 +662,36 @@
     <p><em>Last updated: March 15, 2026. All data verified from cited sources. RaaS Automazioni reviews and updates this article quarterly to ensure accuracy.</em></p>
 
     <!-- CTA HOOK -->
+    <div class="related-articles">
+        <h3>📚 Read Also</h3>
+        <div class="related-grid">
+            <a href="/en/blog/articoli/website-speed-seo-roi-pure-code-vs-wordpress-2026" class="related-card">
+                <div class="tag" style="color:#10b981;">⚡ Web Speed</div>
+                <h4>Website Speed, SEO & ROI: Pure Code vs WordPress</h4>
+                <p>Data-driven comparison of web technologies.</p>
+            </a>
+            <a href="/en/blog/articoli/geo-generative-engine-optimization-guide-2026" class="related-card">
+                <div class="tag" style="color:#f59e0b;">🌐 GEO Guide</div>
+                <h4>GEO: Generative Engine Optimization Guide</h4>
+                <p>Optimize for AI search engines in 2026.</p>
+            </a>
+            <a href="/en/blog/articoli/ai-chatbot-lead-generation-roi-guide-2026" class="related-card">
+                <div class="tag" style="color:#0ea5e9;">🤖 AI Chatbot</div>
+                <h4>AI Chatbot Lead Generation ROI Guide</h4>
+                <p>How chatbots convert visitors into qualified leads.</p>
+            </a>
+        </div>
+    </div>
+    <!-- Author Bio -->
+    <div class="author-bio">
+        <div class="author-bio-avatar">GC</div>
+        <div class="author-bio-info">
+            <span class="author-bio-label">Written by</span>
+            <strong class="author-bio-name">Gino Capon</strong>
+            <span class="author-bio-role">Founder, RaaS Automazioni</span>
+            <p class="author-bio-desc">Expert in high-performance web development, lead generation and business automation. Helping SMEs find clients online with a transparent performance-based model.</p>
+        </div>
+    </div>
     <div class="cta-aggancio">
         <div class="cta-aggancio-inner">
             <h2 class="cta-aggancio-title">Found this useful? <em>Get more!</em></h2>

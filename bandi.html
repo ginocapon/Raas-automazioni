@@ -19,22 +19,66 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Bandi e Finanziamenti per Imprese Italia",
-      "description": "Aggregatore bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane",
-      "url": "https://www.raasautomazioni.it/bandi",
-      "publisher": {
-        "@type": "Organization",
-        "name": "RaaS Automazioni",
-        "url": "https://www.raasautomazioni.it"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raasautomazioni.it/"},
-          {"@type": "ListItem", "position": 2, "name": "Bandi e Finanziamenti"}
-        ]
-      }
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "name": "Bandi e Finanziamenti per Imprese Italia",
+          "description": "Aggregatore bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane",
+          "url": "https://www.raasautomazioni.it/bandi",
+          "publisher": {
+            "@type": "Organization",
+            "name": "RaaS Automazioni",
+            "url": "https://www.raasautomazioni.it"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.raasautomazioni.it/"},
+              {"@type": "ListItem", "position": 2, "name": "Bandi e Finanziamenti"}
+            ]
+          }
+        },
+        {
+          "@type": "ItemList",
+          "name": "Bandi e Finanziamenti per Imprese Italia 2026",
+          "description": "Elenco aggiornato di bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane da 55+ fonti ufficiali",
+          "url": "https://www.raasautomazioni.it/bandi",
+          "numberOfItems": 500,
+          "itemListOrder": "https://schema.org/ItemListUnordered",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Bandi Invitalia — Finanziamenti nazionali per imprese",
+              "url": "https://www.raasautomazioni.it/bandi"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Bandi SIMEST — Internazionalizzazione e export PMI",
+              "url": "https://www.raasautomazioni.it/bandi"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Bandi Regionali — 20 Regioni italiane, fondi europei e locali",
+              "url": "https://www.raasautomazioni.it/bandi"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Bandi CCIAA — 105+ Camere di Commercio, voucher digitalizzazione",
+              "url": "https://www.raasautomazioni.it/bandi"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Bandi INAIL — Sicurezza sul lavoro e prevenzione",
+              "url": "https://www.raasautomazioni.it/bandi"
+            }
+          ]
+        }
+      ]
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

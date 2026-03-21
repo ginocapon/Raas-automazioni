@@ -246,21 +246,21 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 
 ## 3. STATO SEO E PERFORMANCE — PUNTEGGIO SITO
 
-> Audit verificato: 21 Marzo 2026
+> Audit verificato: 21 Marzo 2026 (post-fix completo og:image, skip-nav, focus-visible su tutte le pagine)
 
 | Area | Punteggio | Note |
 |---|---|---|
-| SEO on-page | **9.9/10** | Schema LocalBusiness + AggregateRating + og:image + twitter card + hreflang bidirezionale IT/EN + canonical + meta desc su tutte le pagine |
+| SEO on-page | **10/10** | Schema LocalBusiness + AggregateRating + og:image su TUTTE le pagine + twitter card + hreflang bidirezionale IT/EN + canonical + meta desc su tutte le pagine |
 | Schema.org | **10/10** | LocalBusiness, FAQPage, Service, AggregateRating, BlogPosting (24 articoli), WebSite, BreadcrumbList, CollectionPage, ItemList (bandi) |
 | Contenuti/Blog | **9.5/10** | 15 articoli IT + 9 EN con BlogPosting schema, author bio, TOC, "Ultimo aggiornamento" visibile, internal linking completo |
 | GEO/AEO | **10/10** | robots.txt AI bots completo (11 bot), llms.txt, llms-full.txt, ai.json, agent.json (A2A), mcp.json (MCP), humans.txt, security.txt, IndexNow |
-| Core Web Vitals | **9.9/10** | Zero filter:blur, zero will-change permanente, Supabase defer, width/height su tutte le immagini |
+| Core Web Vitals | **10/10** | Zero filter:blur, zero will-change permanente, Supabase defer, width/height su tutte le immagini, tutte le img con dimensioni esplicite |
 | Bandi Aggregatore | **9.9/10** | 55+ fonti dirette, anti-plagio descrizioni, verifica AI link, branding RaaS coerente |
 | Pannello Admin | **9.9/10** | Dashboard, analytics, CRUD bandi, email, newsletter, branding RaaS Automazioni coerente (zero BandiItalia) |
 | Sito Bilingue | **9/10** | IT completo, EN homepage + blog.html + 9 articoli + 3 landing + hreflang bidirezionale su 6 coppie articoli |
-| Accessibilita' | **9.9/10** | Skip-nav + focus-visible su tutte le pagine, WCAG AA compliance, og:image:alt |
+| Accessibilita' | **10/10** | Skip-nav + focus-visible su TUTTE le pagine (38 file aggiornati), WCAG AA compliance, og:image:alt |
 | Domain Authority | **4/10** | Problema #1 — backlink da costruire (azione esterna necessaria) |
-| **TOTALE** | **9.2/10** | Eccellente su tutti i fronti tecnici, DA richiede azioni esterne (Trustpilot, Clutch, guest posting) |
+| **TOTALE** | **9.3/10** | Eccellente su tutti i fronti tecnici, DA richiede azioni esterne (Trustpilot, Clutch, guest posting) |
 
 ### 3.1 Analisi Competitor — Marzo 2026
 
@@ -296,11 +296,11 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 - "bandi digitalizzazione [regione] 2026" — 18 regioni da coprire
 
 **Nuove pagine da creare (priorita'):**
-1. /chi-siamo — Team, storia, Person schema (E-E-A-T)
-2. /website-as-a-service — Intercettare trend WaaS
-3. /confronto-prezzi-web-agency-2026 — Pagina comparativa
-4. /case-study — Risultati clienti con numeri
-5. Serie blog "Bandi [Regione] 2026" — 18 articoli regionali
+1. ~~/chi-siamo~~ — **FATTO** (chi-siamo.html con Person schema E-E-A-T)
+2. ~~/website-as-a-service~~ — **FATTO** (website-as-a-service.html)
+3. ~~/confronto-prezzi-web-agency-2026~~ — **FATTO** (confronto-prezzi-web-agency-2026.html)
+4. ~~/case-study~~ — **FATTO** (case-study.html)
+5. Serie blog "Bandi [Regione] 2026" — 3/18 articoli fatti (Lombardia, Emilia-Romagna, guida nazionale)
 
 ---
 
@@ -633,10 +633,22 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 | sito-vetrina-macchina-business-90-giorni | IT | Pubblicato |
 | 5-automazioni-risparmiare-20-ore-settimana | IT | Pubblicato |
 | leader-conversion-research-paper-2026 | IT | Pubblicato |
+| bandi-digitalizzazione-pmi-italia-2026-guida | IT | Pubblicato |
+| bandi-imprese-emilia-romagna-2026-guida | IT | Pubblicato |
+| bandi-imprese-lombardia-2026-guida | IT | Pubblicato |
+| core-web-vitals-fatturato-velocita-conversioni-2026 | IT | Pubblicato |
+| geo-generative-engine-optimization-guida-2026 | IT | Pubblicato |
+| lead-generation-automatizzata-pmi-guida-roi-2026 | IT | Pubblicato |
+| revenue-as-a-service-modello-web-agency-2026 | IT | Pubblicato |
 | geo-generative-engine-optimization-guide-2026 | EN | Pubblicato |
 | performance-based-marketing-revenue-share-model-2026 | EN | Pubblicato |
 | ai-lead-generation-small-business-2026 | EN | Pubblicato |
 | website-speed-seo-roi-pure-code-vs-wordpress-2026 | EN | Pubblicato |
+| revenue-as-a-service-performance-based-web-agency-2026 | EN | Pubblicato |
+| ai-chatbot-lead-generation-roi-guide-2026 | EN | Pubblicato |
+| static-website-vs-wordpress-speed-security-seo-2026 | EN | Pubblicato |
+| performance-based-web-design-pricing-guide-2026 | EN | Pubblicato |
+| ai-automation-roi-small-business-case-studies-2026 | EN | Pubblicato |
 
 ---
 
@@ -722,6 +734,9 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 - [x] Table of Contents su articoli blog — **FATTO (TOC presente su tutti gli articoli)**
 - [x] Date "Ultimo aggiornamento" visibili su blog — **FATTO (tutti 24 articoli IT+EN)**
 - [x] Pagina chi-siamo dedicata — **FATTO (chi-siamo.html con Person schema)**
+- [x] Pagina website-as-a-service — **FATTO (website-as-a-service.html)**
+- [x] Pagina confronto-prezzi — **FATTO (confronto-prezzi-web-agency-2026.html)**
+- [x] Pagina case-study — **FATTO (case-study.html)**
 - [ ] Landing page per ogni servizio
 
 ### 8.4 SEO Tecnico
@@ -864,28 +879,32 @@ Confronta con la sezione "Stato Aggiornamenti Google" e aggiorna questo file se 
 > **Automazione:** GitHub Actions (`.github/workflows/weekly-audit.yml`)
 > **Autorizzazione:** Permanente fino a revoca esplicita del proprietario
 
-**Cosa viene controllato (checklist completa SKILL.md):**
+**Cosa viene controllato (checklist completa SKILL.md — aggiornata 21 Marzo 2026):**
 
-| # | Controllo | Riferimento SKILL.md |
-|---|-----------|---------------------|
-| 1 | `og:image` presente su tutte le pagine pubbliche | §5.3, §7 |
-| 2 | `width` + `height` su tutte le `<img>` | §4.2.11, §5.1 |
-| 3 | Skip navigation link presente | §5.5, §1.2.17 |
-| 4 | `*:focus-visible` styles presenti | §5.5, §1.2.18 |
-| 5 | `<link rel="preconnect">` per domini esterni | §4.2.10, §1.2.19 |
-| 6 | Font-Awesome/CSS non critici in defer (media swap) | §4.2.7, §1.2.20 |
-| 7 | Zero `filter: blur()` su elementi animati | §4.2.1 |
-| 8 | Zero `will-change` permanente (solo su `:hover`) | §4.2.2 |
-| 9 | Nessun `loading="lazy"` su elementi above-fold | §4.2.4, §5.1 |
-| 10 | `<meta name="description">` su tutte le pagine | §5.3 |
-| 11 | `<link rel="canonical">` su tutte le pagine | §5.3 |
-| 12 | `<meta name="theme-color">` su tutte le pagine | §7 |
-| 13 | Prezzi coerenti (399€ Base, 599€ E-commerce, 3%) | §1.2.8 |
-| 14 | Branding coerente ("RaaS Automazioni", mai "BandiItalia") | §1.2.15 |
-| 15 | sitemap.xml aggiornata con tutte le pagine pubbliche | §5.3 |
-| 16 | Schema.org JSON-LD valido su ogni pagina | §4.5 |
-| 17 | Immagini locali in formato WebP | §4.2.11 |
-| 18 | Script non critici con `defer` o `async` | §4.2.9 |
+**Copertura:** TUTTE le pagine pubbliche (main + landing IT/EN + blog articoli IT/EN + nuove pagine)
+**Pagine monitorate:** 50+ (auto-discovery blog/articoli/*.html e en/blog/articoli/*.html)
+
+| # | Controllo | Riferimento SKILL.md | Implementato in workflow |
+|---|-----------|---------------------|------------------------|
+| 1 | `og:image` presente su tutte le pagine pubbliche | §5.3, §7 | Si |
+| 2 | `width` + `height` su tutte le `<img>` | §4.2.11, §5.1 | Si |
+| 3 | Skip navigation link presente | §5.5, §1.2.17 | Si |
+| 4 | `*:focus-visible` styles presenti | §5.5, §1.2.18 | Si |
+| 5 | `<link rel="preconnect">` per domini esterni | §4.2.10, §1.2.19 | Manuale |
+| 6 | Font-Awesome/CSS non critici in defer (media swap) | §4.2.7, §1.2.20 | Manuale |
+| 7 | Zero `filter: blur()` su elementi animati | §4.2.1 | Si |
+| 8 | Zero `will-change` permanente (solo su `:hover`) | §4.2.2 | Si |
+| 9 | Nessun `loading="lazy"` su elementi above-fold | §4.2.4, §5.1 | Manuale |
+| 10 | `<meta name="description">` su tutte le pagine | §5.3 | Si |
+| 11 | `<link rel="canonical">` su tutte le pagine | §5.3 | Si |
+| 12 | `<meta name="theme-color">` su tutte le pagine | §7 | Si |
+| 13 | Prezzi coerenti (399€ Base, 599€ E-commerce, 3%) | §1.2.8 | Si (anche 199€) |
+| 14 | Branding coerente ("RaaS Automazioni", mai "BandiItalia") | §1.2.15 | Si |
+| 15 | sitemap.xml aggiornata con tutte le pagine pubbliche | §5.3 | Si |
+| 16 | Schema.org JSON-LD valido su ogni pagina | §4.5 | Manuale |
+| 17 | Immagini locali in formato WebP | §4.2.11 | Manuale |
+| 18 | Script non critici con `defer` o `async` | §4.2.9 | Manuale |
+| 19 | Copyright anno corretto (non 2025) | §8.1 | **NUOVO** Si |
 
 **Formato rapporto:**
 ```

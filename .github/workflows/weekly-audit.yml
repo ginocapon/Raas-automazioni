@@ -28,8 +28,26 @@ jobs:
           VIOLATIONS=0
           REPORT_BODY=""
 
-          # Lista pagine pubbliche da controllare
-          PAGES="index.html blog.html bandi.html landing.html en/index.html privacy.html cookie.html brobot.html chi-siamo.html admin.html"
+          # Lista COMPLETA pagine pubbliche da controllare (aggiornata 21 Marzo 2026)
+          # Pagine principali IT
+          PAGES="index.html blog.html bandi.html landing.html privacy.html cookie.html brobot.html chi-siamo.html admin.html app.html"
+          # Nuove pagine IT
+          PAGES="$PAGES website-as-a-service.html confronto-prezzi-web-agency-2026.html case-study.html"
+          # Landing pages IT
+          PAGES="$PAGES landing-app-bandi.html landing-bandi-digitalizzazione.html landing-costo-sito-web-2026.html"
+          PAGES="$PAGES landing-digitalizzazione-pmi.html landing-ecommerce-pmi-2026.html landing-fondi-perduto-app.html"
+          PAGES="$PAGES landing-lead-generation.html landing-sito-web-pmi-2026.html landing-voucher-digitalizzazione-pmi-2026.html"
+          # Pagine EN
+          PAGES="$PAGES en/index.html en/blog.html"
+          PAGES="$PAGES en/landing-ai-lead-generation.html en/landing-performance-web-design.html en/landing-revenue-as-a-service.html"
+          # Blog articoli IT (trova automaticamente)
+          for art in blog/articoli/*.html; do
+            [ -f "$art" ] && PAGES="$PAGES $art"
+          done
+          # Blog articoli EN (trova automaticamente)
+          for art in en/blog/articoli/*.html; do
+            [ -f "$art" ] && PAGES="$PAGES $art"
+          done
 
           for page in $PAGES; do
             if [ ! -f "$page" ]; then
@@ -109,18 +127,22 @@ jobs:
 
           done
 
-          # 10. Prezzi coerenti
-          for page in index.html blog.html en/index.html landing.html bandi.html; do
+          # 10. Prezzi coerenti (su TUTTE le pagine con contenuto prezzi)
+          for page in $PAGES; do
             if [ -f "$page" ]; then
               if grep -qi '299.*anno\|€299\|299€' "$page" 2>/dev/null; then
                 REPORT_BODY="$REPORT_BODY| $page | Prezzo errato | Trovato riferimento a 299 EUR (deve essere 399 EUR) | CRITICA |\n"
                 VIOLATIONS=$((VIOLATIONS + 1))
               fi
+              if grep -qi '199.*anno\|€199\|199€' "$page" 2>/dev/null; then
+                REPORT_BODY="$REPORT_BODY| $page | Prezzo errato | Trovato riferimento a 199 EUR (deve essere 399 EUR) | CRITICA |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
             fi
           done
 
-          # 11. Branding BandiItalia
-          for page in index.html admin.html bandi.html landing.html; do
+          # 11. Branding BandiItalia (su TUTTE le pagine)
+          for page in $PAGES; do
             if [ -f "$page" ]; then
               if grep -q 'BandiItalia' "$page" 2>/dev/null; then
                 REPORT_BODY="$REPORT_BODY| $page | Branding errato | Trovato 'BandiItalia' (deve essere 'RaaS Automazioni') | CRITICA |\n"
@@ -129,9 +151,9 @@ jobs:
             fi
           done
 
-          # 12. sitemap.xml check
+          # 12. sitemap.xml check (pagine principali + nuove)
           if [ -f "sitemap.xml" ]; then
-            for page in index.html blog.html bandi.html chi-siamo.html privacy.html cookie.html brobot.html; do
+            for page in index.html blog.html bandi.html chi-siamo.html privacy.html cookie.html brobot.html website-as-a-service.html confronto-prezzi-web-agency-2026.html case-study.html app.html; do
               PAGE_SLUG=$(echo "$page" | sed 's/.html$//' | sed 's/index//')
               if [ -n "$PAGE_SLUG" ] && ! grep -q "$PAGE_SLUG" sitemap.xml 2>/dev/null; then
                 REPORT_BODY="$REPORT_BODY| sitemap.xml | Pagina mancante | $page non trovata in sitemap.xml | Media |\n"
@@ -139,6 +161,16 @@ jobs:
               fi
             done
           fi
+
+          # 13. Copyright anno errato (2025 nei footer)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              if grep -q '© 2025\|&copy; 2025' "$page" 2>/dev/null; then
+                REPORT_BODY="$REPORT_BODY| $page | Copyright errato | Trovato copyright 2025 (deve essere 2026) | Media |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
 
           # Genera rapporto
           if [ "$VIOLATIONS" -eq 0 ]; then

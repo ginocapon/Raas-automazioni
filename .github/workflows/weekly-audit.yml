@@ -28,7 +28,7 @@ jobs:
           VIOLATIONS=0
           REPORT_BODY=""
 
-          # Lista COMPLETA pagine pubbliche da controllare (aggiornata 21 Marzo 2026)
+          # Lista COMPLETA pagine pubbliche da controllare (aggiornata 22 Marzo 2026)
           # Pagine principali IT
           PAGES="index.html blog.html bandi.html landing.html privacy.html cookie.html brobot.html chi-siamo.html admin.html app.html"
           # Nuove pagine IT
@@ -40,6 +40,7 @@ jobs:
           # Pagine EN
           PAGES="$PAGES en/index.html en/blog.html"
           PAGES="$PAGES en/landing-ai-lead-generation.html en/landing-performance-web-design.html en/landing-revenue-as-a-service.html"
+          PAGES="$PAGES en/about-us.html en/case-studies.html en/website-as-a-service.html en/web-agency-pricing-comparison-2026.html"
           # Blog articoli IT (trova automaticamente)
           for art in blog/articoli/*.html; do
             [ -f "$art" ] && PAGES="$PAGES $art"
@@ -127,6 +128,89 @@ jobs:
 
           done
 
+          # === NUOVI CONTROLLI (precedentemente manuali) ===
+
+          # 14. Preconnect per domini esterni (Control #5 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              # Controlla se usa Google Fonts senza preconnect
+              if grep -q 'fonts.googleapis.com' "$page" 2>/dev/null && ! grep -q 'preconnect.*fonts.googleapis.com\|fonts.googleapis.com.*preconnect' "$page" 2>/dev/null; then
+                REPORT_BODY="$REPORT_BODY| $page | preconnect mancante | Google Fonts usato senza preconnect | Media |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+              # Controlla se usa cdnjs senza preconnect
+              if grep -q 'cdnjs.cloudflare.com' "$page" 2>/dev/null && ! grep -q 'preconnect.*cdnjs.cloudflare.com\|cdnjs.cloudflare.com.*preconnect' "$page" 2>/dev/null; then
+                REPORT_BODY="$REPORT_BODY| $page | preconnect mancante | cdnjs usato senza preconnect | Media |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
+
+          # 15. Font-Awesome/CSS non critici in defer con media swap (Control #6 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              # Controlla se Font-Awesome e' caricato normalmente (senza preload/onload pattern)
+              if grep -q 'font-awesome.*rel="stylesheet"' "$page" 2>/dev/null; then
+                if ! grep -q 'font-awesome.*as="style".*onload\|font-awesome.*preload' "$page" 2>/dev/null; then
+                  REPORT_BODY="$REPORT_BODY| $page | Font-Awesome non deferred | Font-Awesome caricato senza media swap/preload | Media |\n"
+                  VIOLATIONS=$((VIOLATIONS + 1))
+                fi
+              fi
+            fi
+          done
+
+          # 16. No loading="lazy" su immagini above-the-fold/hero (Control #9 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              # Controlla se hero image ha loading="lazy" (errore critico per LCP)
+              if grep -A2 'class=".*hero' "$page" 2>/dev/null | grep -q 'loading="lazy"'; then
+                REPORT_BODY="$REPORT_BODY| $page | lazy su hero | loading=\"lazy\" trovato su immagine hero (danneggia LCP) | Alta |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+              # Controlla se fetchpriority="high" e' usato con loading="lazy"
+              if grep 'fetchpriority="high"' "$page" 2>/dev/null | grep -q 'loading="lazy"'; then
+                REPORT_BODY="$REPORT_BODY| $page | lazy+fetchpriority | fetchpriority=\"high\" con loading=\"lazy\" e' contraddittorio | Alta |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
+
+          # 17. Schema.org JSON-LD presente (Control #16 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              if ! grep -q 'noindex' "$page" 2>/dev/null; then
+                if ! grep -q 'application/ld+json' "$page" 2>/dev/null; then
+                  REPORT_BODY="$REPORT_BODY| $page | Schema.org mancante | Nessun JSON-LD trovato nella pagina | Media |\n"
+                  VIOLATIONS=$((VIOLATIONS + 1))
+                fi
+              fi
+            fi
+          done
+
+          # 18. Immagini locali in formato WebP (Control #17 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              # Controlla se ci sono immagini locali .jpg/.png (dovrebbero essere .webp)
+              NON_WEBP=$(grep -oE 'src="[^"]*\.(jpg|png|jpeg)"' "$page" 2>/dev/null | grep -v 'http' | grep -v 'og-image\|favicon\|apple-touch' | wc -l || echo "0")
+              if [ "$NON_WEBP" -gt 0 ]; then
+                REPORT_BODY="$REPORT_BODY| $page | Immagini non WebP | $NON_WEBP immagini locali in formato JPG/PNG (usare WebP) | Bassa |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
+
+          # 19. Script non critici con defer/async (Control #18 SKILL.md)
+          for page in $PAGES; do
+            if [ -f "$page" ]; then
+              # Controlla script esterni senza defer/async (esclusi GA4 e inline)
+              BLOCKING_SCRIPTS=$(grep '<script.*src=' "$page" 2>/dev/null | grep -v 'async\|defer\|application/ld+json\|type="module"' | grep -v 'gtag\|googletagmanager' | wc -l || echo "0")
+              if [ "$BLOCKING_SCRIPTS" -gt 0 ]; then
+                REPORT_BODY="$REPORT_BODY| $page | Script bloccanti | $BLOCKING_SCRIPTS script esterni senza defer/async | Media |\n"
+                VIOLATIONS=$((VIOLATIONS + 1))
+              fi
+            fi
+          done
+
           # 10. Prezzi coerenti (su TUTTE le pagine con contenuto prezzi)
           for page in $PAGES; do
             if [ -f "$page" ]; then
@@ -153,7 +237,7 @@ jobs:
 
           # 12. sitemap.xml check (pagine principali + nuove)
           if [ -f "sitemap.xml" ]; then
-            for page in index.html blog.html bandi.html chi-siamo.html privacy.html cookie.html brobot.html website-as-a-service.html confronto-prezzi-web-agency-2026.html case-study.html app.html; do
+            for page in index.html blog.html bandi.html chi-siamo.html privacy.html cookie.html brobot.html website-as-a-service.html confronto-prezzi-web-agency-2026.html case-study.html app.html en/index.html en/blog.html en/about-us.html en/case-studies.html en/website-as-a-service.html en/web-agency-pricing-comparison-2026.html; do
               PAGE_SLUG=$(echo "$page" | sed 's/.html$//' | sed 's/index//')
               if [ -n "$PAGE_SLUG" ] && ! grep -q "$PAGE_SLUG" sitemap.xml 2>/dev/null; then
                 REPORT_BODY="$REPORT_BODY| sitemap.xml | Pagina mancante | $page non trovata in sitemap.xml | Media |\n"

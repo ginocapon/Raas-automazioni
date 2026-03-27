@@ -165,6 +165,29 @@ transition:transform .2s;
 .bando-list{padding:0 1rem;display:flex;flex-direction:column;gap:.75rem;padding-bottom:1rem}
 .bando-list .bando-card{min-width:unset;max-width:unset;width:100%}
 
+/* ===== ANTEPRIMA BADGE ===== */
+.tag-anteprima{background:rgba(16,185,129,0.15);color:#059669;font-weight:800;letter-spacing:.5px;border:1px solid rgba(16,185,129,0.3)}
+
+/* ===== LOCKED CARD ===== */
+.bando-card.locked{position:relative;overflow:hidden;min-width:280px;max-width:320px;scroll-snap-align:start;flex-shrink:0}
+.bando-card.locked .card-inner{filter:blur(5px);pointer-events:none;user-select:none;opacity:.6}
+.lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;background:rgba(248,250,252,.88);padding:1rem;text-align:center;backdrop-filter:blur(2px)}
+.lock-overlay .lock-icon{font-size:1.6rem;color:var(--primary)}
+.lock-overlay .lock-title{font-size:.82rem;font-weight:700;color:var(--text);margin:0}
+.lock-overlay .lock-price{font-size:.72rem;color:var(--text-light)}
+.lock-overlay .btn-unlock{background:var(--primary);color:var(--white);border:none;padding:.45rem 1rem;border-radius:50px;font-weight:700;font-size:.75rem;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;margin-top:.2rem}
+
+/* ===== PWA INSTALL BANNER ===== */
+.pwa-install-section{margin:1rem;background:linear-gradient(135deg,#1a2f47 0%,#2a4a6f 100%);border-radius:var(--radius);padding:1.2rem;color:#fff;text-align:center}
+.pwa-install-section h3{font-size:1rem;font-weight:800;margin:0 0 .3rem}
+.pwa-install-section p{font-size:.78rem;opacity:.8;margin:0 0 .9rem;line-height:1.5}
+.pwa-steps{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.9rem;text-align:left}
+.pwa-step{display:flex;align-items:center;gap:.6rem;font-size:.76rem;opacity:.9}
+.pwa-step-num{background:var(--primary);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0}
+.pwa-install-btn{background:var(--primary);color:#fff;border:none;padding:.65rem 1.5rem;border-radius:50px;font-weight:800;font-size:.85rem;cursor:pointer;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.pwa-install-btn:active{background:var(--primary-dark);transform:scale(.97)}
+.pwa-platform-note{font-size:.68rem;opacity:.55;margin-top:.5rem}
+
 /* ===== SEARCH TAB ===== */
 .search-bar{
 position:sticky;top:calc(var(--header-height) + var(--safe-top));z-index:50;
@@ -346,16 +369,31 @@ font-weight:600;display:none;
 
     <div class="pull-indicator" id="pullIndicator"><i class="fas fa-arrow-down"></i> Rilascia per aggiornare</div>
 
-    <div class="section-title"><i class="fas fa-bolt"></i> Ultimi bandi aggiunti</div>
+    <!-- ===== PWA INSTALL SECTION ===== -->
+    <div class="pwa-install-section" id="pwaInstallSection">
+        <h3><i class="fas fa-mobile-alt"></i> Installa l'App sul tuo Dispositivo</h3>
+        <p>Accedi ai bandi offline, ricevi notifiche e cerca in pochi secondi</p>
+        <div class="pwa-steps" id="pwaSteps">
+            <div class="pwa-step"><div class="pwa-step-num">1</div><span>Tocca il pulsante <strong>Condividi</strong> <i class="fas fa-share-square"></i> in basso</span></div>
+            <div class="pwa-step"><div class="pwa-step-num">2</div><span>Seleziona <strong>"Aggiungi a schermata Home"</strong></span></div>
+            <div class="pwa-step"><div class="pwa-step-num">3</div><span>Conferma: avrai l'icona sul desktop</span></div>
+        </div>
+        <button class="pwa-install-btn" id="pwaInstallBtn" style="display:none" onclick="triggerPwaInstall()">
+            <i class="fas fa-download"></i> Installa App
+        </button>
+        <div class="pwa-platform-note" id="pwaPlatformNote">iOS: Safari → Condividi → Aggiungi a schermata Home</div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-bolt"></i> Anteprima Bandi</div>
     <div class="bandi-scroll" id="latestScroll">
         <div class="loading"><div class="spinner"></div>Caricamento...</div>
     </div>
 
-    <div class="section-title"><i class="fas fa-fire"></i> Fondo perduto</div>
-    <div class="bandi-scroll" id="fondoScroll"></div>
-
-    <div class="section-title"><i class="fas fa-chart-line"></i> Tasso agevolato</div>
-    <div class="bandi-scroll" id="tassoScroll"></div>
+    <div style="margin:.25rem 1rem .75rem;font-size:.75rem;color:var(--text-muted);text-align:center">
+        <i class="fas fa-lock" style="color:var(--primary);margin-right:.3rem"></i>
+        Accedi a tutti i <strong id="totalBandiCount">500+</strong> bandi con l'abbonamento annuale
+        &nbsp;·&nbsp; <a href="/bandi.html" style="color:var(--primary);font-weight:700;text-decoration:none">€50/anno →</a>
+    </div>
 </div>
 
 <!-- ========== CERCA TAB ========== -->
@@ -639,21 +677,23 @@ function renderHome(){
     document.getElementById('lastUpdate').textContent=new Date().toLocaleDateString('it-IT');
     document.getElementById('profTotal').textContent=allBandi.length;
 
-    // Latest bandi (first 8)
-    var latest=allBandi.slice(0,8);
-    document.getElementById('latestScroll').innerHTML=latest.map(function(b){return renderCard(b)}).join('');
+    // Aggiorna contatore totale bandi nel teaser
+    var tc=document.getElementById('totalBandiCount');
+    if(tc)tc.textContent=allBandi.length;
 
-    // Fondo perduto
-    var fondo=allBandi.filter(function(b){return b.tipo_contributo==='fondo_perduto'}).slice(0,8);
-    document.getElementById('fondoScroll').innerHTML=fondo.length?fondo.map(function(b){return renderCard(b)}).join(''):'<p style="padding:1rem;color:var(--text-muted);font-size:.85rem">Nessun bando a fondo perduto al momento</p>';
+    // Solo 3 bandi in anteprima + locked cards
+    var preview=allBandi.slice(0,3);
+    var lockedHtml=renderLockedCards(3);
+    document.getElementById('latestScroll').innerHTML=
+        preview.map(function(b){return renderCard(b,true)}).join('')+
+        lockedHtml;
 
-    // Tasso agevolato
-    var tasso=allBandi.filter(function(b){return b.tipo_contributo==='tasso_agevolato'||b.tipo_contributo==='misto'}).slice(0,8);
-    document.getElementById('tassoScroll').innerHTML=tasso.length?tasso.map(function(b){return renderCard(b)}).join(''):'<p style="padding:1rem;color:var(--text-muted);font-size:.85rem">Nessun bando a tasso agevolato al momento</p>';
+    // Adatta le istruzioni PWA al dispositivo
+    adaptPwaInstructions();
 }
 
 // ===== RENDER CARD =====
-function renderCard(b){
+function renderCard(b,isPreview){
     var isFav=favorites.indexOf(b.id)!==-1;
     var cmax=b.contributo_max;
     if(typeof cmax==='number'&&cmax>=1000)cmax='\u20AC'+cmax.toLocaleString('it-IT');
@@ -668,6 +708,7 @@ function renderCard(b){
             '<span class="tag tag-stato '+(b.stato||'')+'">'+getStatoLabel(b.stato)+'</span>'+
             '<span class="tag tag-tipo">'+getTipoLabel(b.tipo_contributo)+'</span>'+
             (b.regione?'<span class="tag tag-regione">'+b.regione+'</span>':'')+
+            (isPreview?'<span class="tag tag-anteprima">ANTEPRIMA</span>':'')+
         '</div>'+
         '<h3>'+escapeHtml(b.titolo||'')+'</h3>'+
         '<div class="ente"><i class="fas fa-building"></i> '+escapeHtml(b.ente||'')+'</div>'+
@@ -684,6 +725,33 @@ function renderCard(b){
             '</button>'+
         '</div>'+
     '</article>';
+}
+
+// ===== RENDER LOCKED CARDS =====
+function renderLockedCards(n){
+    var html='';
+    for(var i=0;i<n;i++){
+        html+='<article class="bando-card locked">'+
+            '<div class="card-inner">'+
+                '<div class="tags"><span class="tag tag-stato aperto">Aperto</span><span class="tag tag-tipo">Fondo Perduto</span><span class="tag tag-regione">Italia</span></div>'+
+                '<h3>Bando finanziamento imprese '+(2026+i)+'</h3>'+
+                '<div class="ente"><i class="fas fa-building"></i> Ente istituzionale</div>'+
+                '<div class="bando-details">'+
+                    '<div class="detail"><div class="label">Contributo</div><div class="value highlight">\u20AC50.000</div></div>'+
+                    '<div class="detail"><div class="label">Percentuale</div><div class="value">50%</div></div>'+
+                    '<div class="detail"><div class="label">Scadenza</div><div class="value">31/12/2026</div></div>'+
+                    '<div class="detail"><div class="label">Ente</div><div class="value">Ministero</div></div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="lock-overlay">'+
+                '<i class="fas fa-lock lock-icon"></i>'+
+                '<p class="lock-title">Sblocca questo bando</p>'+
+                '<small class="lock-price">\u20AC50/anno &mdash; accesso completo</small>'+
+                '<a href="/bandi.html" class="btn-unlock"><i class="fas fa-unlock"></i> Abbonati ora</a>'+
+            '</div>'+
+        '</article>';
+    }
+    return html;
 }
 
 function escapeHtml(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
@@ -812,48 +880,72 @@ function getSubscription(){
     try{return JSON.parse(s)}catch(e){return null}
 }
 
-// ===== INSTALL PROMPT =====
-function checkInstallPrompt(){
+// ===== ADAPT PWA INSTRUCTIONS (in-page banner) =====
+var _deferredInstallPrompt=null;
+
+window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();
+    _deferredInstallPrompt=e;
+    // Mostra il pulsante "Installa App" nel banner in-page
+    var btn=document.getElementById('pwaInstallBtn');
+    if(btn)btn.style.display='flex';
+});
+
+window.addEventListener('appinstalled',function(){
+    var sec=document.getElementById('pwaInstallSection');
+    if(sec){
+        sec.innerHTML='<div style="text-align:center;padding:.5rem"><i class="fas fa-check-circle" style="color:#10b981;font-size:1.5rem"></i><p style="color:#fff;font-size:.82rem;margin:.3rem 0 0">App installata correttamente!</p></div>';
+    }
+});
+
+function triggerPwaInstall(){
+    if(!_deferredInstallPrompt)return;
+    _deferredInstallPrompt.prompt();
+    _deferredInstallPrompt.userChoice.then(function(){_deferredInstallPrompt=null;});
+}
+
+function adaptPwaInstructions(){
     var isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
-    if(isStandalone)return; // Already installed
-    if(sessionStorage.getItem('install-skipped'))return;
+    var sec=document.getElementById('pwaInstallSection');
+    if(!sec)return;
+
+    // Se già installata, nascondi il banner
+    if(isStandalone){sec.style.display='none';return;}
 
     var isIos=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-    var prompt=document.getElementById('installPrompt');
-    var installBtn=document.getElementById('installBtn');
-    var skipBtn=document.getElementById('skipInstall');
+    var isAndroid=/Android/.test(navigator.userAgent);
+    var note=document.getElementById('pwaPlatformNote');
+    var steps=document.getElementById('pwaSteps');
 
     if(isIos){
-        // Show iOS-specific steps
-        document.getElementById('iosSteps').style.display='';
-        installBtn.style.display='none';
-        setTimeout(function(){prompt.classList.add('show')},1500);
+        if(steps)steps.innerHTML=
+            '<div class="pwa-step"><div class="pwa-step-num">1</div><span>Apri in <strong>Safari</strong> (non Chrome/Firefox)</span></div>'+
+            '<div class="pwa-step"><div class="pwa-step-num">2</div><span>Tocca <strong>Condividi</strong> <i class="fas fa-share-square"></i> in basso</span></div>'+
+            '<div class="pwa-step"><div class="pwa-step-num">3</div><span>Seleziona <strong>"Aggiungi a schermata Home"</strong></span></div>';
+        if(note)note.textContent='iOS Safari — gratuito, nessun App Store richiesto';
+    }else if(isAndroid){
+        if(steps)steps.innerHTML=
+            '<div class="pwa-step"><div class="pwa-step-num">1</div><span>Tocca il pulsante <strong>"Installa App"</strong> qui sotto</span></div>'+
+            '<div class="pwa-step"><div class="pwa-step-num">2</div><span>Oppure: menu Chrome → <strong>"Aggiungi a schermata Home"</strong></span></div>'+
+            '<div class="pwa-step"><div class="pwa-step-num">3</div><span>Conferma: l\'icona apparirà sul desktop</span></div>';
+        if(note)note.textContent='Android Chrome — gratuito, nessun Play Store richiesto';
+    }else{
+        if(steps)steps.innerHTML=
+            '<div class="pwa-step"><div class="pwa-step-num">1</div><span>Clicca l\'icona <i class="fas fa-download"></i> nella barra del browser</span></div>'+
+            '<div class="pwa-step"><div class="pwa-step-num">2</div><span>Oppure: menu → <strong>"Installa RaaS Bandi"</strong></span></div>';
+        if(note)note.textContent='Desktop — Chrome, Edge o Opera supportati';
     }
+}
 
-    // Android/Chrome
-    var deferredPrompt=null;
-    window.addEventListener('beforeinstallprompt',function(e){
-        e.preventDefault();
-        deferredPrompt=e;
-        setTimeout(function(){prompt.classList.add('show')},1500);
-    });
-
-    installBtn.addEventListener('click',function(){
-        if(!deferredPrompt)return;
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(function(choice){
-            deferredPrompt=null;
-            prompt.classList.remove('show');
-        });
-    });
-
-    skipBtn.addEventListener('click',function(){
-        prompt.classList.remove('show');
+// ===== INSTALL PROMPT (overlay legacy, mantenuto per compatibilità) =====
+function checkInstallPrompt(){
+    // L'install prompt è ora gestito nel banner in-page (pwaInstallSection)
+    // L'overlay legacy viene mostrato solo se il banner non è disponibile
+    var skipBtn=document.getElementById('skipInstall');
+    if(skipBtn)skipBtn.addEventListener('click',function(){
+        var prompt=document.getElementById('installPrompt');
+        if(prompt)prompt.classList.remove('show');
         sessionStorage.setItem('install-skipped','1');
-    });
-
-    window.addEventListener('appinstalled',function(){
-        prompt.classList.remove('show');
     });
 }
 </script>

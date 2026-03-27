@@ -1,8 +1,17 @@
 # CLAUDE.md — RaaS Automazioni
 
 ## Istruzione Primaria
-**LEGGI SEMPRE `SKILL.md` prima di qualsiasi operazione.**
-SKILL.md (versione 2.0) e' l'unica fonte di verita' per questo progetto.
+**USA sempre `context-map.json` per sapere quale skill caricare.**
+Carica SOLO i file necessari per il task — vedi tabella sotto.
+
+| Task | File da caricare |
+|---|---|
+| Qualsiasi operazione | `skill-essentials.md` (SEMPRE) |
+| Nuova pagina / SEO / audit | + `skill-seo.md` |
+| Articolo blog / contenuti | + `skill-content.md` |
+| Architettura / business / bandi | + `skill-context.md` |
+
+`SKILL.md` = file master originale (riferimento completo se necessario).
 
 ## Regole Automatiche
 
@@ -22,10 +31,10 @@ SKILL.md (versione 2.0) e' l'unica fonte di verita' per questo progetto.
 - Font-Awesome e CSS non critici in defer con media swap
 - `<link rel="preconnect">` per tutti i domini esterni
 - Animazioni hero con `animation-play-state: paused` (attivare dopo render)
-- Seguire WEB-PERFORMANCE-RULES.md per regole complete
+- Regole complete in `skill-seo.md` (performance, CWV, visual saliency)
 
 ### Contenuti Blog:
-- Seguire template e checklist in SKILL.md Sezione 6 e 7
+- Seguire template e checklist in `skill-content.md`
 - 2500+ parole, 15+ H2/H3, 35% transition words
 - OGNI dato numerico DEVE avere fonte verificata
 - Zero claim inventati, zero dialetto, tono B2B professionale
@@ -34,14 +43,14 @@ SKILL.md (versione 2.0) e' l'unica fonte di verita' per questo progetto.
 ### Dopo ogni modifica:
 - Aggiornare sitemap.xml se pagine aggiunte/rimosse
 - Commit in italiano, descrittivo
-- Verificare checklist automatiche in SKILL.md Sezione 7
+- Verificare checklist in `skill-essentials.md` §5-6
 
 ### Cronolog Audit Automatico:
-- **Ogni venerdi ore 07:00 CET** — audit automatico conformita' SKILL.md
+- **Ogni venerdi ore 07:00 CET** — audit automatico
 - GitHub Actions workflow `.github/workflows/weekly-audit.yml`
 - Rapporto creato come GitHub Issue con label `audit-settimanale`
 - Autorizzazione **permanente** — attivo fino a revoca esplicita
-- Riferimento regole: SKILL.md §10.4
+- Riferimento regole: `skill-seo.md` (19 controlli automatizzati)
 
 ### Pubblicazione:
 - Regola d'oro: "Se non hai fonte verificabile, NON inserire il dato"

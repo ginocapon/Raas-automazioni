@@ -1,4 +1,4 @@
-name: "Audit Settimanale SKILL.md"
+name: "Audit Settimanale — skill-seo.md"
 
 # Ogni venerdi alle 06:00 UTC = 07:00 CET (08:00 CEST in estate)
 on:
@@ -13,7 +13,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    name: "Audit conformita' SKILL.md"
+    name: "Audit conformita' skill-seo.md"
 
     steps:
       - name: Checkout repository
@@ -273,7 +273,7 @@ jobs:
 
           echo "" >> audit-report.md
           echo "---" >> audit-report.md
-          echo "*Audit automatico eseguito da GitHub Actions — Rif. SKILL.md §10.4*" >> audit-report.md
+          echo "*Audit automatico eseguito da GitHub Actions — Rif. skill-seo.md §10-15 + skill-essentials.md*" >> audit-report.md
           echo "*Prossimo audit: venerdi prossimo ore 07:00 CET*" >> audit-report.md
 
           # Output per step successivo

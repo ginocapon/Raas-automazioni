@@ -398,6 +398,11 @@ font-weight:600;display:none;
 
 <!-- ========== CERCA TAB ========== -->
 <div class="tab-page" id="page-cerca">
+    <div class="paywall-banner" id="paywallBanner" style="display:none;margin:1rem;background:linear-gradient(135deg,#1a2f47,#2a4a6f);border-radius:14px;padding:1.2rem 1.4rem;color:#fff;text-align:center;">
+        <p style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;"><i class="fas fa-lock" style="color:#f59e0b;margin-right:6px;"></i>Sblocca la Ricerca Completa</p>
+        <p style="font-size:0.85rem;opacity:0.85;margin-bottom:0.9rem;">Stai vedendo 3 bandi su <span id="paywallTotal">500+</span>. Abbonati per accedere a tutti.</p>
+        <a href="/bandi.html" style="display:inline-block;background:#f59e0b;color:#0f172a;font-weight:800;padding:0.55rem 1.4rem;border-radius:8px;text-decoration:none;font-size:0.9rem;">Sblocca — €50/anno →</a>
+    </div>
     <div class="search-bar">
         <i class="fas fa-search search-icon"></i>
         <input type="search" class="search-input" id="searchInput" placeholder="Cerca bandi..." autocomplete="off">
@@ -785,6 +790,20 @@ function updateFavCount(){
 function renderFavorites(){
     var list=document.getElementById('favList');
     var empty=document.getElementById('favEmpty');
+    var sub=getSubscription();
+    var isSubscribed=sub&&sub.expiry&&new Date(sub.expiry)>new Date();
+
+    // Paywall: utenti non abbonati non possono salvare bandi
+    if(!isSubscribed){
+        list.innerHTML='<div style="margin:1rem;background:linear-gradient(135deg,#1a2f47,#2a4a6f);border-radius:14px;padding:1.4rem;color:#fff;text-align:center;">'+
+            '<p style="font-weight:700;font-size:1rem;margin-bottom:0.5rem;"><i class="fas fa-lock" style="color:#f59e0b;margin-right:6px;"></i>Funzione riservata agli abbonati</p>'+
+            '<p style="font-size:0.85rem;opacity:0.85;margin-bottom:0.9rem;">Abbonati per salvare i bandi che ti interessano e ricevere aggiornamenti.</p>'+
+            '<a href="/bandi.html" style="display:inline-block;background:#f59e0b;color:#0f172a;font-weight:800;padding:0.55rem 1.4rem;border-radius:8px;text-decoration:none;font-size:0.9rem;">Abbonati — €50/anno →</a>'+
+            '</div>';
+        empty.style.display='none';
+        return;
+    }
+
     if(!favorites.length){
         list.innerHTML='';empty.style.display='';
         return;
@@ -812,6 +831,8 @@ function applySearch(){
     var reg=document.getElementById('f-regione').value;
     var tipo=document.getElementById('f-tipo').value;
     var ente=document.getElementById('f-ente').value;
+    var sub=getSubscription();
+    var isSubscribed=sub&&sub.expiry&&new Date(sub.expiry)>new Date();
 
     var results=allBandi.filter(function(b){
         if(q&&!JSON.stringify(b).toLowerCase().includes(q))return false;
@@ -824,7 +845,31 @@ function applySearch(){
     var info=document.getElementById('resultsInfo');
     var list=document.getElementById('searchResults');
     var empty=document.getElementById('searchEmpty');
+    var banner=document.getElementById('paywallBanner');
+    var totalEl=document.getElementById('paywallTotal');
 
+    // Paywall: utenti non abbonati vedono solo 3 risultati + locked cards
+    if(!isSubscribed){
+        banner.style.display='block';
+        if(totalEl)totalEl.textContent=results.length||allBandi.length;
+        if(!results.length){
+            info.style.display='none';
+            list.innerHTML='';
+            empty.style.display='';
+            return;
+        }
+        empty.style.display='none';
+        info.style.display='';
+        info.textContent='Anteprima: 3 di '+results.length+' bandi trovati';
+        var preview=results.slice(0,3);
+        list.innerHTML=preview.map(function(b){return renderCard(b,true)}).join('')+renderLockedCards(3);
+        var hasFilters=reg||tipo||ente;
+        document.getElementById('filterToggle').classList.toggle('has-filters',!!hasFilters||document.getElementById('filtersPanel').classList.contains('show'));
+        return;
+    }
+
+    // Abbonato: accesso completo
+    banner.style.display='none';
     if(!results.length){
         info.style.display='none';
         list.innerHTML='';
@@ -836,7 +881,6 @@ function applySearch(){
     info.textContent=results.length+' bandi trovati';
     list.innerHTML=results.map(function(b){return renderCard(b)}).join('');
 
-    // Update filter toggle indicator
     var hasFilters=reg||tipo||ente;
     document.getElementById('filterToggle').classList.toggle('has-filters',!!hasFilters||document.getElementById('filtersPanel').classList.contains('show'));
 }

@@ -3397,13 +3397,153 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                 </div>
             </div>
 
-            <!-- Preview template -->
-            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;max-width:900px;margin:0 auto 2.5rem;">
-                <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,#3A5578,#CEE08F);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'" title="Template Immobiliare">&#127969;</div>
-                <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,#1a1a1a,#c8a96e);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'" title="Template Ristorante">&#127860;</div>
-                <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,#2c3e50,#3498db);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'" title="Template Studio Professionale">&#9878;</div>
-                <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,#6c5ce7,#00cec9);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'" title="Template E-commerce">&#128722;</div>
-                <div style="border-radius:12px;overflow:hidden;aspect-ratio:3/2;background:linear-gradient(135deg,#2d3436,#fdcb6e);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='none'" title="Template Portfolio">&#127912;</div>
+            <!-- Preview template — miniature realistiche cliccabili -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.25rem;max-width:960px;margin:0 auto 2.5rem;">
+
+                <!-- Immobiliare -->
+                <a href="siteforge/demo/immobiliare.html" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Immobiliare">
+                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
+                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
+                            <rect width="320" height="240" fill="#3A5578"/>
+                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
+                            <rect x="12" y="12" width="60" height="12" rx="2" fill="#3A5578" opacity="0.8"/>
+                            <rect x="200" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
+                            <rect x="240" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
+                            <rect x="280" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
+                            <rect width="320" height="120" y="36" fill="url(#immGrad)"/>
+                            <text x="160" y="86" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="sans-serif">Trova la casa dei tuoi sogni</text>
+                            <rect x="100" y="100" width="120" height="20" rx="10" fill="#fff" opacity="0.9"/>
+                            <rect x="108" y="106" width="80" height="8" rx="4" fill="#ccc"/>
+                            <rect x="20" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
+                            <rect x="117" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
+                            <rect x="215" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
+                            <rect x="35" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
+                            <rect x="35" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
+                            <rect x="132" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
+                            <rect x="132" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
+                            <rect x="230" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
+                            <rect x="230" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
+                            <defs><linearGradient id="immGrad" x1="0" y1="0" x2="320" y2="120"><stop stop-color="#3A5578"/><stop offset="1" stop-color="#4a7f9f"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div style="padding:0.75rem 1rem;">
+                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Immobiliare</div>
+                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Agenzie e property manager</div>
+                    </div>
+                </a>
+
+                <!-- Ristorante -->
+                <a href="siteforge/demo/ristorante.html" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Ristorante">
+                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
+                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
+                            <rect width="320" height="240" fill="#1a1a1a"/>
+                            <rect width="320" height="36" fill="#1a1a1a"/>
+                            <rect x="12" y="12" width="70" height="12" rx="2" fill="#c8a96e" opacity="0.9"/>
+                            <rect x="220" y="14" width="25" height="8" rx="2" fill="#c8a96e" opacity="0.3"/>
+                            <rect x="255" y="14" width="25" height="8" rx="2" fill="#c8a96e" opacity="0.3"/>
+                            <rect width="320" height="120" y="36" fill="url(#ristGrad)"/>
+                            <text x="160" y="86" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="serif">La vera cucina italiana</text>
+                            <rect x="115" y="100" width="90" height="22" rx="4" fill="#e74c3c"/>
+                            <text x="160" y="115" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">Prenota un tavolo</text>
+                            <rect x="20" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
+                            <rect x="95" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
+                            <rect x="170" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
+                            <rect x="245" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
+                            <defs><linearGradient id="ristGrad" x1="0" y1="0" x2="320" y2="120"><stop stop-color="#1a1a1a"/><stop offset="1" stop-color="#2c2c2c"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div style="padding:0.75rem 1rem;">
+                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Ristorante</div>
+                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Ristoranti e trattorie</div>
+                    </div>
+                </a>
+
+                <!-- Studio Professionale -->
+                <a href="siteforge/demo/studio-professionale.html" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Studio Legale">
+                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
+                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
+                            <rect width="320" height="240" fill="#2c3e50"/>
+                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
+                            <rect x="12" y="10" width="100" height="8" rx="2" fill="#2c3e50" opacity="0.8"/>
+                            <rect x="12" y="22" width="60" height="5" rx="2" fill="#2c3e50" opacity="0.3"/>
+                            <rect x="250" y="14" width="55" height="16" rx="4" fill="#e67e22"/>
+                            <rect width="320" height="110" y="36" fill="url(#studGrad)"/>
+                            <text x="160" y="82" text-anchor="middle" font-size="13" fill="#fff" font-weight="700" font-family="serif">Il diritto al tuo fianco</text>
+                            <rect x="120" y="96" width="80" height="18" rx="4" fill="#e67e22"/>
+                            <text x="160" y="109" text-anchor="middle" font-size="7" fill="#fff" font-family="sans-serif">Richiedi consulenza</text>
+                            <rect y="146" width="320" height="94" fill="#fff" opacity="0.95"/>
+                            <circle cx="55" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
+                            <circle cx="135" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
+                            <circle cx="215" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
+                            <circle cx="290" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
+                            <rect x="35" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
+                            <rect x="115" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
+                            <rect x="195" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
+                            <rect x="270" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
+                            <defs><linearGradient id="studGrad" x1="0" y1="0" x2="320" y2="110"><stop stop-color="#2c3e50"/><stop offset="1" stop-color="#3a5a78"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div style="padding:0.75rem 1rem;">
+                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Studio Legale</div>
+                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Avvocati e consulenti</div>
+                    </div>
+                </a>
+
+                <!-- E-commerce -->
+                <a href="siteforge/demo/ecommerce.html" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo E-commerce">
+                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
+                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
+                            <rect width="320" height="240" fill="#6c5ce7"/>
+                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
+                            <rect x="12" y="12" width="70" height="12" rx="2" fill="#6c5ce7" opacity="0.8"/>
+                            <rect x="250" y="12" width="50" height="14" rx="4" fill="#fd79a8"/>
+                            <rect width="320" height="110" y="36" fill="url(#ecomGrad)"/>
+                            <text x="160" y="80" text-anchor="middle" font-size="12" fill="#fff" font-weight="700" font-family="sans-serif">Artigianato italiano, a casa tua</text>
+                            <rect x="110" y="96" width="100" height="20" rx="4" fill="#fd79a8"/>
+                            <text x="160" y="110" text-anchor="middle" font-size="7" fill="#fff" font-family="sans-serif">Esplora il catalogo</text>
+                            <rect y="146" width="320" height="94" fill="#fff" opacity="0.95"/>
+                            <rect x="20" y="158" width="85" height="60" rx="6" fill="#6c5ce7" opacity="0.08"/>
+                            <rect x="117" y="158" width="85" height="60" rx="6" fill="#00cec9" opacity="0.08"/>
+                            <rect x="215" y="158" width="85" height="60" rx="6" fill="#fd79a8" opacity="0.08"/>
+                            <rect x="30" y="225" width="50" height="5" rx="2" fill="#6c5ce7" opacity="0.3"/>
+                            <rect x="127" y="225" width="50" height="5" rx="2" fill="#00cec9" opacity="0.3"/>
+                            <rect x="225" y="225" width="50" height="5" rx="2" fill="#fd79a8" opacity="0.3"/>
+                            <defs><linearGradient id="ecomGrad" x1="0" y1="0" x2="320" y2="110"><stop stop-color="#6c5ce7"/><stop offset="1" stop-color="#a29bfe"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div style="padding:0.75rem 1rem;">
+                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">E-commerce</div>
+                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Shop online artigianale</div>
+                    </div>
+                </a>
+
+                <!-- Portfolio -->
+                <a href="siteforge/demo/portfolio.html" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Portfolio">
+                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
+                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
+                            <rect width="320" height="240" fill="#2d3436"/>
+                            <rect width="320" height="36" fill="#2d3436"/>
+                            <rect x="12" y="12" width="60" height="12" rx="2" fill="#fdcb6e" opacity="0.9"/>
+                            <rect x="240" y="14" width="25" height="8" rx="2" fill="#fff" opacity="0.2"/>
+                            <rect x="275" y="14" width="25" height="8" rx="2" fill="#fff" opacity="0.2"/>
+                            <rect width="320" height="100" y="36" fill="url(#portGrad)"/>
+                            <text x="160" y="78" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="sans-serif">Design che racconta storie</text>
+                            <rect x="120" y="94" width="80" height="16" rx="4" fill="#6c5ce7"/>
+                            <rect y="136" width="320" height="104" fill="#1a1a1a" opacity="0.3"/>
+                            <rect x="20" y="148" width="135" height="75" rx="6" fill="#fdcb6e" opacity="0.12"/>
+                            <rect x="165" y="148" width="135" height="75" rx="6" fill="#6c5ce7" opacity="0.12"/>
+                            <rect x="30" y="200" width="80" height="5" rx="2" fill="#fdcb6e" opacity="0.3"/>
+                            <rect x="30" y="210" width="50" height="4" rx="2" fill="#fff" opacity="0.15"/>
+                            <rect x="175" y="200" width="80" height="5" rx="2" fill="#6c5ce7" opacity="0.3"/>
+                            <rect x="175" y="210" width="50" height="4" rx="2" fill="#fff" opacity="0.15"/>
+                            <defs><linearGradient id="portGrad" x1="0" y1="0" x2="320" y2="100"><stop stop-color="#2d3436"/><stop offset="1" stop-color="#444"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div style="padding:0.75rem 1rem;">
+                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Portfolio</div>
+                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Designer e creativi</div>
+                    </div>
+                </a>
             </div>
 
             <!-- Doppio CTA -->

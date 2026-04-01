@@ -145,6 +145,10 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
 .nav-links{display:flex;gap:2rem;align-items:center}
 .nav-links a{color:var(--text);font-weight:500;text-decoration:none;transition:color 0.3s;font-size:0.95rem}
 .nav-links a:hover{color:var(--primary)}
+.home-subnav{margin-top:70px;position:sticky;top:70px;z-index:999;background:#1a2f47;border-bottom:1px solid rgba(255,255,255,0.08);box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.home-subnav-inner{max-width:1240px;margin:0 auto;padding:0.5rem 1.25rem;display:flex;flex-wrap:wrap;gap:0.35rem 0.45rem;justify-content:center;align-items:center}
+.home-subnav a{color:rgba(255,255,255,0.9);text-decoration:none;font-size:0.8125rem;font-weight:600;padding:0.35rem 0.8rem;border-radius:999px;transition:background 0.2s,color 0.2s;white-space:nowrap}
+.home-subnav a:hover{background:rgba(230,57,70,0.3);color:var(--white)}
 .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;text-decoration:none;transition:all 0.3s;font-size:0.95rem;border:none;cursor:pointer}
 .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--white);box-shadow:0 4px 15px rgba(230,57,70,0.3)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(230,57,70,0.4)}
@@ -155,7 +159,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
 .section-header p{font-size:1.1rem;color:var(--text-light);max-width:600px;margin:0 auto}
 
 /* Hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0a1628 0%,#1a2f47 50%,#0e2240 100%);color:var(--white);padding-top:80px;overflow:hidden}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,#0a1628 0%,#1a2f47 50%,#0e2240 100%);color:var(--white);padding-top:0;overflow:hidden}
 .hero-content{position:relative;z-index:2;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;align-items:center;gap:2rem;color:var(--white);padding:2rem 1.5rem}
 .hero-top{text-align:left;grid-column:1;grid-row:1}
 .hero-bottom{text-align:left;grid-column:1;grid-row:2}
@@ -255,11 +259,12 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
     .contact-grid{grid-template-columns:1fr}
     .form-row{grid-template-columns:1fr}
     .packages-grid{grid-template-columns:1fr !important}
+    .home-subnav-inner{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:thin;gap:0.35rem}
 }
     </style>
 </head>
 <body>
-    <a href="#how-it-works" class="skip-nav">Skip to main content</a>
+    <a href="#home" class="skip-nav">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
             <a href="/en/" class="logo">RaaS<span>Automazioni</span></a>
@@ -278,8 +283,21 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
         </div>
     </nav>
 
+    <nav class="home-subnav" aria-label="Page sections">
+        <div class="home-subnav-inner">
+            <a href="#video">Video</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#technology">Technology</a>
+            <a href="#pricing">Pricing</a>
+            <a href="/bandi">Grants (IT)</a>
+            <a href="/en/blog.html">Blog</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
     <!-- HERO -->
-    <section class="hero" aria-label="Introduction">
+    <section id="home" class="hero" aria-label="Introduction" tabindex="-1">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-top">
@@ -289,14 +307,14 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
                     </div>
 
                     <h1>
-    Your Marketing Is Already <span>Automated</span>.
+    We bring you clients. <span>We only earn when you earn.</span>
 </h1>
-                    <p class="hero-raas"><strong>RaaS &mdash; Revenue as a Service</strong><br>We bring you clients. We only earn when you earn.</p>
-                    <p class="hero-subtitle">A robot works for you 24/7: website, SEO, lead generation. You only pay for results.</p>
+                    <p class="hero-raas"><strong>Revenue as a Service:</strong> pure-code website, PageSpeed 90+, SEO and GEO (Google and AI assistants), lead generation and a transparent dashboard. Fixed annual fee + <strong>3% only on revenue from new clients</strong> we bring you.</p>
+                    <p class="hero-subtitle">Want to start on your own? <strong><a href="/ai" style="color:#a29bfe;text-decoration:underline;text-underline-offset:3px;">AI Sito</a></strong> builds vertical templates and content in minutes; with RaaS we optimise and run acquisition for you.</p>
                 </div>
 
                 <div class="hero-right">
-                    <img src="/file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni - AI Automated Marketing" width="400" height="580" loading="eager">
+                    <img src="/file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni — client acquisition and automation for SMBs" width="400" height="580" fetchpriority="high" loading="eager">
                 </div>
 
                 <div class="hero-bottom">
@@ -338,7 +356,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
     </section>
 
     <!-- VIDEO SHOWCASE -->
-    <section style="background:linear-gradient(180deg,#0e2240 0%,var(--bg) 100%);padding:4rem 0 3rem;overflow:hidden;" aria-label="Video presentation">
+    <section id="video" style="background:linear-gradient(180deg,#0e2240 0%,var(--bg) 100%);padding:4rem 0 3rem;overflow:hidden;" aria-label="Video presentation">
         <div class="container">
             <div style="max-width:800px;margin:0 auto;text-align:center;">
                 <p style="color:#fff;font-size:1.4rem;font-weight:700;margin-bottom:2rem;line-height:1.5;">Stop chasing clients.<br><strong style="color:var(--accent);">Let them come to you.</strong></p>
@@ -412,7 +430,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
     </section>
 
     <!-- TECHNOLOGY -->
-    <section class="section" aria-label="Technology">
+    <section id="technology" class="section" aria-label="Technology">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">The Technology Behind Results</span>

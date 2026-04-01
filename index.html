@@ -423,6 +423,51 @@ body{
     padding:0.5rem
 }
 
+/* Barra capitoli home (sticky sotto header) */
+.home-subnav{
+    margin-top:70px;
+    position:sticky;
+    top:70px;
+    z-index:999;
+    background:#1a2f47;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 4px 20px rgba(0,0,0,0.08)
+}
+.home-subnav-inner{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0.5rem 1.25rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.35rem 0.45rem;
+    justify-content:center;
+    align-items:center
+}
+.home-subnav a{
+    color:rgba(255,255,255,0.9);
+    text-decoration:none;
+    font-size:0.8125rem;
+    font-weight:600;
+    padding:0.35rem 0.8rem;
+    border-radius:999px;
+    transition:background 0.2s,color 0.2s;
+    white-space:nowrap
+}
+.home-subnav a:hover{
+    background:rgba(230,57,70,0.3);
+    color:var(--white)
+}
+@media(max-width:768px){
+    .home-subnav-inner{
+        justify-content:flex-start;
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:thin;
+        gap:0.35rem
+    }
+}
+
 /* BUTTONS */
 .btn{
     display:inline-flex;
@@ -472,7 +517,7 @@ body{
    ========================================== */
 
 .hero{
-    margin-top:70px;
+    margin-top:0;
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -2625,7 +2670,7 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
 </script>
 </head>
 <body>
-    <a href="#come-funziona" class="skip-nav">Vai al contenuto principale</a>
+    <a href="#home" class="skip-nav">Vai al contenuto principale</a>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="/" class="logo" aria-label="RaaSAutomazioni Homepage">RaaS<span>Automazioni</span></a>
@@ -2646,7 +2691,21 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
     </nav>
 
-    <section id="home" class="hero" aria-label="Introduzione">
+    <nav class="home-subnav" id="home-subnav" aria-label="Sezioni della pagina">
+        <div class="home-subnav-inner">
+            <a href="#due-percorsi">Percorsi</a>
+            <a href="#come-funziona">Modello</a>
+            <a href="#verticali-settore">Settori</a>
+            <a href="#chi-siamo">Chi siamo</a>
+            <a href="#analisi-sito">Analisi sito</a>
+            <a href="#bandi">Bandi</a>
+            <a href="#siti-web">Prezzi</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contatti">Contatti</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero" aria-label="Introduzione" tabindex="-1">
         <!-- SVG Morphing Background come nel video -->
         <div class="morph-container" aria-hidden="true">
             <svg class="morph-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -2703,14 +2762,14 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                     </div>
 
                     <h1>
-    Sviluppo siti per PMI. <span>Con automazione AI. Zero rischi.</span>
+    Ti portiamo clienti. <span>Guadagniamo solo se guadagni tu.</span>
 </h1>
-                    <p class="hero-raas"><strong>Ci pensiamo noi:</strong> sito professionale, SEO, GEO per AI come Google e ChatGPT, lead generation automatizzata. Paghi solo il 3% sui risultati concreti.</p>
-                    <p class="hero-subtitle">Oppure attiva <strong>AI Sito</strong>: generatore siti con intelligenza artificiale, template responsive, builder drag-and-drop, contenuti generati in 60 secondi. Scegli l'opzione giusta per la tua PMI, noi ottimizziamo.</p>
+                    <p class="hero-raas"><strong>Revenue as a Service:</strong> sito in codice puro, PageSpeed 90+, SEO e GEO (Google e assistenti AI), lead generation e dashboard trasparente. Fee annuale fissa + <strong>3% solo su fatturato da nuovi clienti</strong> che ti portiamo.</p>
+                    <p class="hero-subtitle">Vuoi partire in autonomia? <strong><a href="/ai" style="color:#a29bfe;text-decoration:underline;text-underline-offset:3px;">AI Sito</a></strong> genera template verticali e contenuti in pochi minuti; con RaaS ottimizziamo e gestiamo acquisizione e risultati per te.</p>
                 </div>
 
                 <div class="hero-right">
-                    <img src="file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni - AI Marketing Automatizzato" width="400" height="580" loading="eager">
+                    <img src="file/drsjs-man-320276_640-removebg-preview.png" alt="RaaS Automazioni - acquisizione clienti e automazione per PMI" width="400" height="580" fetchpriority="high" loading="eager">
                 </div>
 
                 <div class="hero-bottom">
@@ -2751,8 +2810,8 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
     </section>
 
-    <!-- DUE PERCORSI — Struttura Wix: scelta chiara tra managed e DIY -->
-    <section class="section" style="background:linear-gradient(180deg,#0e2240 0%,#f7fafc 100%);padding:5rem 0;" aria-label="Scegli il tuo percorso">
+    <!-- DUE PERCORSI — Scelta chiara tra managed e DIY -->
+    <section id="due-percorsi" class="section" style="background:linear-gradient(180deg,#0e2240 0%,#f7fafc 100%);padding:5rem 0;" aria-label="Scegli il tuo percorso">
         <div class="container">
             <div class="section-header" style="text-align:center;margin-bottom:3rem;">
                 <span class="section-tag" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.18);">Due Strade. Zero Rischi.</span>
@@ -2873,8 +2932,8 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
     </section>
 
-    <!-- VERTICALI — Ispirato a Wix template gallery: mostra il tuo settore -->
-    <section class="section" style="background:var(--dark);padding:5rem 0;overflow:hidden;" aria-label="Template per settore">
+    <!-- VERTICALI — Template per settore -->
+    <section id="verticali-settore" class="section" style="background:var(--dark);padding:5rem 0;overflow:hidden;" aria-label="Template per settore">
         <div class="container">
             <div class="section-header" style="text-align:center;margin-bottom:3rem;">
                 <span class="section-tag" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.12);">Verticalizzazione per Settore</span>
@@ -3034,7 +3093,7 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
     </section>
 
-  <section class="pagespeed-section" aria-label="Analisi performance sito">
+  <section id="analisi-sito" class="pagespeed-section" aria-label="Analisi performance sito">
     <div class="container">
         <div class="site-analyzer" id="siteAnalyzer">
             <h3><i class="fas fa-tachometer-alt" style="color:var(--primary);margin-right:0.5rem"></i>Analisi Gratuita del Tuo Sito</h3>
@@ -3099,10 +3158,10 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
     <section id="portfolio" class="section portfolio-section" aria-label="Portfolio progetti">
         <div class="container">
             <div class="section-header">
-    <span class="section-tag">Chi Siamo</span>
-    <h2>La Nostra Storia</h2>
-    <p>Web Agency italiana specializzata nella creazione di siti web aziendali veloci, ottimizzati SEO e responsive. Prezzi trasparenti da €399/anno, prezzo bloccato per sempre. In più, accedi al nostro aggregatore di bandi a fondo perduto con 150+ fonti monitorate quotidianamente.</p>
-</div>
+                <span class="section-tag">Portfolio</span>
+                <h2>Progetti selezionati</h2>
+                <p>Esempi di siti digitali per PMI: e-commerce, prenotazioni e presenza online in settori healthcare, fashion e beauty.</p>
+            </div>
 
             <div class="portfolio-grid">
                 <article class="portfolio-item">
@@ -3436,211 +3495,6 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                         <p style="font-size:0.9rem;color:var(--text-light);">Tutto nero su bianco: attribuzione lead, audit, riconciliazione trimestrale</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SITEFORGE AI — Crea il tuo sito in autonomia -->
-    <section id="crea-sito" class="section" aria-label="Crea il tuo sito con AI" style="background:linear-gradient(135deg,#0f0f1a 0%,#1a1a2e 50%,#16213e 100%);color:#fff;overflow:hidden;">
-        <div class="container">
-            <div class="section-header" style="color:#fff;">
-                <span class="section-tag" style="background:rgba(108,92,231,0.15);color:#a29bfe;border:1px solid rgba(108,92,231,0.3);">Nuovo</span>
-                <h2 style="color:#fff;">Preferisci fare da solo? Crea il tuo sito con l'AI.</h2>
-                <p style="color:rgba(255,255,255,0.65);">Non tutti hanno bisogno di un servizio gestito. Con <strong style="color:#a29bfe;">AI Sito</strong> scegli un template professionale o lasci che l'intelligenza artificiale generi il sito perfetto per te in 60 secondi.</p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:1000px;margin:0 auto 3rem;">
-                <!-- Card 1: Template pronti -->
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:transform 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'">
-                    <div style="width:64px;height:64px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                        <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                    </div>
-                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;">5 Template Professionali</h3>
-                    <p style="font-size:0.95rem;opacity:0.6;line-height:1.6;">Immobiliare, ristorante, studio legale, e-commerce, portfolio. Scegli e personalizza con il builder drag-and-drop.</p>
-                </div>
-
-                <!-- Card 2: Generazione AI -->
-                <div style="background:rgba(108,92,231,0.08);border:1px solid rgba(108,92,231,0.25);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:transform 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='#6c5ce7'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(108,92,231,0.25)'">
-                    <div style="width:64px;height:64px;background:linear-gradient(135deg,#e94560,#ff6b81);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                        <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;">Generazione AI Automatica</h3>
-                    <p style="font-size:0.95rem;opacity:0.6;line-height:1.6;">Descrivi la tua attivit&agrave; e l'AI crea testi, sezioni e struttura ottimizzati. Sito completo in meno di un minuto.</p>
-                </div>
-
-                <!-- Card 3: Export e pubblica -->
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:transform 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.3)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'">
-                    <div style="width:64px;height:64px;background:linear-gradient(135deg,#00cec9,#55efc4);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                        <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </div>
-                    <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;">Esporta e Pubblica</h3>
-                    <p style="font-size:0.95rem;opacity:0.6;line-height:1.6;">Scarica il sito come HTML statico. Pubblicalo ovunque: GitHub Pages, Netlify, il tuo hosting. Zero vincoli.</p>
-                </div>
-            </div>
-
-            <!-- Preview template — miniature realistiche cliccabili -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.25rem;max-width:960px;margin:0 auto 2.5rem;">
-
-                <!-- Immobiliare -->
-                <a href="/ai/demo/immobiliare" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Immobiliare">
-                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
-                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
-                            <rect width="320" height="240" fill="#3A5578"/>
-                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
-                            <rect x="12" y="12" width="60" height="12" rx="2" fill="#3A5578" opacity="0.8"/>
-                            <rect x="200" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
-                            <rect x="240" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
-                            <rect x="280" y="14" width="30" height="8" rx="2" fill="#3A5578" opacity="0.3"/>
-                            <rect width="320" height="120" y="36" fill="url(#immGrad)"/>
-                            <text x="160" y="86" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="sans-serif">Trova la casa dei tuoi sogni</text>
-                            <rect x="100" y="100" width="120" height="20" rx="10" fill="#fff" opacity="0.9"/>
-                            <rect x="108" y="106" width="80" height="8" rx="4" fill="#ccc"/>
-                            <rect x="20" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
-                            <rect x="117" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
-                            <rect x="215" y="170" width="85" height="55" rx="6" fill="#CEE08F" opacity="0.2"/>
-                            <rect x="35" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
-                            <rect x="35" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
-                            <rect x="132" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
-                            <rect x="132" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
-                            <rect x="230" y="185" width="55" height="6" rx="3" fill="#3A5578" opacity="0.4"/>
-                            <rect x="230" y="195" width="40" height="4" rx="2" fill="#999" opacity="0.3"/>
-                            <defs><linearGradient id="immGrad" x1="0" y1="0" x2="320" y2="120"><stop stop-color="#3A5578"/><stop offset="1" stop-color="#4a7f9f"/></linearGradient></defs>
-                        </svg>
-                    </div>
-                    <div style="padding:0.75rem 1rem;">
-                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Immobiliare</div>
-                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Agenzie e property manager</div>
-                    </div>
-                </a>
-
-                <!-- Ristorante -->
-                <a href="/ai/demo/ristorante" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Ristorante">
-                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
-                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
-                            <rect width="320" height="240" fill="#1a1a1a"/>
-                            <rect width="320" height="36" fill="#1a1a1a"/>
-                            <rect x="12" y="12" width="70" height="12" rx="2" fill="#c8a96e" opacity="0.9"/>
-                            <rect x="220" y="14" width="25" height="8" rx="2" fill="#c8a96e" opacity="0.3"/>
-                            <rect x="255" y="14" width="25" height="8" rx="2" fill="#c8a96e" opacity="0.3"/>
-                            <rect width="320" height="120" y="36" fill="url(#ristGrad)"/>
-                            <text x="160" y="86" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="serif">La vera cucina italiana</text>
-                            <rect x="115" y="100" width="90" height="22" rx="4" fill="#e74c3c"/>
-                            <text x="160" y="115" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif">Prenota un tavolo</text>
-                            <rect x="20" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
-                            <rect x="95" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
-                            <rect x="170" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
-                            <rect x="245" y="175" width="65" height="50" rx="6" fill="#c8a96e" opacity="0.15"/>
-                            <defs><linearGradient id="ristGrad" x1="0" y1="0" x2="320" y2="120"><stop stop-color="#1a1a1a"/><stop offset="1" stop-color="#2c2c2c"/></linearGradient></defs>
-                        </svg>
-                    </div>
-                    <div style="padding:0.75rem 1rem;">
-                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Ristorante</div>
-                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Ristoranti e trattorie</div>
-                    </div>
-                </a>
-
-                <!-- Studio Professionale -->
-                <a href="/ai/demo/studio-professionale" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Studio Legale">
-                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
-                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
-                            <rect width="320" height="240" fill="#2c3e50"/>
-                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
-                            <rect x="12" y="10" width="100" height="8" rx="2" fill="#2c3e50" opacity="0.8"/>
-                            <rect x="12" y="22" width="60" height="5" rx="2" fill="#2c3e50" opacity="0.3"/>
-                            <rect x="250" y="14" width="55" height="16" rx="4" fill="#e67e22"/>
-                            <rect width="320" height="110" y="36" fill="url(#studGrad)"/>
-                            <text x="160" y="82" text-anchor="middle" font-size="13" fill="#fff" font-weight="700" font-family="serif">Il diritto al tuo fianco</text>
-                            <rect x="120" y="96" width="80" height="18" rx="4" fill="#e67e22"/>
-                            <text x="160" y="109" text-anchor="middle" font-size="7" fill="#fff" font-family="sans-serif">Richiedi consulenza</text>
-                            <rect y="146" width="320" height="94" fill="#fff" opacity="0.95"/>
-                            <circle cx="55" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
-                            <circle cx="135" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
-                            <circle cx="215" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
-                            <circle cx="290" cy="185" r="20" fill="#2c3e50" opacity="0.1"/>
-                            <rect x="35" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
-                            <rect x="115" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
-                            <rect x="195" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
-                            <rect x="270" y="212" width="40" height="5" rx="2" fill="#2c3e50" opacity="0.4"/>
-                            <defs><linearGradient id="studGrad" x1="0" y1="0" x2="320" y2="110"><stop stop-color="#2c3e50"/><stop offset="1" stop-color="#3a5a78"/></linearGradient></defs>
-                        </svg>
-                    </div>
-                    <div style="padding:0.75rem 1rem;">
-                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Studio Legale</div>
-                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Avvocati e consulenti</div>
-                    </div>
-                </a>
-
-                <!-- E-commerce -->
-                <a href="/ai/demo/ecommerce" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo E-commerce">
-                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
-                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
-                            <rect width="320" height="240" fill="#6c5ce7"/>
-                            <rect width="320" height="36" fill="#fff" opacity="0.95"/>
-                            <rect x="12" y="12" width="70" height="12" rx="2" fill="#6c5ce7" opacity="0.8"/>
-                            <rect x="250" y="12" width="50" height="14" rx="4" fill="#fd79a8"/>
-                            <rect width="320" height="110" y="36" fill="url(#ecomGrad)"/>
-                            <text x="160" y="80" text-anchor="middle" font-size="12" fill="#fff" font-weight="700" font-family="sans-serif">Artigianato italiano, a casa tua</text>
-                            <rect x="110" y="96" width="100" height="20" rx="4" fill="#fd79a8"/>
-                            <text x="160" y="110" text-anchor="middle" font-size="7" fill="#fff" font-family="sans-serif">Esplora il catalogo</text>
-                            <rect y="146" width="320" height="94" fill="#fff" opacity="0.95"/>
-                            <rect x="20" y="158" width="85" height="60" rx="6" fill="#6c5ce7" opacity="0.08"/>
-                            <rect x="117" y="158" width="85" height="60" rx="6" fill="#00cec9" opacity="0.08"/>
-                            <rect x="215" y="158" width="85" height="60" rx="6" fill="#fd79a8" opacity="0.08"/>
-                            <rect x="30" y="225" width="50" height="5" rx="2" fill="#6c5ce7" opacity="0.3"/>
-                            <rect x="127" y="225" width="50" height="5" rx="2" fill="#00cec9" opacity="0.3"/>
-                            <rect x="225" y="225" width="50" height="5" rx="2" fill="#fd79a8" opacity="0.3"/>
-                            <defs><linearGradient id="ecomGrad" x1="0" y1="0" x2="320" y2="110"><stop stop-color="#6c5ce7"/><stop offset="1" stop-color="#a29bfe"/></linearGradient></defs>
-                        </svg>
-                    </div>
-                    <div style="padding:0.75rem 1rem;">
-                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">E-commerce</div>
-                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Shop online artigianale</div>
-                    </div>
-                </a>
-
-                <!-- Portfolio -->
-                <a href="/ai/demo/portfolio" style="text-decoration:none;border-radius:14px;overflow:hidden;background:#0d1b2a;border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s,border-color 0.2s;display:block;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(108,92,231,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.08)'" title="Vedi demo Portfolio">
-                    <div style="aspect-ratio:4/3;position:relative;overflow:hidden;">
-                        <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="240" style="width:100%;height:100%;display:block;">
-                            <rect width="320" height="240" fill="#2d3436"/>
-                            <rect width="320" height="36" fill="#2d3436"/>
-                            <rect x="12" y="12" width="60" height="12" rx="2" fill="#fdcb6e" opacity="0.9"/>
-                            <rect x="240" y="14" width="25" height="8" rx="2" fill="#fff" opacity="0.2"/>
-                            <rect x="275" y="14" width="25" height="8" rx="2" fill="#fff" opacity="0.2"/>
-                            <rect width="320" height="100" y="36" fill="url(#portGrad)"/>
-                            <text x="160" y="78" text-anchor="middle" font-size="14" fill="#fff" font-weight="700" font-family="sans-serif">Design che racconta storie</text>
-                            <rect x="120" y="94" width="80" height="16" rx="4" fill="#6c5ce7"/>
-                            <rect y="136" width="320" height="104" fill="#1a1a1a" opacity="0.3"/>
-                            <rect x="20" y="148" width="135" height="75" rx="6" fill="#fdcb6e" opacity="0.12"/>
-                            <rect x="165" y="148" width="135" height="75" rx="6" fill="#6c5ce7" opacity="0.12"/>
-                            <rect x="30" y="200" width="80" height="5" rx="2" fill="#fdcb6e" opacity="0.3"/>
-                            <rect x="30" y="210" width="50" height="4" rx="2" fill="#fff" opacity="0.15"/>
-                            <rect x="175" y="200" width="80" height="5" rx="2" fill="#6c5ce7" opacity="0.3"/>
-                            <rect x="175" y="210" width="50" height="4" rx="2" fill="#fff" opacity="0.15"/>
-                            <defs><linearGradient id="portGrad" x1="0" y1="0" x2="320" y2="100"><stop stop-color="#2d3436"/><stop offset="1" stop-color="#444"/></linearGradient></defs>
-                        </svg>
-                    </div>
-                    <div style="padding:0.75rem 1rem;">
-                        <div style="font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">Portfolio</div>
-                        <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);">Designer e creativi</div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Doppio CTA -->
-            <div style="text-align:center;">
-                <p style="font-size:1.1rem;margin-bottom:1.5rem;opacity:0.7;">Due strade, un obiettivo: il tuo sito online.</p>
-                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-                    <a href="/ai" class="btn btn-primary" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe);border:none;padding:0.9rem 2rem;">
-                        <i class="fas fa-magic"></i>
-                        Apri AI Sito
-                    </a>
-                    <a href="#contatti" class="btn btn-secondary" style="border-color:rgba(255,255,255,0.2);color:#fff;">
-                        <i class="fas fa-handshake"></i>
-                        Affidati a Noi (RaaS)
-                    </a>
-                </div>
-                <p style="font-size:0.85rem;margin-top:1rem;opacity:0.4;">AI Sito &egrave; gratuito per iniziare &mdash; 5 crediti inclusi alla registrazione</p>
             </div>
         </div>
     </section>

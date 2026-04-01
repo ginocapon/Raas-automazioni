@@ -106,7 +106,7 @@ Per ogni sezione con H2:
 
 ## 8. ARTICOLI PUBBLICATI — REGISTRO COMPLETO
 
-### Italiano (15 articoli)
+### Italiano (19 articoli)
 | Slug | Stato |
 |---|---|
 | codice-puro-vs-wordpress-2026 | Pubblicato |
@@ -124,6 +124,10 @@ Per ogni sezione con H2:
 | geo-generative-engine-optimization-guida-2026 | Pubblicato |
 | lead-generation-automatizzata-pmi-guida-roi-2026 | Pubblicato |
 | revenue-as-a-service-modello-web-agency-2026 | Pubblicato |
+| modello-pricing-web-agency-pmi-canone-performance-2026 | Pubblicato |
+| verticalizzazione-digitale-sito-bandi-strategia-pmi-2026 | Pubblicato |
+| waas-mercato-italiano-lezioni-concorrenza-2026 | Pubblicato |
+| checklist-fornitore-digitale-pmi-metriche-contratto-2026 | Pubblicato |
 
 ### English (9 articoli)
 | Slug | Stato |

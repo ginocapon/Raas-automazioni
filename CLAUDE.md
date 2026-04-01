@@ -55,3 +55,10 @@ Carica SOLO i file necessari per il task — vedi tabella sotto.
 ### Pubblicazione:
 - Regola d'oro: "Se non hai fonte verificabile, NON inserire il dato"
 - Sostituire TUTTI i placeholder [DATO], [COMPETITOR], [FONTE] prima di pubblicare
+
+### Dopo rimozione di directory indicizzate (es. `/playzone/`)
+1. **Google Search Console** (proprietà `https://www.raasautomazioni.it/`): **Rimozioni** → **Nuova richiesta** → **Rimozione temporanea** → prefisso URL `https://www.raasautomazioni.it/playzone/` — accelera la caduta dalle SERP (effetto temporaneo, ~6 mesi; utile subito dopo il deploy).
+2. **In alternativa o in aggiunta**: nessuna azione — le URL non sono più in `sitemap.xml` e restano **404**; Google le rimuove dopo i crawl successivi.
+3. **Hosting**: il sito su GitHub Pages **non** applica `htaccess`; eventuali redirect lato server vanno configurati sul CDN/DNS se in futuro si migrasse da Pages.
+
+**Nota:** esiste `playzone/index.html` solo come **reindirizzamento istantaneo alla home** per chi apre ancora `/playzone/`; le sottopagine storiche restano 404 finché non vengono de-indicizzate.

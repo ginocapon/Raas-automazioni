@@ -5,9 +5,11 @@
  * Usa un orchestratore Claude → Perplexity per verificare che ogni bando
  * abbia il link ufficiale corretto. Riduce errori tra titolo bando e URL fonte.
  *
- * Richiede:
+ * Richiede (opzionale in pipeline: senza chiavi lo scrape funziona comunque):
  * - ANTHROPIC_API_KEY (Claude API)
  * - PERPLEXITY_API_KEY (Perplexity sonar-pro)
+ *
+ * Dopo l'URL proposto dall'LLM: controllo policy (no aggregatori) + risposta HTTP reale (zero API a pagamento).
  *
  * Uso standalone: node tools/verify-links-perplexity.js [--dry-run]
  * Uso come modulo: const { verificaLinkBandi } = require('./verify-links-perplexity');
@@ -16,6 +18,9 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+
+const { isAcceptableOfficialBandoUrl, isBlockedAggregatorHost, hostnameOf } = require('./bandi-link-policy');
+const { verifyUrlResponds } = require('./http-verify-url');
 
 const JSON_PATH = path.join(__dirname, '..', 'data', 'bandi.json');
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -32,7 +37,7 @@ function queryPerplexity(query) {
       messages: [
         {
           role: 'system',
-          content: 'Sei un assistente specializzato nella ricerca di bandi e incentivi pubblici italiani. Rispondi sempre con URL ufficiali verificati e citazioni precise.'
+          content: 'Sei un assistente per bandi e incentivi pubblici italiani. Cita solo URL di fonti istituzionali (PA, UE, Invitalia, INAIL, regioni, camere di commercio .camcom.it, ecc.). Non proporre mai link di siti aggregatori commerciali di bandi. La pagina linkata deve corrispondere al bando indicato nel titolo.'
         },
         { role: 'user', content: query }
       ],
@@ -87,14 +92,15 @@ function callClaude(messages, tools) {
     const payload = JSON.stringify({
       model: 'claude-sonnet-4-6',
       max_tokens: 2048,
-      system: `Sei un verificatore di link per bandi pubblici italiani. Il tuo compito e' trovare il link ufficiale corretto per ogni bando.
+      system: `Sei un verificatore di link per bandi pubblici italiani. Trova il link ufficiale corretto per ogni bando.
 
-Regole:
-1. Usa lo strumento cerca_informazioni per cercare il bando su internet
-2. Confronta il titolo del bando con i risultati trovati
-3. Restituisci SOLO link da domini ufficiali (.gov.it, .europa.eu, invitalia.it, simest.it, sace.it, ecc.)
-4. Se non trovi un link affidabile, rispondi con "NON_VERIFICATO"
-5. Preferisci sempre la pagina specifica del bando, non la homepage del sito`,
+Regole obbligatorie:
+1. Usa lo strumento cerca_informazioni per cercare il bando.
+2. Il titolo del bando in input deve corrispondere alla pagina di destinazione (stesso avviso / misura / programma). Se non sei sicuro, rispondi NON_VERIFICATO.
+3. Restituisci SOLO URL di fonti indipendenti e istituzionali: .gov.it, .europa.eu, invitalia.it, inail.it, inps.it, simest.it, regione.*.it, domini .camcom.it, ice.it, sace.it, ecc.
+4. NON usare mai URL di aggregatori commerciali di bandi o di concorrenti (es. siti che raccolgono bandi solo per lead generation).
+5. Se non trovi un URL che soddisfa le regole, rispondi "NON_VERIFICATO: <motivo breve>".
+6. Preferisci la scheda specifica del bando, non la homepage dell'ente.`,
       messages,
       tools
     });
@@ -184,9 +190,19 @@ NON_VERIFICATO: <motivo>`
     const textBlocks = (response.content || []).filter(b => b.type === 'text');
 
     if (response.stop_reason === 'end_turn' || toolUseBlocks.length === 0) {
-      // Risposta finale
       const testo = textBlocks.map(b => b.text).join('\n');
-      return parseRisultato(testo, bando);
+      const parsed = parseRisultato(testo, bando);
+      if (parsed.verificato && parsed.url) {
+        const up = await verifyUrlResponds(parsed.url);
+        if (!up) {
+          return {
+            verificato: false,
+            url: bando.url_bando,
+            motivo: 'URL proposto non raggiungibile via HTTP (verifica manuale o fonte diversa)'
+          };
+        }
+      }
+      return parsed;
     }
 
     // Esegui le chiamate Perplexity
@@ -222,10 +238,17 @@ NON_VERIFICATO: <motivo>`
 function parseRisultato(testo, bando) {
   const urlMatch = testo.match(/URL_VERIFICATO:\s*(https?:\/\/[^\s]+)/i);
   if (urlMatch) {
+    const raw = urlMatch[1].replace(/[.,;)>]+$/, '');
+    if (isBlockedAggregatorHost(hostnameOf(raw))) {
+      return { verificato: false, url: bando.url_bando, motivo: 'URL rifiutato: dominio aggregatore non ammesso' };
+    }
+    if (!isAcceptableOfficialBandoUrl(raw)) {
+      return { verificato: false, url: bando.url_bando, motivo: 'URL rifiutato: host non in elenco fonti istituzionali ammesse' };
+    }
     return {
       verificato: true,
-      url: urlMatch[1].replace(/[.,;)>]+$/, ''), // Rimuovi punteggiatura finale
-      motivo: 'Verificato tramite Perplexity'
+      url: raw,
+      motivo: 'Verificato tramite orchestrazione LLM + policy'
     };
   }
 
@@ -238,15 +261,19 @@ function parseRisultato(testo, bando) {
     };
   }
 
-  // Cerca URL nel testo come fallback
+  // Cerca URL nel testo come fallback (solo host ammessi)
   const anyUrl = testo.match(/https?:\/\/[^\s"'<>]+\.gov\.it[^\s"'<>]*/i)
     || testo.match(/https?:\/\/[^\s"'<>]+invitalia\.it[^\s"'<>]*/i)
     || testo.match(/https?:\/\/[^\s"'<>]+\.europa\.eu[^\s"'<>]*/i);
 
   if (anyUrl) {
+    const raw = anyUrl[0].replace(/[.,;)>]+$/, '');
+    if (!isAcceptableOfficialBandoUrl(raw) || isBlockedAggregatorHost(hostnameOf(raw))) {
+      return { verificato: false, url: bando.url_bando, motivo: 'URL estratto ma non ammesso dalla policy' };
+    }
     return {
       verificato: true,
-      url: anyUrl[0].replace(/[.,;)>]+$/, ''),
+      url: raw,
       motivo: 'URL estratto dalla risposta'
     };
   }

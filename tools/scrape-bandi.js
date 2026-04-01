@@ -21,6 +21,7 @@
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const { sanitizeAllBandi } = require('./bandi-link-policy');
 
 const JSON_PATH = path.join(__dirname, '..', 'data', 'bandi.json');
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -40,7 +41,7 @@ const FONTI = [
   {
     id: 'incentivi_gov',
     nome: 'Incentivi.gov.it',
-    url: 'https://www.incentivi.gov.it/it/api/incentivi?stato=attivo&limit=50',
+    url: 'https://www.incentivi.gov.it/it/api/incentivi?stato=attivo&limit=200',
     parser: parseIncentiviGov
   },
   {
@@ -338,7 +339,7 @@ async function main() {
 
   // Carica JSON esistente
   const fileData = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
-  const bandi = fileData.bandi;
+  let bandi = fileData.bandi;
   console.log(`Bandi esistenti: ${bandi.length}\n`);
 
   let totalNuovi = 0;
@@ -427,8 +428,11 @@ async function main() {
     console.log('  Configura ANTHROPIC_API_KEY e PERPLEXITY_API_KEY per abilitare\n');
   }
 
+  bandi = sanitizeAllBandi(bandi);
+
   // Salva
   if (!DRY_RUN) {
+    fileData.bandi = bandi;
     fileData.metadata.generated_at = new Date().toISOString();
     fileData.metadata.total_bandi = bandi.length;
     if (linkVerificati > 0) {

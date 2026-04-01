@@ -273,7 +273,6 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
                 <a href="#how-it-works">How It Works</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
-                <a href="/brobot" title="AI Assistant">AI Chat</a>
                 <a href="/" style="font-size:0.85rem;opacity:0.7;" title="Versione italiana">IT</a>
                 <a href="#contact" class="btn btn-primary">Get Started</a>
             </div>
@@ -753,6 +752,47 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;colo
         fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
         .then(r=>{if(r.ok){document.getElementById('formSuccess').style.display='block';form.reset();}});
     });}
+    </script>
+
+    <!-- RaaS Assistant: iframe /brobot (embed); IT/EN dal toggle nella chat -->
+    <div id="rasw-root" class="rasw-root">
+        <button type="button" id="rasw-btn" class="rasw-btn" aria-expanded="false" aria-controls="rasw-panel" aria-label="Open RaaS Assistant chat">
+            <span class="rasw-btn-inner" aria-hidden="true">R</span>
+        </button>
+        <div id="rasw-panel" class="rasw-panel" role="dialog" aria-label="RaaS Assistant" hidden>
+            <div class="rasw-head">
+                <span class="rasw-title">RaaS Assistant</span>
+                <button type="button" id="rasw-close" class="rasw-close" aria-label="Close chat">&times;</button>
+            </div>
+            <iframe id="rasw-frame" class="rasw-frame" src="/brobot?embed=1&amp;lang=en" title="RaaS Assistant — RaaS Automazioni"></iframe>
+            <p class="rasw-foot"><a href="/brobot?lang=en" target="_blank" rel="noopener">Open full screen</a> · Switch IT/EN inside the chat · <a href="/">Italian site</a></p>
+        </div>
+    </div>
+    <style>
+    .rasw-root{position:fixed;bottom:1.25rem;right:1.25rem;z-index:10050;font-family:inherit}
+    .rasw-btn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#e63946,#c1121f);color:#fff;font-weight:800;font-size:1.1rem;box-shadow:0 6px 24px rgba(230,57,70,.4);transition:transform .2s}
+    .rasw-btn:hover{transform:scale(1.06)}
+    .rasw-btn:focus-visible{outline:3px solid #f4a261;outline-offset:3px}
+    .rasw-panel{position:absolute;bottom:4.25rem;right:0;width:min(420px,calc(100vw - 2rem));height:min(560px,70vh);background:#0f1923;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;overflow:hidden}
+    .rasw-panel[hidden]{display:none!important}
+    .rasw-head{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#162230;border-bottom:1px solid rgba(255,255,255,.07);color:#fff;font-weight:700;font-size:.9rem}
+    .rasw-close{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.4rem;cursor:pointer;line-height:1;padding:4px}
+    .rasw-close:focus-visible{outline:3px solid #f4a261;outline-offset:2px;border-radius:4px}
+    .rasw-frame{flex:1;width:100%;border:0;min-height:0;background:#0f1923}
+    .rasw-foot{margin:0;padding:8px 12px;font-size:.72rem;text-align:center;background:#162230;border-top:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.65)}
+    .rasw-foot a{color:#f4a261}
+    @media(max-width:480px){.rasw-panel{bottom:4rem;height:65vh;width:calc(100vw - 1.5rem);right:-.25rem}}
+    </style>
+    <script>
+    (function(){
+        var btn=document.getElementById('rasw-btn'),panel=document.getElementById('rasw-panel'),close=document.getElementById('rasw-close');
+        if(!btn||!panel)return;
+        function openP(){panel.hidden=false;btn.setAttribute('aria-expanded','true');}
+        function shut(){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
+        btn.addEventListener('click',function(){if(panel.hidden)openP();else shut();});
+        if(close)close.addEventListener('click',shut);
+        document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden)shut();});
+    })();
     </script>
 </body>
 </html>

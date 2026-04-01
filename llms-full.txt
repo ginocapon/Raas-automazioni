@@ -8,12 +8,11 @@ RaaS Automazioni (Revenue as a Service) e' una web agency italiana con sede a Li
 
 Il cliente paga una fee d'ingresso per il sito (399-599 euro/anno) e poi solo il 3% sul fatturato generato dai nuovi contatti. Ogni cliente ha una dashboard personale per verificare lead, contatti e performance in tempo reale.
 
-**Claim verificati:**
-- 150+ progetti completati
-- 98% soddisfazione clienti
-- 3.2M euro valore generato nel portfolio
-- ROI medio 300% entro 6 mesi (automazioni)
-- PageSpeed 90+ garantito
+**Cosa e' verificabile senza numeri di portfolio aggregati:**
+- Prezzi pubblici: Base 399 euro/anno + IVA, E-commerce 599 euro/anno + IVA; 3% solo su fatturato da nuovi clienti attribuibile come da contratto.
+- Sede: Limena (PD), contatti su sito; dashboard per ogni cliente.
+- Obiettivo tecnico tipico: siti in codice puro orientati a Core Web Vitals e PageSpeed elevati (misurabili con Google PageSpeed Insights su ogni URL pubblicato).
+- Per volumi di progetti, soddisfazione o fatturato generato aggregato: non usare cifre in llms-full senza fonte documentale; rimandare a case study o contratto.
 
 ## Modello di Business — Revenue as a Service
 
@@ -31,7 +30,7 @@ Riferimento: Wunderkind (USA) ha fatturato $204.7M nel 2024 con il modello "Reve
 ### Pacchetto Base — 399 euro/anno
 - Sito vetrina/aziendale professionale in codice puro
 - Hosting incluso, SSL, dominio
-- PageSpeed 90+ garantito
+- Build orientata a performance (CWV / PageSpeed verificabili su URL live)
 - SEO base + GEO (Generative Engine Optimization)
 - Chatbot AI integrato
 - Dashboard performance trasparente

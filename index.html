@@ -551,15 +551,96 @@ body{
     align-items:center;
     gap:2rem;
     color:var(--white);
-    padding:2rem 1.5rem;
-    animation:contentFadeIn 1s var(--morph-ease) 0.5s both
+    padding:2rem 1.5rem
 }
 .hero-top{text-align:left;grid-column:1;grid-row:1}
 .hero-bottom{text-align:left;grid-column:1;grid-row:2}
 .hero-right{display:flex;justify-content:center;align-items:center;position:relative;overflow:visible;grid-column:2;grid-row:1/3}
-.hero-right img{width:100%;max-width:440px;height:auto;display:block;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,0.35);object-fit:cover;position:relative;z-index:2;border:1px solid rgba(255,255,255,0.08)}
-.hero-raas{font-size:1.15rem;line-height:1.6;color:var(--accent);margin:0 0 1rem;opacity:0.95}
-.hero-raas strong{color:var(--white);font-size:1.3rem}
+.hero-right img{width:100%;max-width:440px;height:auto;display:block;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,0.35);object-fit:cover;position:relative;z-index:2;border:1px solid rgba(255,255,255,0.08)}
+.hero-kicker{
+    font-size:clamp(1.15rem,2.5vw,1.35rem);
+    font-weight:700;
+    line-height:1.35;
+    color:rgba(255,255,255,0.96);
+    margin:0 0 1.25rem;
+    max-width:36rem
+}
+.hero-punch-list{
+    list-style:none;
+    margin:0 0 1.5rem;
+    padding:0;
+    display:grid;
+    gap:0.65rem;
+    max-width:34rem
+}
+.hero-punch-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:0.65rem;
+    font-size:1rem;
+    line-height:1.45;
+    color:rgba(255,255,255,0.92);
+    font-weight:500
+}
+.hero-punch-list li .hp-ic{
+    flex-shrink:0;
+    width:1.35rem;
+    height:1.35rem;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.65rem;
+    color:#fff;
+    margin-top:0.12rem
+}
+.hero-more{
+    max-width:40rem;
+    margin:0 0 1rem;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:14px;
+    background:rgba(0,0,0,0.2);
+    overflow:hidden
+}
+.hero-more summary{
+    cursor:pointer;
+    list-style:none;
+    padding:0.85rem 1.1rem;
+    font-weight:700;
+    font-size:0.92rem;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    -webkit-user-select:none;
+    user-select:none
+}
+.hero-more summary::-webkit-details-marker{display:none}
+.hero-more summary::after{
+    content:'+';
+    margin-left:auto;
+    font-weight:800;
+    opacity:0.8
+}
+.hero-more[open] summary::after{content:'−'}
+.hero-more .hero-more-inner{
+    padding:0 1.1rem 1.1rem;
+    border-top:1px solid rgba(255,255,255,0.1)
+}
+.hero-top .hero-stats{margin-top:1rem;margin-bottom:0}
+.hero-more{margin-top:0.75rem}
+.vert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;align-items:stretch}
+.vert-card{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;border:1px solid rgba(26,47,71,0.1);box-shadow:0 12px 40px rgba(0,0,0,0.06);background:#fff}
+.vert-card--dark{background:linear-gradient(145deg,#1a2f47,#0e2240);border:1px solid rgba(230,57,70,0.25);box-shadow:0 12px 40px rgba(0,0,0,0.15)}
+.vert-card-media{position:relative;height:200px;overflow:hidden;flex-shrink:0}
+.vert-card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.vert-card-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
+.vert-card-body .btn{margin-top:auto;align-self:flex-start}
+@media(max-width:480px){.vert-card-media{height:180px}}
+.hero-raas{font-size:1.05rem;line-height:1.65;color:rgba(255,255,255,0.88);margin:0 0 0.85rem}
+.hero-raas strong{color:var(--accent)}
+.hero-raas .hr-strong{color:var(--white);font-weight:800}
 .hero-claim{font-size:1.2rem;font-weight:800;color:var(--primary);margin:1.5rem 0 .25rem;line-height:1.4}
 .hero-claim-sub{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:1.5rem}
 
@@ -588,8 +669,7 @@ body{
     letter-spacing:1.5px;
     margin-bottom:2rem;
     border:1px solid rgba(255,255,255,0.25);
-    box-shadow:0 4px 30px rgba(0,0,0,0.1);
-    animation:slideDown 0.8s var(--morph-ease) 0.8s both
+    box-shadow:0 4px 30px rgba(0,0,0,0.1)
 }
 
 @keyframes slideDown{
@@ -624,9 +704,8 @@ body{
     height:4px;
     background:linear-gradient(90deg,var(--primary),var(--accent));
     border-radius:2px;
-    transform:scaleX(0);
-    transform-origin:left;
-    animation:lineGrow 1s var(--morph-ease) 1.2s both
+    transform:scaleX(1);
+    transform-origin:left
 }
 
 @keyframes lineGrow{
@@ -648,7 +727,7 @@ body{
     gap:1rem;
     justify-content:flex-start;
     flex-wrap:wrap;
-    margin-bottom:3rem
+    margin-bottom:2rem
 }
 
 /* Stats con effetto morph cards */
@@ -668,15 +747,9 @@ body{
     backdrop-filter:blur(20px);
     border-radius:16px;
     border:1px solid rgba(255,255,255,0.15);
-    transition:all 0.4s var(--morph-ease);
-    transform-style:preserve-3d;
-    animation:statMorphIn 0.8s var(--morph-ease) both
+    transition:transform 0.4s var(--morph-ease),background 0.4s var(--morph-ease),border-color 0.4s var(--morph-ease),box-shadow 0.4s var(--morph-ease);
+    transform-style:preserve-3d
 }
-
-.stat-item:nth-child(1){animation-delay:1s}
-.stat-item:nth-child(2){animation-delay:1.1s}
-.stat-item:nth-child(3){animation-delay:1.2s}
-.stat-item:nth-child(4){animation-delay:1.3s}
 
 @keyframes statMorphIn{
     from{
@@ -687,6 +760,24 @@ body{
         opacity:1;
         transform:translateY(0) rotateX(0) scale(1)
     }
+}
+
+/* Effetti decorativi hero: partono dopo ~3s (classe home-soft-motion) per non competere col primo paint */
+@media (prefers-reduced-motion:no-preference){
+    body.home-soft-motion .hero-right img{
+        animation:heroImgDrift 5.5s ease-in-out infinite alternate
+    }
+    body.home-soft-motion .hero-badge{
+        animation:heroBadgePop 0.65s var(--morph-ease) both
+    }
+}
+@keyframes heroImgDrift{
+    from{transform:translateY(0)}
+    to{transform:translateY(-8px)}
+}
+@keyframes heroBadgePop{
+    from{opacity:0.85;transform:translateY(-6px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 .stat-item:hover{
@@ -2232,8 +2323,11 @@ body{
     .hero-right img{max-width:100%}
     .hero-right::before,.hero-right::after{display:none}
     .hero-bottom{text-align:center;grid-column:1;grid-row:auto;order:3}
-    .hero-raas{text-align:center}
-    .hero-subtitle{text-align:center;margin:0 auto 1.5rem}
+    .hero-kicker{margin-left:auto;margin-right:auto;text-align:center}
+    .hero-punch-list{margin-left:auto;margin-right:auto;text-align:left;max-width:22rem}
+    .hero-more{margin-left:auto;margin-right:auto}
+    .hero-raas{text-align:left}
+    .hero-subtitle{text-align:left;margin:0 auto 1.5rem;max-width:40rem}
     .hero-claim,.hero-claim-sub{text-align:center}
     .hero-cta{justify-content:center}
     .hero-stats{
@@ -2636,8 +2730,40 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                     <h1>
     Ti portiamo clienti. <span>Guadagniamo solo se guadagni tu.</span>
 </h1>
-                    <p class="hero-raas"><strong>Revenue as a Service:</strong> sito in codice puro, orientato a <strong>Core Web Vitals elevati</strong> (risultato verificabile con PageSpeed Insights sul tuo dominio), SEO e GEO (Google e assistenti AI), lead generation e dashboard trasparente. Fee annuale fissa + <strong>3% solo su fatturato da nuovi clienti</strong> che ti portiamo.</p>
-                    <p class="hero-subtitle">Per il titolare &egrave; semplice: <strong>due passaggi</strong> &mdash; ci indichi attivit&agrave; e obiettivi, noi allestiamo il sito e lo mettiamo online. Poi lavoriamo perch&eacute; ti trovino su Google e nei motori di ricerca con AI. Zero complessit&agrave; tecnica dalla tua parte.</p>
+                    <p class="hero-kicker">Sito veloce, lead attribuiti in dashboard: il <strong>3%</strong> scatta solo se arrivano risultati concreti.</p>
+                    <ul class="hero-punch-list" aria-label="Punti chiave">
+                        <li><span class="hp-ic" aria-hidden="true"><i class="fas fa-bolt"></i></span> Codice puro e Core Web Vitals verificabili con PageSpeed sul tuo dominio</li>
+                        <li><span class="hp-ic" aria-hidden="true"><i class="fas fa-robot"></i></span> SEO e GEO per Google e assistenti AI</li>
+                        <li><span class="hp-ic" aria-hidden="true"><i class="fas fa-euro-sign"></i></span> Canone chiaro: Base <strong>399€ + IVA/anno</strong>, E-commerce <strong>599€ + IVA/anno</strong></li>
+                        <li><span class="hp-ic" aria-hidden="true"><i class="fas fa-clipboard-check"></i></span> Per te: <strong>due passaggi</strong> (brief e obiettivi), poi ci pensiamo noi</li>
+                    </ul>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">399&euro;</div>
+                            <div class="stat-label">Base + IVA / anno</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3%</div>
+                            <div class="stat-label">Solo su risultati attribuiti</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Passaggi per il titolare</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">Dashboard dedicata</div>
+                        </div>
+                    </div>
+
+                    <details class="hero-more">
+                        <summary>Come funziona il modello — testo completo</summary>
+                        <div class="hero-more-inner">
+                            <p class="hero-raas"><strong>Revenue as a Service:</strong> sito in codice puro, orientato a <strong>Core Web Vitals elevati</strong> (risultato verificabile con PageSpeed Insights sul tuo dominio), SEO e GEO (Google e assistenti AI), lead generation e dashboard trasparente. Fee annuale fissa + <strong>3% solo su fatturato da nuovi clienti</strong> che ti portiamo.</p>
+                            <p class="hero-subtitle" style="margin-bottom:0;">Per il titolare &egrave; semplice: <strong>due passaggi</strong> &mdash; ci indichi attivit&agrave; e obiettivi, noi allestiamo il sito e lo mettiamo online. Poi lavoriamo perch&eacute; ti trovino su Google e nei motori di ricerca con AI. Zero complessit&agrave; tecnica dalla tua parte.</p>
+                        </div>
+                    </details>
                 </div>
 
                 <div class="hero-right">
@@ -2658,25 +2784,6 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                             Analisi gratuita del sito
                         </a>
                     </div>
-
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">399&euro;</div>
-                            <div class="stat-label">Base + IVA / anno</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">3%</div>
-                            <div class="stat-label">Solo su risultati attribuiti</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">2</div>
-                            <div class="stat-label">Passaggi per il titolare</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">1</div>
-                            <div class="stat-label">Dashboard dedicata</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2690,26 +2797,34 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
                 <h2 style="font-size:clamp(1.75rem,3.5vw,2.5rem);color:var(--dark);margin:0.5rem 0;">Due pilastri per la tua crescita</h2>
                 <p style="max-width:640px;margin:0 auto;color:var(--text-light);font-size:1.05rem;line-height:1.65;">Un unico interlocutore digitale: <strong>portarti clienti online</strong> con il modello RaaS e <strong>supportarti sui bandi</strong> a fondo perduto e agevolazioni per investimenti (digitalizzazione, formazione, export). Niente contenuti copiati dalla concorrenza: processi, metriche e trasparenza contrattuale.</p>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem;align-items:stretch;">
-                <article style="background:#fff;border-radius:20px;padding:2rem 1.75rem;border:1px solid rgba(26,47,71,0.1);box-shadow:0 12px 40px rgba(0,0,0,0.06);">
-                    <div style="font-size:2rem;margin-bottom:0.75rem;" aria-hidden="true">&#128640;</div>
-                    <h3 style="font-size:1.35rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;">RaaS — Revenue as a Service</h3>
-                    <p style="color:var(--text-light);line-height:1.7;font-size:0.98rem;margin-bottom:1rem;">Sito in codice puro, SEO, GEO per motori tradizionali e assistenti AI, lead generation e dashboard. Canone annuale chiaro (Base <strong>399€ + IVA/anno</strong>, E-commerce <strong>599€ + IVA/anno</strong>) e <strong>3% sul fatturato da nuovi clienti</strong> attribuiti, come da listino.</p>
-                    <ul style="margin:0;padding-left:1.2rem;color:var(--text-light);font-size:0.95rem;line-height:1.65;">
-                        <li>Allineamento incentivi: zero commissione senza risultati attribuiti</li>
-                        <li>Prestazioni web misurabili (non promesse generiche)</li>
-                    </ul>
-                    <a href="#due-percorsi" class="btn btn-primary" style="margin-top:1.25rem;display:inline-flex;align-items:center;gap:0.5rem;">Scopri i percorsi</a>
+            <div class="vert-grid">
+                <article class="vert-card">
+                    <div class="vert-card-media">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&amp;h=533&amp;q=82&amp;auto=format&amp;fit=crop" alt="Analisi e crescita digitale in ufficio" width="800" height="533" loading="lazy">
+                    </div>
+                    <div class="vert-card-body">
+                        <h3 style="font-size:1.35rem;font-weight:800;color:var(--dark);margin:0 0 0.75rem;">RaaS — Revenue as a Service</h3>
+                        <p style="color:var(--text-light);line-height:1.7;font-size:0.98rem;margin:0 0 1rem;">Sito in codice puro, SEO, GEO per motori tradizionali e assistenti AI, lead generation e dashboard. Canone annuale chiaro (Base <strong>399€ + IVA/anno</strong>, E-commerce <strong>599€ + IVA/anno</strong>) e <strong>3% sul fatturato da nuovi clienti</strong> attribuiti, come da listino.</p>
+                        <ul style="margin:0;padding-left:1.2rem;color:var(--text-light);font-size:0.95rem;line-height:1.65;">
+                            <li>Allineamento incentivi: zero commissione senza risultati attribuiti</li>
+                            <li>Prestazioni web misurabili (non promesse generiche)</li>
+                        </ul>
+                        <a href="#due-percorsi" class="btn btn-primary" style="margin-top:1.25rem;display:inline-flex;align-items:center;gap:0.5rem;">Scopri i percorsi</a>
+                    </div>
                 </article>
-                <article style="background:linear-gradient(145deg,#1a2f47,#0e2240);border-radius:20px;padding:2rem 1.75rem;color:#fff;border:1px solid rgba(230,57,70,0.25);box-shadow:0 12px 40px rgba(0,0,0,0.15);">
-                    <div style="font-size:2rem;margin-bottom:0.75rem;" aria-hidden="true">&#128203;</div>
-                    <h3 style="font-size:1.35rem;font-weight:800;margin-bottom:0.75rem;color:#fff;">Bandi e finanziamenti agevolati</h3>
-                    <p style="color:rgba(255,255,255,0.88);line-height:1.7;font-size:0.98rem;margin-bottom:1rem;">Aggregazione e aggiornamento su opportunit&agrave; per PMI: contributi, voucher digitalizzazione dove previsti dalle fonti ufficiali, bandi regionali e nazionali. Utile in abbinamento al sito e agli investimenti digitali (non sostituisce consulenza specialistica su singolo bando).</p>
-                    <ul style="margin:0;padding-left:1.2rem;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.65;">
-                        <li>Focus su trasparenza: link a testi ufficiali e scadenze</li>
-                        <li>Complementare al percorso RaaS (sito + digitalizzazione)</li>
-                    </ul>
-                    <a href="/bandi" class="btn btn-secondary" style="margin-top:1.25rem;display:inline-flex;align-items:center;gap:0.5rem;background:#f4a261;color:#1a2f47;border:none;">Vai all&apos;area Bandi</a>
+                <article class="vert-card vert-card--dark">
+                    <div class="vert-card-media">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&amp;h=533&amp;q=82&amp;auto=format&amp;fit=crop" alt="Documenti e pianificazione finanziaria in azienda" width="800" height="533" loading="lazy">
+                    </div>
+                    <div class="vert-card-body">
+                        <h3 style="font-size:1.35rem;font-weight:800;margin:0 0 0.75rem;color:#fff;">Bandi e finanziamenti agevolati</h3>
+                        <p style="color:rgba(255,255,255,0.88);line-height:1.7;font-size:0.98rem;margin:0 0 1rem;">Aggregazione e aggiornamento su opportunit&agrave; per PMI: contributi, voucher digitalizzazione dove previsti dalle fonti ufficiali, bandi regionali e nazionali. Utile in abbinamento al sito e agli investimenti digitali (non sostituisce consulenza specialistica su singolo bando).</p>
+                        <ul style="margin:0;padding-left:1.2rem;color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.65;">
+                            <li>Focus su trasparenza: link a testi ufficiali e scadenze</li>
+                            <li>Complementare al percorso RaaS (sito + digitalizzazione)</li>
+                        </ul>
+                        <a href="/bandi" class="btn btn-secondary" style="margin-top:1.25rem;display:inline-flex;align-items:center;gap:0.5rem;background:#f4a261;color:#1a2f47;border:none;">Vai all&apos;area Bandi</a>
+                    </div>
                 </article>
             </div>
         </div>
@@ -4786,5 +4901,13 @@ function scrollToBottom(){chatMessages.scrollTop=chatMessages.scrollHeight;}
 </script>
 <!-- ========== FINE SITE ANALYZER ========== -->
 
+<script>
+(function(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    window.setTimeout(function(){
+        document.body.classList.add('home-soft-motion');
+    },3000);
+})();
+</script>
 </body>
 </html>

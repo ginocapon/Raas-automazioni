@@ -19,8 +19,8 @@
 | Bandi | **10/10** | 55+ fonti, anti-plagio, ItemList schema |
 | Pannello Admin | **9.9/10** | Dashboard, CRUD, branding RaaS coerente |
 | Sito bilingue | **9.5/10** | Pagine EN strategiche: `en/about-us`, `en/website-as-a-service`, case studies, blog; hreflang reciprocità IT/EN |
-| Sitemap | **9/10** | Nessun URL duplicato; rimuovere path senza file (es. playzone fantasma); dopo rimozione sezioni sito, pulire sitemap |
-| Accessibilità | **9.5/10** | Skip-nav + focus-visible sulle pagine business; playzone/demos = priorità bassa |
+| Sitemap | **9.5/10** | Solo URL con file reale; Playzone rimossa dal repo (marzo 2026) |
+| Accessibilità | **9.5/10** | Skip-nav + focus-visible sulle pagine business |
 | Audit Automatico | **10/10** | Workflow settimanale 19 controlli |
 | Domain Authority | **4/10** | Backlink da costruire (esterno al repo) |
 | **TOTALE** | **~9.2/10** | Tecnica solida; manutenzione hreflang/canonical/sitemap continua |

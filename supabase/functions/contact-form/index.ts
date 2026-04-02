@@ -93,9 +93,9 @@ Deno.serve(async (req: Request) => {
     const messaggio = String(body.messaggio ?? body.message ?? "").trim();
     const source = String(body.source ?? "sito").trim().slice(0, 500);
 
-    const smtpHost = Deno.env.get("SMTP_HOST") || "mail.raasautomazioni.it";
+    const smtpHost = (Deno.env.get("SMTP_HOST") || "mail.raasautomazioni.it").trim();
     const smtpPort = parseInt(Deno.env.get("SMTP_PORT") || "465", 10);
-    const smtpUser = Deno.env.get("SMTP_USER") || "info@raasautomazioni.it";
+    const smtpUser = (Deno.env.get("SMTP_USER") || "info@raasautomazioni.it").trim().toLowerCase();
     const smtpPass = Deno.env.get("SMTP_PASS");
     const ehlo = (Deno.env.get("SMTP_EHLO") || "mail.raasautomazioni.it").trim();
     const notifyTo = "info@raasautomazioni.it";

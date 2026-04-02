@@ -2,18 +2,28 @@
 
 Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contatti dal sito (nessun Formspree).
 
-## Secret Supabase (stessi di `send-email`)
+## Secret Supabase
 
-- `SMTP_HOST` (es. `es1003.siteground.eu`)
-- `SMTP_PORT` (es. `465`)
-- `SMTP_USER` (es. `info@raasautomazioni.it`)
-- `SMTP_PASS` (password casella / SMTP — **obbligatorio**: senza questo il form risponde 503 e nessuna mail parte)
+**Opzione A — Brevo (consigliata se hai già `BREVO_API_KEY` nei secret del progetto)**
+
+- `BREVO_API_KEY` — la funzione invia tramite `https://api.brevo.com/v3/smtp/email`
+- Opzionale: `BREVO_SENDER_EMAIL` — mittente (default `info@raasautomazioni.it`); deve essere **verificato** in Brevo
+
+**Opzione B — SMTP SiteGround (come `send-email`)**
+
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
+
+Serve **almeno una** tra `BREVO_API_KEY` e `SMTP_PASS`.
 
 Le notifiche arrivano sempre a **info@raasautomazioni.it** (mittente di solito `SMTP_USER`, stessa casella).
 
 ## Deploy
 
 ```bash
+# Se usi solo Brevo (secret già presente): basta il deploy
+supabase functions deploy contact-form
+
+# Se usi SMTP:
 supabase secrets set SMTP_HOST=... SMTP_PORT=465 SMTP_USER=info@raasautomazioni.it SMTP_PASS=...
 supabase functions deploy contact-form
 ```

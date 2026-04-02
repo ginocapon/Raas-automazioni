@@ -22,6 +22,12 @@ Il sito invia `Authorization: Bearer <anon key>`: è un JWT valido per Supabase.
 
 Verifica: invio form da homepage dopo il deploy.
 
+## «NetworkError when attempting to fetch resource» (Firefox / console)
+
+Succede quando il browser **non completa la richiesta**: spesso perché la funzione **non esiste** sul progetto Supabase. Il `POST` con `Content-Type: application/json` attiva un **preflight OPTIONS**; se l’endpoint risponde **404**, il preflight fallisce e in Firefox compare proprio *NetworkError*.
+
+**Rimedio:** `supabase functions deploy contact-form` (stesso progetto di `ieeriszlalrsbfsnarih` / URL nel sito).
+
 ## Se non arriva nulla
 
 1. **Dashboard Supabase** → Edge Functions → esiste `contact-form`? Se no: `supabase functions deploy contact-form`.

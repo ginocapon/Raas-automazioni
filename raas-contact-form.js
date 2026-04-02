@@ -52,7 +52,19 @@
         apikey: ANON,
       },
       body: JSON.stringify(payload),
-    }).then(function (r) {
+    })
+      .catch(function (err) {
+        var msg = err && err.message ? String(err.message) : String(err);
+        if (
+          /NetworkError|Failed to fetch|Load failed|Network request failed/i.test(msg)
+        ) {
+          throw new Error(
+            "Servizio contatti non raggiungibile. Spesso la causa è la funzione Supabase «contact-form» non ancora pubblicata (deploy), oppure un blocco rete/antivirus. Chi gestisce il sito deve eseguire: supabase functions deploy contact-form. Puoi scrivere a info@raasautomazioni.it."
+          );
+        }
+        throw err;
+      })
+      .then(function (r) {
       return r.text().then(function (text) {
         var j = {};
         try {

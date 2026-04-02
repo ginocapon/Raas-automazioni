@@ -1,53 +1,37 @@
 # contact-form
 
-Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contatti dal sito (nessun Formspree).
+Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contatti. **Solo SMTP** della casella su **mail.raasautomazioni.it** (nessun Brevo / API esterne per l’invio).
 
-## Secret Supabase
+## Secret Supabase (obbligatori / opzionali)
 
-**Opzione A — Brevo (consigliata su Edge Functions; ha priorità se presente insieme a SMTP)**
+| Secret | Obbligatorio | Default |
+|--------|--------------|---------|
+| `SMTP_PASS` | **Sì** | — |
+| `SMTP_HOST` | No | `mail.raasautomazioni.it` |
+| `SMTP_PORT` | No | `465` |
+| `SMTP_USER` | No | `info@raasautomazioni.it` |
 
-- `BREVO_API_KEY` — la funzione invia tramite `https://api.brevo.com/v3/smtp/email`
-- Opzionale: `BREVO_SENDER_EMAIL` — mittente (default `info@raasautomazioni.it`); deve essere **verificato** in Brevo
-
-**Opzione B — SMTP della casella (es. SiteGround)**
-
-- `SMTP_PASS` — **obbligatorio** per usare la posta sul tuo dominio  
-- `SMTP_HOST` — di solito **`mail.raasautomazioni.it`** (se omesso, la funzione usa questo default)  
-- `SMTP_PORT` — spesso **`465`** (SSL); se non funziona prova **`587`**  
-- `SMTP_USER` — di solito l’email completa, es. **`info@raasautomazioni.it`**
-
-Su Edge Functions, se esistono **entrambe** le chiavi, l’invio usa **Brevo** (API HTTP, più affidabile). **SMTP** viene usato solo se **non** c’è `BREVO_API_KEY`.
-
-Serve **almeno una** tra `SMTP_PASS` e `BREVO_API_KEY`.
-
-Le notifiche arrivano sempre a **info@raasautomazioni.it** (mittente di solito `SMTP_USER`, stessa casella).
+Se **465** non si connette dall’Edge, prova `SMTP_PORT=587` (dipende da SiteGround).
 
 ## Deploy
 
 ```bash
-# Se usi solo Brevo (secret già presente): basta il deploy
-supabase functions deploy contact-form
+supabase secrets set SMTP_PASS=... 
+# opzionale:
+# supabase secrets set SMTP_HOST=mail.raasautomazioni.it SMTP_PORT=465 SMTP_USER=info@raasautomazioni.it
 
-# Se usi SMTP:
-supabase secrets set SMTP_HOST=... SMTP_PORT=465 SMTP_USER=info@raasautomazioni.it SMTP_PASS=...
 supabase functions deploy contact-form
 ```
 
-Il sito invia `Authorization: Bearer <anon key>`: è un JWT valido per Supabase. La password SMTP resta solo nei secret.
+Puoi **eliminare** dal progetto i secret `BREVO_API_KEY` e `BREVO_SENDER_EMAIL` se non servono ad altre funzioni.
 
-Verifica: invio form da homepage dopo il deploy.
+## Verifica problemi
 
-## «NetworkError when attempting to fetch resource» (Firefox / console)
+1. Dashboard → Edge Functions → `contact-form` presente?
+2. Secret `SMTP_PASS` valorizzato?
+3. Log della funzione dopo un invio di prova.
+4. Spam su info@.
 
-Succede quando il browser **non completa la richiesta**: spesso perché la funzione **non esiste** sul progetto Supabase. Il `POST` con `Content-Type: application/json` attiva un **preflight OPTIONS**; se l’endpoint risponde **404**, il preflight fallisce e in Firefox compare proprio *NetworkError*.
+## Note tecniche
 
-**Rimedio:** `supabase functions deploy contact-form` (stesso progetto di `ieeriszlalrsbfsnarih` / URL nel sito).
-
-## Se non arriva nulla
-
-1. **Dashboard Supabase** → Edge Functions → esiste `contact-form`? Se no: `supabase functions deploy contact-form`.
-2. **Project Settings → Edge Functions** (o Secrets): c’è `SMTP_PASS`? Deve essere la stessa password che usi nell’admin per `send-email`.
-3. Prova il form: se compare un alert con *"Invio non configurato"* → manca `SMTP_PASS` nei secret.
-4. Se compare *404* / *risposta non valida* → funzione non deployata o URL progetto errato.
-5. Controlla **spam** su info@.
-6. **Logs** della funzione su Supabase subito dopo un invio di prova.
+- Polyfill `Deno.writeAll` per compatibilità `deno.land/x/smtp@v0.7.0` sul runtime Edge.

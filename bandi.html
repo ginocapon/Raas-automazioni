@@ -1014,13 +1014,6 @@ async function submitRegistration(){
     try{if(supabaseClient)await supabaseClient.from('subscribers').insert([{email,name:nome+' '+cognome,company:document.getElementById('reg-azienda').value.trim(),region_interest:document.getElementById('reg-regione').value,newsletter:true,type:'free'}])}catch(e){}
     localStorage.setItem('freeRegEmail',email);
     try{if(supabaseClient)await supabaseClient.from('user_search_preferences').upsert({email:email,regione:document.getElementById('reg-regione').value||'',updated_at:new Date().toISOString()},{onConflict:'email'})}catch(e){}
-    try{
-        await fetch('https://api.brevo.com/v3/contacts',{
-            method:'POST',
-            headers:{'accept':'application/json','content-type':'application/json','api-key':'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'},
-            body:JSON.stringify({email:email,attributes:{NOME:nome,COGNOME:cognome},listIds:[9],updateEnabled:true})
-        });
-    }catch(e){console.warn('Brevo sync err:',e)}
     document.getElementById('registerForm').style.display='none';
     document.getElementById('registerSuccess').style.display='block';
 }

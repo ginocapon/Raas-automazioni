@@ -1,11 +1,11 @@
-// Supabase Edge Function — Notifica form contatti → info@raasautomazioni.it
-// Invio: BREVO_API_KEY (HTTP) preferito su Edge; altrimenti SMTP (richiede polyfill writeAll per deno.land/x/smtp).
+// Supabase Edge Function — Notifica form contatti → info@raasautomazioni.it (solo SMTP casella RaaS)
+// Secret: SMTP_PASS obbligatorio; SMTP_HOST default mail.raasautomazioni.it; SMTP_PORT default 465; SMTP_USER default info@...
 // Deploy: supabase functions deploy contact-form
 
 import { writeAll } from "https://deno.land/std@0.224.0/io/write_all.ts";
 import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
 
-// deno.land/x/smtp@v0.7.0 chiama Deno.writeAll, rimossa nei Deno recenti (Edge Functions).
+// deno.land/x/smtp@v0.7.0 usa Deno.writeAll, rimossa nei Deno recenti (Edge Functions).
 try {
   if (typeof (Deno as unknown as { writeAll?: unknown }).writeAll !== "function") {
     Object.defineProperty(Deno, "writeAll", {
@@ -16,7 +16,7 @@ try {
     });
   }
 } catch {
-  /* namespace non estendibile: usa ramo Brevo */
+  /* namespace non estendibile: connectTLS può fallire */
 }
 
 const corsHeaders = {
@@ -31,40 +31,6 @@ function esc(s: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-/** Brevo transactional API — usa lo stesso secret già presente nel progetto. */
-async function sendViaBrevo(p: {
-  apiKey: string;
-  to: string;
-  senderEmail: string;
-  senderName: string;
-  replyToEmail: string;
-  replyToName: string;
-  subject: string;
-  html: string;
-  text: string;
-}): Promise<void> {
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "content-type": "application/json",
-      "api-key": p.apiKey,
-    },
-    body: JSON.stringify({
-      sender: { name: p.senderName, email: p.senderEmail },
-      to: [{ email: p.to }],
-      replyTo: { email: p.replyToEmail, name: p.replyToName.slice(0, 70) },
-      subject: p.subject,
-      htmlContent: p.html,
-      textContent: p.text,
-    }),
-  });
-  if (!res.ok) {
-    const t = await res.text();
-    throw new Error(`Brevo HTTP ${res.status}: ${t.slice(0, 400)}`);
-  }
 }
 
 interface ContactBody {
@@ -88,7 +54,6 @@ interface ContactBody {
   messaggio?: string;
   message?: string;
   source?: string;
-  /** Honeypot: non usare "hp" (autofill può compilarlo → successo senza mail). */
   raas_trap?: string;
   hp?: string;
 }
@@ -142,22 +107,17 @@ Deno.serve(async (req: Request) => {
     const messaggio = String(body.messaggio ?? body.message ?? "").trim();
     const source = String(body.source ?? "sito").trim().slice(0, 500);
 
-    /** Host SMTP della casella (es. mail.raasautomazioni.it su SiteGround/cPanel). */
     const smtpHost = Deno.env.get("SMTP_HOST") || "mail.raasautomazioni.it";
     const smtpPort = parseInt(Deno.env.get("SMTP_PORT") || "465", 10);
     const smtpUser = Deno.env.get("SMTP_USER") || "info@raasautomazioni.it";
     const smtpPass = Deno.env.get("SMTP_PASS");
-    const brevoKey = Deno.env.get("BREVO_API_KEY")?.trim();
-    /** Destinazione fissa richiesta: tutte le richieste form → info@ */
     const notifyTo = "info@raasautomazioni.it";
-    /** Mittente Brevo: deve essere un sender verificato in Brevo (default = stessa casella). */
-    const brevoSender = (Deno.env.get("BREVO_SENDER_EMAIL") || smtpUser).trim();
 
-    if (!brevoKey && !smtpPass) {
+    if (!smtpPass?.trim()) {
       return new Response(
         JSON.stringify({
           error:
-            "Invio non configurato: imposta BREVO_API_KEY oppure SMTP_PASS nei secret Supabase.",
+            "Invio non configurato: imposta SMTP_PASS (e opzionalmente SMTP_HOST, SMTP_PORT, SMTP_USER) nei secret Supabase.",
         }),
         { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
@@ -180,40 +140,24 @@ ${messaggio ? `<tr><td style="padding:6px 12px 6px 0;font-weight:700;vertical-al
 </body></html>`;
 
     const textPlain = `Rispondi a: ${email}\n\n${messaggio || "(nessun messaggio)"}`;
-    const replyName = [nome, cognome].filter(Boolean).join(" ").slice(0, 70) || nome;
 
-    // API HTTP (Brevo) è la più affidabile su Edge; SMTP solo se non c’è Brevo o serve solo casella.
-    if (brevoKey) {
-      await sendViaBrevo({
-        apiKey: brevoKey,
-        to: notifyTo,
-        senderEmail: brevoSender,
-        senderName: "RaaS Automazioni",
-        replyToEmail: email,
-        replyToName: replyName,
-        subject: subjectPlain.slice(0, 200),
-        html,
-        text: textPlain,
-      });
-    } else if (smtpPass) {
-      const client = new SmtpClient();
-      await client.connectTLS({
-        hostname: smtpHost,
-        port: smtpPort,
-        username: smtpUser,
-        password: smtpPass,
-      });
+    const client = new SmtpClient();
+    await client.connectTLS({
+      hostname: smtpHost,
+      port: smtpPort,
+      username: smtpUser,
+      password: smtpPass.trim(),
+    });
 
-      await client.send({
-        from: `RaaS Automazioni <${smtpUser}>`,
-        to: notifyTo,
-        subject: subjectPlain.slice(0, 200),
-        content: textPlain,
-        html,
-      });
+    await client.send({
+      from: `RaaS Automazioni <${smtpUser}>`,
+      to: notifyTo,
+      subject: subjectPlain.slice(0, 200),
+      content: textPlain,
+      html,
+    });
 
-      await client.close();
-    }
+    await client.close();
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

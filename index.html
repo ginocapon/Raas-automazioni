@@ -5,14 +5,14 @@
     <meta name="google-site-verification" content="GWYgR_kwD0m1ApUmW93kWVorl3fWaCF3fkmOTIBFF-c" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RaaS Automazioni | Ti Portiamo Clienti — Paghi Solo sui Risultati</title>
-    <meta name="description" content="RaaS Automazioni: ti portiamo clienti nuovi e guadagniamo solo se guadagni tu. Sito web da 399€ + IVA/anno + 3% sui risultati. Dashboard trasparente, Core Web Vitals e PageSpeed Insights verificabili sul tuo URL, SEO e AI.">
+    <meta name="description" content="RaaS Automazioni da Limena (Padova), Veneto: ti portiamo clienti nuovi e guadagniamo solo se guadagni tu. Sito in codice puro da 399€ + IVA/anno + 3% sui risultati. Dashboard trasparente, CWV/PSI verificabili sul tuo URL, SEO, GEO e AI.">
     <meta name="theme-color" content="#1a2f47">
     <link rel="canonical" href="https://www.raasautomazioni.it/">
     <link rel="alternate" hreflang="it" href="https://www.raasautomazioni.it/">
     <link rel="alternate" hreflang="en" href="https://www.raasautomazioni.it/en/">
     <link rel="alternate" hreflang="x-default" href="https://www.raasautomazioni.it/">
     <meta property="og:title" content="RaaS Automazioni | Ti Portiamo Clienti — Paghi Solo sui Risultati">
-    <meta property="og:description" content="Ti portiamo clienti nuovi e guadagniamo solo se guadagni tu. Sito web da 399€ + IVA/anno + 3% sui risultati. Dashboard trasparente, SEO e AI.">
+    <meta property="og:description" content="RaaS Automazioni da Limena (Padova), Veneto: clienti nuovi e allineamento sui risultati. Sito in codice puro da 399€ + IVA/anno + 3%. Dashboard trasparente, SEO, GEO e AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.raasautomazioni.it/">
     <meta property="og:locale" content="it_IT">
@@ -23,7 +23,7 @@
     <meta property="og:image:alt" content="RaaS Automazioni - Web Agency Performance-Based Italia">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RaaS Automazioni | Ti Portiamo Clienti — Paghi Solo sui Risultati">
-    <meta name="twitter:description" content="Web Agency performance-based: sito da 399€ + IVA/anno + 3% sui risultati. Dashboard trasparente, SEO, GEO e AI.">
+    <meta name="twitter:description" content="Da Limena (PD), Veneto: performance-based, sito in codice puro 399€ + IVA/anno + 3%. SEO, GEO, AI, dashboard trasparente.">
     <meta name="twitter:image" content="https://www.raasautomazioni.it/og-image.jpg">
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -105,6 +105,8 @@
                 "Realizzazione siti web",
                 "Creazione siti web aziendali",
                 "Siti web per PMI",
+                "Siti web Veneto",
+                "SEO locale Veneto",
                 "Web design",
                 "SEO",
                 "GEO Generative Engine Optimization",
@@ -115,6 +117,13 @@
                 "Finanziamenti agevolati",
                 "Contributi imprese",
                 "Automazione business"
+            ],
+            "areaServed": [
+                {"@type": "Country", "name": "Italia"},
+                {"@type": "AdministrativeArea", "name": "Veneto"},
+                {"@type": "City", "name": "Venezia"},
+                {"@type": "City", "name": "Padova"},
+                {"@type": "City", "name": "Chioggia"}
             ]
         },
         {
@@ -422,9 +431,9 @@ body{
     position:sticky;
     top:70px;
     z-index:999;
-    background:#1a2f47;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 4px 20px rgba(0,0,0,0.08)
+    background:linear-gradient(90deg,#1a2f47 0%,#1e3a52 50%,#1a2f47 100%);
+    border-bottom:1px solid rgba(244,162,97,0.15);
+    box-shadow:0 6px 24px rgba(0,0,0,0.1)
 }
 .home-subnav-inner{
     max-width:1240px;
@@ -516,17 +525,17 @@ body{
     align-items:center;
     position:relative;
     overflow:hidden;
-    background:linear-gradient(125deg,#1a2332 0%,#243447 50%,#2d3d4f 100%);
+    background:linear-gradient(135deg,#1a3550 0%,#1a2f47 38%,#152a40 100%);
     isolation:isolate
 }
 
-/* Hero moderno: foto professionale leggera + velatura (no effetti sci-fi) */
+/* Hero luminoso: foto + alone caldi (coral / accent) */
 .hero::before{
     content:'';
     position:absolute;
     inset:0;
     background:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=75&auto=format&fit=crop') center/cover no-repeat;
-    opacity:0.14;
+    opacity:0.22;
     z-index:0;
     pointer-events:none
 }
@@ -534,7 +543,10 @@ body{
     content:'';
     position:absolute;
     inset:0;
-    background:linear-gradient(105deg,rgba(26,35,50,0.94) 0%,rgba(26,35,50,0.82) 42%,rgba(36,52,71,0.65) 100%);
+    background:
+        radial-gradient(ellipse 90% 55% at 92% 12%,rgba(230,57,70,0.22) 0%,transparent 52%),
+        radial-gradient(ellipse 70% 50% at 8% 88%,rgba(244,162,97,0.16) 0%,transparent 48%),
+        linear-gradient(108deg,rgba(18,38,58,0.88) 0%,rgba(26,47,71,0.76) 44%,rgba(32,58,88,0.52) 100%);
     z-index:1;
     pointer-events:none
 }
@@ -556,14 +568,35 @@ body{
 .hero-top{text-align:left;grid-column:1;grid-row:1}
 .hero-bottom{text-align:left;grid-column:1;grid-row:2}
 .hero-right{display:flex;justify-content:center;align-items:center;position:relative;overflow:visible;grid-column:2;grid-row:1/3}
-.hero-right img{width:100%;max-width:440px;height:auto;display:block;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,0.35);object-fit:cover;position:relative;z-index:2;border:1px solid rgba(255,255,255,0.08)}
+.hero-right img{width:100%;max-width:440px;height:auto;display:block;border-radius:24px;box-shadow:0 28px 70px rgba(0,0,0,0.32),0 0 0 1px rgba(255,255,255,0.14),0 0 56px rgba(244,162,97,0.14);object-fit:cover;position:relative;z-index:2;border:1px solid rgba(255,255,255,0.12)}
+.hero-lang-switch{position:absolute;top:1rem;right:1.5rem;display:flex;gap:0.45rem;z-index:14;align-items:center}
+.hero-lang-switch a{
+    font-size:0.8125rem;
+    font-weight:700;
+    text-decoration:none;
+    padding:0.4rem 0.75rem;
+    border-radius:999px;
+    transition:background 0.2s,color 0.2s,box-shadow 0.2s,opacity 0.2s
+}
+.hero-lang-switch a:first-child{
+    color:var(--dark);
+    background:linear-gradient(135deg,#fff 0%,#f0f4fa 100%);
+    box-shadow:0 4px 20px rgba(0,0,0,0.12)
+}
+.hero-lang-switch a:last-child{
+    color:rgba(255,255,255,0.95);
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.22)
+}
+.hero-lang-switch a:last-child:hover{opacity:1;background:rgba(255,255,255,0.2)}
 .hero-kicker{
     font-size:clamp(1.15rem,2.5vw,1.35rem);
     font-weight:700;
     line-height:1.35;
-    color:rgba(255,255,255,0.96);
+    color:#fff;
     margin:0 0 1.25rem;
-    max-width:36rem
+    max-width:36rem;
+    text-shadow:0 1px 24px rgba(0,0,0,0.2)
 }
 .hero-punch-list{
     list-style:none;
@@ -598,9 +631,10 @@ body{
 .hero-more{
     max-width:40rem;
     margin:0 0 1rem;
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:14px;
-    background:rgba(0,0,0,0.2);
+    border:1px solid rgba(255,255,255,0.28);
+    border-radius:16px;
+    background:linear-gradient(145deg,rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.18) 100%);
+    box-shadow:0 12px 40px rgba(0,0,0,0.15);
     overflow:hidden
 }
 .hero-more summary{
@@ -631,13 +665,144 @@ body{
 .hero-top .hero-stats{margin-top:1rem;margin-bottom:0}
 .hero-more{margin-top:0.75rem}
 .vert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;align-items:stretch}
-.vert-card{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;border:1px solid rgba(26,47,71,0.1);box-shadow:0 12px 40px rgba(0,0,0,0.06);background:#fff}
-.vert-card--dark{background:linear-gradient(145deg,#1a2f47,#0e2240);border:1px solid rgba(230,57,70,0.25);box-shadow:0 12px 40px rgba(0,0,0,0.15)}
+.vert-card{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;border:1px solid rgba(26,47,71,0.08);box-shadow:0 16px 48px rgba(42,74,111,0.09);background:#fff;transition:transform 0.35s var(--morph-ease),box-shadow 0.35s var(--morph-ease)}
+.vert-card:hover{transform:translateY(-5px);box-shadow:0 26px 60px rgba(42,74,111,0.14),0 0 0 1px rgba(244,162,97,0.2)}
+.vert-card--dark{background:linear-gradient(155deg,#1e3a55 0%,#0e2240 100%);border:1px solid rgba(244,162,97,0.28);box-shadow:0 18px 50px rgba(0,0,0,0.22),inset 0 1px 0 rgba(255,255,255,0.06)}
+.vert-card--dark:hover{box-shadow:0 28px 64px rgba(0,0,0,0.28),0 0 0 1px rgba(230,57,70,0.35),inset 0 1px 0 rgba(255,255,255,0.08)}
 .vert-card-media{position:relative;height:200px;overflow:hidden;flex-shrink:0}
 .vert-card-media img{width:100%;height:100%;object-fit:cover;display:block}
 .vert-card-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
 .vert-card-body .btn{margin-top:auto;align-self:flex-start}
 @media(max-width:480px){.vert-card-media{height:180px}}
+
+/* Territorio Veneto — sezione chiara, geo + blog */
+.home-territorio{
+    padding:4.5rem 0;
+    background:linear-gradient(168deg,#fffefb 0%,#f5f8fc 52%,#eef2f9 100%);
+    border-top:1px solid rgba(230,57,70,0.1);
+    border-bottom:1px solid rgba(26,47,71,0.06);
+    position:relative;
+    overflow:hidden
+}
+.home-territorio::before{
+    content:'';
+    position:absolute;
+    top:-25%;
+    right:-12%;
+    width:52%;
+    height:150%;
+    background:radial-gradient(ellipse at center,rgba(244,162,97,0.18) 0%,transparent 62%);
+    pointer-events:none
+}
+.home-territorio::after{
+    content:'';
+    position:absolute;
+    bottom:-35%;
+    left:-12%;
+    width:50%;
+    height:120%;
+    background:radial-gradient(ellipse at center,rgba(230,57,70,0.07) 0%,transparent 58%);
+    pointer-events:none
+}
+.home-territorio-inner{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.12fr 1fr;
+    gap:2.5rem;
+    align-items:center
+}
+.home-territorio-copy h2{
+    font-size:clamp(1.65rem,3.5vw,2.4rem);
+    font-weight:800;
+    color:var(--dark);
+    line-height:1.14;
+    margin:0 0 1rem;
+    letter-spacing:-0.02em
+}
+.home-territorio-copy h2 .ht-accent{
+    font-weight:800;
+    background:linear-gradient(135deg,var(--primary) 0%,#ff8a65 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text
+}
+.home-territorio-lead{
+    font-size:1.07rem;
+    line-height:1.7;
+    color:var(--text);
+    margin:0 0 1.2rem;
+    max-width:36rem
+}
+.home-territorio-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+    margin:0 0 1.35rem;
+    padding:0;
+    list-style:none
+}
+.home-territorio-pills li{
+    display:inline-flex;
+    align-items:center;
+    gap:0.45rem;
+    padding:0.48rem 1rem;
+    border-radius:999px;
+    font-size:0.875rem;
+    font-weight:600;
+    background:var(--white);
+    color:var(--dark-light);
+    border:1px solid rgba(26,47,71,0.1);
+    box-shadow:0 4px 16px rgba(42,74,111,0.07)
+}
+.home-territorio-pills li i{font-size:0.8rem;color:var(--primary)}
+.home-territorio-note{
+    font-size:0.94rem;
+    color:var(--text-light);
+    line-height:1.65;
+    max-width:35rem;
+    margin:0 0 1.5rem
+}
+.home-territorio-visual{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 24px 56px rgba(42,74,111,0.14),0 0 0 1px rgba(255,255,255,0.9) inset;
+    aspect-ratio:4/3;
+    max-height:340px
+}
+.home-territorio-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block
+}
+.home-territorio-cta{display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center}
+.btn-outline-dark{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    padding:0.875rem 1.75rem;
+    font-weight:700;
+    border-radius:50px;
+    text-decoration:none;
+    font-size:0.95rem;
+    background:var(--white);
+    color:var(--dark);
+    border:2px solid rgba(26,47,71,0.14);
+    transition:transform 0.3s var(--morph-ease),border-color 0.3s,color 0.3s,box-shadow 0.3s
+}
+.btn-outline-dark:hover{
+    transform:translateY(-2px);
+    border-color:var(--primary);
+    color:var(--primary);
+    box-shadow:0 10px 28px rgba(230,57,70,0.12)
+}
+@media(max-width:900px){
+    .home-territorio-inner{grid-template-columns:1fr;gap:2rem}
+    .home-territorio-visual{max-height:280px;order:-1}
+}
 .hero-raas{font-size:1.05rem;line-height:1.65;color:rgba(255,255,255,0.88);margin:0 0 0.85rem}
 .hero-raas strong{color:var(--accent)}
 .hero-raas .hr-strong{color:var(--white);font-weight:800}
@@ -659,18 +824,20 @@ body{
     display:inline-flex;
     align-items:center;
     gap:0.5rem;
-    background:rgba(255,255,255,0.12);
+    background:linear-gradient(135deg,rgba(255,255,255,0.22) 0%,rgba(255,255,255,0.08) 100%);
     backdrop-filter:blur(20px);
-    padding:0.625rem 1.25rem;
+    padding:0.65rem 1.35rem;
     border-radius:50px;
     font-size:0.8rem;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:1.5px;
     margin-bottom:2rem;
-    border:1px solid rgba(255,255,255,0.25);
-    box-shadow:0 4px 30px rgba(0,0,0,0.1)
+    border:1px solid rgba(255,255,255,0.38);
+    box-shadow:0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(244,162,97,0.15) inset;
+    color:#fff
 }
+.hero-badge i{color:var(--accent)}
 
 @keyframes slideDown{
     from{opacity:0;transform:translateY(-20px)}
@@ -682,7 +849,9 @@ body{
     font-weight:800;
     line-height:1.1;
     margin-bottom:1rem;
-    letter-spacing:-0.02em
+    letter-spacing:-0.02em;
+    color:#fff;
+    text-shadow:0 2px 40px rgba(0,0,0,0.25)
 }
 
 .hero h1 span{
@@ -743,10 +912,11 @@ body{
 .stat-item{
     text-align:center;
     padding:1.5rem 1rem;
-    background:rgba(255,255,255,0.06);
+    background:linear-gradient(160deg,rgba(255,255,255,0.14) 0%,rgba(255,255,255,0.05) 100%);
     backdrop-filter:blur(20px);
-    border-radius:16px;
-    border:1px solid rgba(255,255,255,0.15);
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.28);
+    box-shadow:0 8px 28px rgba(0,0,0,0.1),inset 0 1px 0 rgba(255,255,255,0.12);
     transition:transform 0.4s var(--morph-ease),background 0.4s var(--morph-ease),border-color 0.4s var(--morph-ease),box-shadow 0.4s var(--morph-ease);
     transform-style:preserve-3d
 }
@@ -782,9 +952,9 @@ body{
 
 .stat-item:hover{
     transform:translateY(-8px) scale(1.02);
-    background:rgba(255,255,255,0.12);
-    border-color:var(--primary);
-    box-shadow:0 20px 40px rgba(0,0,0,0.2)
+    background:linear-gradient(160deg,rgba(255,255,255,0.22) 0%,rgba(255,255,255,0.1) 100%);
+    border-color:rgba(244,162,97,0.65);
+    box-shadow:0 22px 44px rgba(0,0,0,0.18),0 0 0 1px rgba(230,57,70,0.2)
 }
 
 .stat-number{
@@ -2318,6 +2488,12 @@ body{
         grid-template-rows:auto;
         text-align:center
     }
+    .hero-lang-switch{top:0.35rem;right:0.75rem}
+    .home-territorio{padding:3.5rem 0}
+    .home-territorio-copy{text-align:center}
+    .home-territorio-pills{justify-content:center}
+    .home-territorio-lead,.home-territorio-note{margin-left:auto;margin-right:auto}
+    .home-territorio-cta{justify-content:center}
     .hero-top{text-align:center;grid-column:1;grid-row:auto;order:1}
     .hero-right{max-width:280px;margin:0 auto;grid-column:1;grid-row:auto;order:2}
     .hero-right img{max-width:100%}
@@ -2701,6 +2877,7 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
     <nav class="home-subnav" id="home-subnav" aria-label="Sezioni della pagina">
         <div class="home-subnav-inner">
             <a href="#due-percorsi">Percorsi</a>
+            <a href="#territorio">Veneto</a>
             <a href="#come-funziona">Modello</a>
             <a href="#verticali-settore">Settori</a>
             <a href="#chi-siamo">Chi siamo</a>
@@ -2715,9 +2892,9 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
     <section id="home" class="hero" aria-label="Introduzione" tabindex="-1">
         <div class="container" style="position:relative;z-index:12;">
             <!-- Language switcher -->
-            <div style="position:absolute;top:1rem;right:1.5rem;display:flex;gap:0.5rem;z-index:10;">
-                <a href="/" style="font-weight:700;color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;background:rgba(255,255,255,0.2);">IT</a>
-                <a href="/en/" style="color:var(--white);text-decoration:none;padding:0.3rem 0.6rem;border-radius:4px;opacity:0.7;">EN</a>
+            <div class="hero-lang-switch">
+                <a href="/">IT</a>
+                <a href="/en/" title="English version">EN</a>
             </div>
 
             <div class="hero-content">
@@ -2789,8 +2966,31 @@ FINE CHATBOT - Inserire PRIMA del tag </body>
         </div>
     </section>
 
+    <section id="territorio" class="section home-territorio" aria-label="Presenza nel Veneto e in Italia">
+        <div class="container home-territorio-inner">
+            <div class="home-territorio-copy">
+                <span class="section-tag">Territorio</span>
+                <h2>Base nel <span class="ht-accent">Veneto</span>, progetti in tutta Italia</h2>
+                <p class="home-territorio-lead">Sede operativa a <strong>Limena (Padova)</strong>: lavoriamo con PMI e professionisti su <strong>SEO, GEO e acquisizione clienti</strong> anche con focus locale &mdash; ad esempio <strong>Venezia</strong>, <strong>Chioggia</strong>, <strong>Padova</strong> e il Nord-Est. Stesso modello RaaS ovunque: metriche verificabili e contratto trasparente.</p>
+                <ul class="home-territorio-pills">
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Limena (PD)</li>
+                    <li><i class="fas fa-globe-europe" aria-hidden="true"></i>Italia + estero</li>
+                    <li><i class="fas fa-feather-alt" aria-hidden="true"></i>Contenuti su misura</li>
+                </ul>
+                <p class="home-territorio-note">Non ci affidiamo a un CMS &ldquo;aperto a tutto&rdquo;: <strong>pagine in codice puro</strong>, leggere e veloci, aggiornabili in modo mirato &mdash; ideale per SEO/GEO senza il peso di stack complessi. Per le ricerche lunghe e i temi territoriali stiamo ampliando il <strong>blog</strong> con guide e approfondimenti.</p>
+                <div class="home-territorio-cta">
+                    <a href="blog" class="btn btn-primary"><i class="fas fa-book-open"></i> Vai al blog</a>
+                    <a href="#contatti" class="btn-outline-dark"><i class="fas fa-comments"></i> Parla con noi</a>
+                </div>
+            </div>
+            <div class="home-territorio-visual">
+                <img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=720&amp;h=540&amp;q=82&amp;auto=format&amp;fit=crop" alt="Venezia: canale e architettura — territorio Veneto" width="720" height="540" loading="lazy">
+            </div>
+        </div>
+    </section>
+
     <!-- VERTICALI — Due pilastri: acquisizione clienti + bandi -->
-    <section id="verticali" class="section" style="background:#f7fafc;padding:4rem 0;border-top:1px solid rgba(26,47,71,0.08);" aria-label="Le nostre verticali">
+    <section id="verticali" class="section" style="background:linear-gradient(180deg,#fafbfd 0%,#f0f4fa 100%);padding:4rem 0;border-top:1px solid rgba(26,47,71,0.06);" aria-label="Le nostre verticali">
         <div class="container">
             <div class="section-header" style="text-align:center;margin-bottom:2.5rem;">
                 <span class="section-tag">Verticali</span>

@@ -1,23 +1,9 @@
 // Supabase Edge Function — Notifica form contatti → info@raasautomazioni.it (solo SMTP casella RaaS)
 // Secret: SMTP_PASS obbligatorio; SMTP_HOST default mail.raasautomazioni.it; SMTP_PORT default 465; SMTP_USER default info@...
+// Opzionale: SMTP_EHLO (default mail.raasautomazioni.it) — dominio inviato con EHLO, utile con SiteGround
 // Deploy: supabase functions deploy contact-form
 
-import { writeAll } from "https://deno.land/std@0.224.0/io/write_all.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
-
-// deno.land/x/smtp@v0.7.0 usa Deno.writeAll, rimossa nei Deno recenti (Edge Functions).
-try {
-  if (typeof (Deno as unknown as { writeAll?: unknown }).writeAll !== "function") {
-    Object.defineProperty(Deno, "writeAll", {
-      value: writeAll,
-      writable: true,
-      configurable: true,
-      enumerable: false,
-    });
-  }
-} catch {
-  /* namespace non estendibile: connectTLS può fallire */
-}
+import { sendMailSmtpTls } from "./smtp_minimal.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -111,6 +97,7 @@ Deno.serve(async (req: Request) => {
     const smtpPort = parseInt(Deno.env.get("SMTP_PORT") || "465", 10);
     const smtpUser = Deno.env.get("SMTP_USER") || "info@raasautomazioni.it";
     const smtpPass = Deno.env.get("SMTP_PASS");
+    const ehlo = (Deno.env.get("SMTP_EHLO") || "mail.raasautomazioni.it").trim();
     const notifyTo = "info@raasautomazioni.it";
 
     if (!smtpPass?.trim()) {
@@ -141,23 +128,18 @@ ${messaggio ? `<tr><td style="padding:6px 12px 6px 0;font-weight:700;vertical-al
 
     const textPlain = `Rispondi a: ${email}\n\n${messaggio || "(nessun messaggio)"}`;
 
-    const client = new SmtpClient();
-    await client.connectTLS({
-      hostname: smtpHost,
+    await sendMailSmtpTls({
+      host: smtpHost,
       port: smtpPort,
-      username: smtpUser,
-      password: smtpPass.trim(),
-    });
-
-    await client.send({
-      from: `RaaS Automazioni <${smtpUser}>`,
-      to: notifyTo,
+      ehloName: ehlo,
+      user: smtpUser,
+      pass: smtpPass.trim(),
+      mailFrom: `RaaS Automazioni <${smtpUser}>`,
+      rcptTo: notifyTo,
       subject: subjectPlain.slice(0, 200),
-      content: textPlain,
-      html,
+      textBody: textPlain,
+      htmlBody: html,
     });
-
-    await client.close();
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

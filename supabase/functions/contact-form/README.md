@@ -10,8 +10,11 @@ Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contat
 | `SMTP_HOST` | No | `mail.raasautomazioni.it` |
 | `SMTP_PORT` | No | `465` |
 | `SMTP_USER` | No | `info@raasautomazioni.it` |
+| `SMTP_EHLO` | No | `mail.raasautomazioni.it` (hostname inviato con `EHLO`) |
 
 Se **465** non si connette dall’Edge, prova `SMTP_PORT=587` (dipende da SiteGround).
+
+L’invio usa un client SMTP interno che legge bene le **risposte multilinea** di SiteGround (`250-es1003.siteground.eu Hello …`), a differenza di `deno.land/x/smtp@v0.7.0`.
 
 ## Deploy
 
@@ -34,4 +37,4 @@ Puoi **eliminare** dal progetto i secret `BREVO_API_KEY` e `BREVO_SENDER_EMAIL` 
 
 ## Note tecniche
 
-- Polyfill `Deno.writeAll` per compatibilità `deno.land/x/smtp@v0.7.0` sul runtime Edge.
+- Modulo `smtp_minimal.ts`: SMTP su TLS senza dipendenza esterna fragile sulle risposte multilinea.

@@ -40,6 +40,8 @@ interface ContactBody {
   messaggio?: string;
   message?: string;
   source?: string;
+  /** Honeypot: non usare "hp" (autofill può compilarlo → successo senza mail). */
+  raas_trap?: string;
   hp?: string;
 }
 
@@ -58,7 +60,8 @@ Deno.serve(async (req: Request) => {
   try {
     const body: ContactBody = await req.json();
 
-    if (body.hp && String(body.hp).trim() !== "") {
+    const trapVal = String(body.raas_trap ?? body.hp ?? "").trim();
+    if (trapVal !== "") {
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

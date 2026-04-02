@@ -83,8 +83,8 @@
     options = options || {};
     var data = collectFromForm(form);
     data.source = options.source || (global.location && global.location.pathname) || "/";
-    var hp = form.querySelector('input[name="hp"]');
-    if (hp && hp.value) data.hp = hp.value;
+    var trap = form.querySelector('input[name="raas_trap"]');
+    if (trap && trap.value) data.raas_trap = trap.value;
     if (!data.email) return Promise.reject(new Error("Email obbligatoria"));
     if (!data.nome) return Promise.reject(new Error("Nome obbligatorio"));
     return postPayload(data);

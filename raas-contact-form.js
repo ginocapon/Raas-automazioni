@@ -59,7 +59,7 @@
           /NetworkError|Failed to fetch|Load failed|Network request failed/i.test(msg)
         ) {
           throw new Error(
-            "Servizio contatti non raggiungibile. Spesso la causa è la funzione Supabase «contact-form» non ancora pubblicata (deploy), oppure un blocco rete/antivirus. Chi gestisce il sito deve eseguire: supabase functions deploy contact-form. Puoi scrivere a info@raasautomazioni.it."
+            "Servizio contatti non raggiungibile (rete o funzione non attiva). Chi gestisce il sito: «supabase functions deploy contact-form». In alternativa: info@raasautomazioni.it"
           );
         }
         throw err;

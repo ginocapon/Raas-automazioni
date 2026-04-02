@@ -4,7 +4,7 @@ Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contat
 
 ## Secret Supabase
 
-**Opzione A — Brevo (consigliata se hai già `BREVO_API_KEY` nei secret del progetto)**
+**Opzione A — Brevo (consigliata su Edge Functions; ha priorità se presente insieme a SMTP)**
 
 - `BREVO_API_KEY` — la funzione invia tramite `https://api.brevo.com/v3/smtp/email`
 - Opzionale: `BREVO_SENDER_EMAIL` — mittente (default `info@raasautomazioni.it`); deve essere **verificato** in Brevo
@@ -16,7 +16,7 @@ Notifica a **info@raasautomazioni.it** quando un visitatore invia un form contat
 - `SMTP_PORT` — spesso **`465`** (SSL); se non funziona prova **`587`**  
 - `SMTP_USER` — di solito l’email completa, es. **`info@raasautomazioni.it`**
 
-Se imposti `SMTP_PASS`, l’invio passa da **questo SMTP** (non da Brevo), anche se `BREVO_API_KEY` esiste.
+Su Edge Functions, se esistono **entrambe** le chiavi, l’invio usa **Brevo** (API HTTP, più affidabile). **SMTP** viene usato solo se **non** c’è `BREVO_API_KEY`.
 
 Serve **almeno una** tra `SMTP_PASS` e `BREVO_API_KEY`.
 

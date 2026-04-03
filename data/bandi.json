@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-03-23T08:47:37.720Z",
-    "total_bandi": 72,
+    "generated_at": "2026-04-03T07:02:05.654Z",
+    "total_bandi": 74,
     "sources": [
       "aggregatore",
       "cciaa_bologna",
@@ -2008,7 +2008,7 @@
       "url_domanda": "https://www.lazioinnova.it/bandi-aperti/",
       "data_apertura": "2026-02-03",
       "data_scadenza": "2026-03-31",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": 10000000,
       "contributo_min": 5000,
       "contributo_max": 100000,
@@ -2883,6 +2883,66 @@
       "descrizione": "Voucher 50% max €5.000 per investimenti sicurezza aziendale MPMI. Lucca, Massa-Carrara, Pisa. Scad. 31/05/2026.",
       "data_scraping": "2026-03-14T15:07:59.046903Z",
       "fonte_scraping": "cciaa_toscana_no"
+    },
+    {
+      "id": "ei_wmumqc",
+      "titolo": "Interventi per la nascita e lo sviluppo di creazione d’impresa",
+      "ente": "Da verificare",
+      "tipo_ente": "altro",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": null,
+      "url_domanda": null,
+      "data_apertura": null,
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [],
+      "keywords": [],
+      "descrizione": "",
+      "data_scraping": "2026-04-03T07:02:05.607Z",
+      "fonte_scraping": "europa_innovazione",
+      "needs_url_verification": true
+    },
+    {
+      "id": "ei_ypytil",
+      "titolo": "Cooperazione Internazionale",
+      "ente": "Da verificare",
+      "tipo_ente": "altro",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": null,
+      "url_domanda": null,
+      "data_apertura": null,
+      "data_scadenza": null,
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "misto",
+      "beneficiari": [
+        "imprese"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [],
+      "keywords": [],
+      "descrizione": "",
+      "data_scraping": "2026-04-03T07:02:05.607Z",
+      "fonte_scraping": "europa_innovazione",
+      "needs_url_verification": true
     }
   ]
 }

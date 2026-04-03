@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "project": "RaaS Automazioni",
   "description": "Mappa dei file skill da caricare per ogni tipo di task. Obiettivo: ridurre token consumati caricando solo le regole necessarie.",
   "always_load": ["skill-essentials.md"],
@@ -74,7 +74,8 @@
     "cluster-contenuti": {
       "description": "Pianificazione cluster editoriale, calendario blog",
       "load": ["skill-essentials.md", "skill-content.md", "skill-context.md"],
-      "token_saving": "basso"
+      "token_saving": "basso",
+      "note": "Vertical Bandi: skill-content sezione 11 (SERP istituzionali, visual mobile, integrazione /bandi)"
     },
     "geo-ai": {
       "description": "Ottimizzazione GEO, llms.txt, AI agents, robots.txt",

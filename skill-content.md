@@ -14,6 +14,7 @@
 - Meta title max **60 char** + Meta desc max **160 char**
 - JSON-LD: **BlogPosting + FAQPage + BreadcrumbList** + Organization
 - Fonti verificate: IlSole24Ore, Gartner, Google Trends, W3Techs, Statista, ISTAT
+- **Cluster Bandi / incentivi:** anche **fonti istituzionali italiane ed europee** quando citate in modo esplicito (es. `mimit.gov.it`, `incentivi.gov.it`, `governo.it`, `invitalia.it`, Commissione UE, portali regionali `.gov.it`), con **URL e data di consultazione** dove il dato è desumibile solo dal testo online
 - Data "Ultimo aggiornamento" visibile su ogni articolo
 - Author bio su ogni articolo
 - Table of Contents (TOC) su ogni articolo
@@ -49,7 +50,7 @@ Per ogni sezione con H2:
 ## 4. DATI E FONTI (OBBLIGATORIO)
 
 - Ogni dato numerico DEVE avere **fonte citata inline**
-- Fonti accettate: Gartner, IlSole24Ore, Google Trends, W3Techs, Statista, ISTAT, HBR, McKinsey
+- Fonti accettate: Gartner, IlSole24Ore, Google Trends, W3Techs, Statista, ISTAT, HBR, McKinsey; per articoli **vertical Bandi** anche pagine ufficiali MIMIT, incentivi.gov.it, Invitalia, Gazzetta Ufficiale (solo se si cita il riferimento normativo o la pagina), portali regionali istituzionali
 - **MAI dati inventati**
 - Aggiornare dati ogni trimestre
 - **Regola d'oro:** "Se non hai fonte verificabile, NON inserire il dato"
@@ -101,12 +102,13 @@ Per ogni sezione con H2:
 - [ ] Registrato in **blog.html** (sezione articoli)
 - [ ] Registrato in **sitemap.xml**
 - [ ] Formato risposte GEO: dichiarazione + risposta 40-60 parole + approfondimento
+- [ ] **Vertical Bandi:** workflow SERP + figure responsive (vedi sezione 11)
 
 ---
 
 ## 8. ARTICOLI PUBBLICATI — REGISTRO COMPLETO
 
-### Italiano (19 articoli)
+### Italiano (20 articoli)
 | Slug | Stato |
 |---|---|
 | codice-puro-vs-wordpress-2026 | Pubblicato |
@@ -126,6 +128,7 @@ Per ogni sezione con H2:
 | revenue-as-a-service-modello-web-agency-2026 | Pubblicato |
 | modello-pricing-web-agency-pmi-canone-performance-2026 | Pubblicato |
 | verticalizzazione-digitale-sito-bandi-strategia-pmi-2026 | Pubblicato |
+| bandi-pmi-filoni-istituzionali-serp-2026 | Pubblicato |
 | waas-mercato-italiano-lezioni-concorrenza-2026 | Pubblicato |
 | checklist-fornitore-digitale-pmi-metriche-contratto-2026 | Pubblicato |
 
@@ -147,8 +150,9 @@ Per ogni sezione con H2:
 ## 9. CLUSTER EDITORIALE — PRIORITÀ
 
 **Cluster 1: Bandi Regionali 2026** (15 articoli da fare)
+- **Pillar metodo SERP:** `bandi-pmi-filoni-istituzionali-serp-2026` (fonti .gov.it, visual mobile, workflow sezione 11)
 - Regioni mancanti: Veneto, Lazio, Toscana, Campania, Sicilia, Piemonte, Puglia, Sardegna, Calabria, Liguria, Marche, Abruzzo, Umbria, Basilicata, Trentino
-- Template: stesso di Lombardia/Emilia-Romagna
+- Template: stesso di Lombardia/Emilia-Romagna + checklist sezione 11 per aperture SERP
 
 **Cluster 2: Lead Generation** (consolidamento)
 - Già 3 articoli IT + 2 EN
@@ -193,3 +197,41 @@ Per ogni sezione con H2:
 4. Commissione 3% performance — allineamento incentivi
 
 **Pagina:** `blog/articoli/leader-conversion-research-paper-2026.html`
+
+---
+
+## 11. VERTICAL BANDI — RICERCA SERP, FONTI ISTITUZIONALI, MOBILE E VISUAL
+
+Usare questa sezione per **cluster editoriale Bandi** (pillar + schede regionali) e per allineare il sito (`/bandi`, landing collegate) al blog.
+
+### 11.1 Obiettivo editoriale
+
+- **Verticalizzare** il tema bandi con contenuti che intercettano ricerche ad alta intenzione, senza promesse false su agevolazioni.
+- Ogni articolo deve rimandare al **testo ufficiale** dell'avviso o della scheda incentivo, non sostituirlo.
+
+### 11.2 Workflow ricerca (prime posizioni Google)
+
+1. Definire 3–5 query di lavoro (es. «transizione 5.0 imprese», «voucher digitalizzazione PMI», «incentivi.gov catalogo», «bando doppia transizione digitale regione»).
+2. Analizzare i **primi 5 risultati organici** (SERP) e selezionare **almeno 4 URL istituzionali** (dominio `.gov.it`, `incentivi.gov.it`, `europa.eu`, siti di ministeri, agenzie come Invitalia quando ufficiali).
+3. **Non copiare** testi integrali: leggere le pagine come **fonte di fatti**, estrarre solo quanto necessario (importi, percentuali, date, ambiti territoriali) e **citare la fonte con link** accanto al dato.
+4. Se due fonti divergono, **segnalare la divergenza** o rinviare alla versione più recente sul sito istituzionale; non arbitrare.
+5. Annotare in bozza **data di consultazione** delle pagine usate (utile per aggiornamenti trimestrali).
+
+### 11.3 «Scraping» e uso etico dei contenuti pubblici
+
+- I contenuti pubblicati dalla PA sono **dati pubblici**, ma restano **soggetti a copyright** e a termini d'uso del sito: l'uso editoriale corretto è **sintesi + citazione + link**, non republicazione di avvisi completi.
+- Vietato presentare come ufficiale un testo **riscritto dall'AI** senza controllo umano su numeri e scadenze.
+- Per aggregazione tecnica (es. tool interni) seguire le regole progetto su URL istituzionali e tracciamento `provenance_interna` dove previsto.
+
+### 11.4 Coinvolgimento visivo e lettura da mobile
+
+- **Figure:** minimo **4 elementi visivi** per articolo pillar Bandi (diagrammi SVG inline, tabelle responsive, infobox). Preferire **SVG** o immagini con `width` e `height` espliciti e `alt` descrittivo (no CLS).
+- **Layout mobile-first:** paragrafi **corti** (max 3–4 frasi), **sottotitoli H3** frequenti, **elenchi** e **box riepilogo** (`callout`) per skimming verticale.
+- **Touch:** CTA e link in area calda sufficiente; evitare pulsanti affiancati troppo piccoli su viewport strette.
+- **Ritmo:** inserire ogni ~400–600 parole un **break visivo** (tabella, figura, callout) per ridurre affaticamento su schermo piccolo.
+- Rispettare **skill-seo**: niente `filter: blur` su animazioni; niente `will-change` permanente; animazioni hero con `animation-play-state: paused` fino a post-render dove applicabile.
+
+### 11.5 Integrazione sito (vertical Bandi)
+
+- Gli articoli pillar devono linkare a **`/bandi`** e, dove esiste, alla **guida nazionale** o regionale di cluster; la pagina Bandi deve esporre un blocco **«Approfondimenti blog»** verso i pillar aggiornati.
+- Mantenere coerenza con **prezzi e claim** in `skill-context.md` (es. canoni pubblici, nessun dato inventato su bandi).

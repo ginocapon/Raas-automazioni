@@ -1,6 +1,6 @@
 # Import bandi da lista aggregatore — lavorazione a gruppi da 10
 
-**Progressione:** Gruppi **1–5** importati in `data/bandi.json` (commit cumulativo gruppi 3–5: 30 `id` prefissi `imp26g03…` `imp26g04…` `imp26g05…`). Per Gruppo 6 scrivi **continua**.
+**Progressione:** Gruppi **1–10** importati in `data/bandi.json`. Gruppi 3–5: commit cumulativo (30 `id` `imp26g03…`–`imp26g05…`). Gruppi 6–10: merge cumulativo (49 `id` `imp26g06…`–`imp26g10…`, script `scripts/merge_bandi_g6to10.js`; esclusa duplicazione Nuova Sabatini, già `mimit001sabatini`). **`metadata.total_bandi` = 172** dopo l’ultimo merge.
 
 **Regola:** titoli pubblici parafrasati; `url_bando` solo fonti istituzionali. Verificare ogni URL prima del merge in `bandi.json`.
 
@@ -186,8 +186,8 @@
 
 ## Prossimi passi operativi
 
-1. **Merge incrementale** in `data/bandi.json`: solo righe con `url_bando` che passano `node tools/validate-bandi-links-free.js`.
+1. **Verifica URL:** `node tools/validate-bandi-links-free.js` sui record con `needs_url_verification` / hub generici.
 2. **Sync Supabase:** `node tools/sync-bandi.js` (con variabili ambiente).
-3. **Completare i “da cercare”** un gruppo alla volta (stesso file, aggiornando tabelle).
+3. **Completare i “da cercare”** nelle tabelle sopra (soprattutto gruppi 3–5) aggiornando schede e link istituzionali.
 
 *File generato nell’ambito della lavorazione a gruppi da 10 — Aprile 2026.*

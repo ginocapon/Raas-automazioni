@@ -9,6 +9,7 @@
  *   node tools/validate-bandi-supabase.js
  *   node tools/validate-bandi-supabase.js --concurrency=15
  *   node tools/validate-bandi-supabase.js --save-report=data/bandi-supabase-link-report.json
+ *   node tools/validate-bandi-supabase.js --offset=0 --limit=50   (solo un lotto, es. 50 bandi alla volta)
  */
 
 const https = require('https');
@@ -26,6 +27,10 @@ const CONCURRENCY = concArg
   : 10;
 const saveArg = process.argv.find((a) => a.startsWith('--save-report='));
 const SAVE_REPORT = saveArg ? saveArg.split('=').slice(1).join('=').trim() : '';
+const offsetArg = process.argv.find((a) => a.startsWith('--offset='));
+const BATCH_OFFSET = offsetArg ? Math.max(0, parseInt(offsetArg.split('=')[1], 10) || 0) : null;
+const limitArg = process.argv.find((a) => a.startsWith('--limit='));
+const BATCH_LIMIT = limitArg ? parseInt(limitArg.split('=')[1], 10) : null;
 
 const PUBLIC_ANON =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllZXJpc3psYWxyc2Jmc25hcmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjEyNjAsImV4cCI6MjA4MzczNzI2MH0.Sjwu1620mMTAAoKVHgXHQ1cA-m3hFXqtCtqjAQNErQo';
@@ -72,6 +77,14 @@ function restGet(pathAndQuery, apiKey) {
 }
 
 async function fetchAllActiveBandi(apiKey) {
+  if (BATCH_LIMIT != null && BATCH_LIMIT > 0) {
+    const off = BATCH_OFFSET != null ? BATCH_OFFSET : 0;
+    const rows = await restGet(
+      `/rest/v1/bandi?select=id,titolo,url,attivo&attivo=eq.true&order=id.asc&limit=${BATCH_LIMIT}&offset=${off}`,
+      apiKey
+    );
+    return rows;
+  }
   const all = [];
   let offset = 0;
   const pageSize = 1000;
@@ -98,6 +111,15 @@ async function main() {
   console.log('═══════════════════════════════════════════');
   console.log('  VALIDAZIONE LINK BANDI — Supabase (attivo=true)');
   console.log('  Concorrenza:', CONCURRENCY);
+  if (BATCH_LIMIT != null && BATCH_LIMIT > 0) {
+    console.log(
+      '  Lotto:',
+      'offset',
+      BATCH_OFFSET != null ? BATCH_OFFSET : 0,
+      '— limit',
+      BATCH_LIMIT
+    );
+  }
   console.log('═══════════════════════════════════════════\n');
 
   const bandi = await fetchAllActiveBandi(apiKey);

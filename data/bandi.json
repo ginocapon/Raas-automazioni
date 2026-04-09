@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-04-03T12:30:00.000Z",
-    "total_bandi": 83,
+    "generated_at": "2026-04-03T14:00:00.000Z",
+    "total_bandi": 93,
     "sources": [
       "aggregatore",
       "cciaa_bologna",
@@ -3222,6 +3222,384 @@
       "data_scraping": "2026-04-03T12:00:00Z",
       "fonte_scraping": "import_manuale_gruppo1",
       "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02marchem2",
+      "titolo": "Marche L.R. 19/2021 — Misura 2 artigianato (commercializzazione e fiere)",
+      "ente": "Regione Marche",
+      "tipo_ente": "regione",
+      "regione": "Marche",
+      "provincia": null,
+      "url_bando": "https://www.regione.marche.it/Entra-in-Regione/Artigianato-artistico/Bandi",
+      "url_domanda": "https://www.regione.marche.it/Entra-in-Regione/Artigianato-artistico/Bandi",
+      "data_apertura": null,
+      "data_scadenza": "2026-05-11",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": 15000,
+      "percentuale": 80,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "artigiani"
+      ],
+      "settori": [
+        "artigianato"
+      ],
+      "finalita": [
+        "export",
+        "commercializzazione"
+      ],
+      "keywords": [
+        "marche",
+        "artigianato",
+        "fiere",
+        "misura 2"
+      ],
+      "descrizione": "Contributi per commercializzazione prodotti artigianato e partecipazione a fiere. Scheda avviso sulla pagina bandi artigianato regionale.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2",
+      "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02galsrd09",
+      "titolo": "GAL Ducato — SRD09 servizi di base per la popolazione rurale (investimenti non produttivi)",
+      "ente": "GAL del Ducato",
+      "tipo_ente": "altro",
+      "regione": "Emilia-Romagna",
+      "provincia": null,
+      "url_bando": "https://galdelducato.it/aperto-lavviso-pubblico-azione-ordinaria-srd09-a-investimenti-non-produttivi-nelle-aree-rurali/",
+      "url_domanda": "https://galdelducato.it/aperto-lavviso-pubblico-azione-ordinaria-srd09-a-investimenti-non-produttivi-nelle-aree-rurali/",
+      "data_apertura": "2026-04-01",
+      "data_scadenza": "2026-07-31",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 50000,
+      "contributo_max": 300000,
+      "percentuale": 100,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "enti_locali"
+      ],
+      "settori": [
+        "servizi",
+        "welfare"
+      ],
+      "finalita": [
+        "aree_rurali",
+        "welfare"
+      ],
+      "keywords": [
+        "gal",
+        "ducato",
+        "srd09",
+        "rurale"
+      ],
+      "descrizione": "Avviso SRD09-a per Comuni: servizi di base e investimenti non produttivi in aree rurali (Parma, Piacenza). Verificare policy dominio rispetto a link solo PA.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2",
+      "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02erpl24",
+      "titolo": "Emilia-Romagna L.R. 24/2003 — Contributi progetti innovazione polizia locale",
+      "ente": "Regione Emilia-Romagna",
+      "tipo_ente": "regione",
+      "regione": "Emilia-Romagna",
+      "provincia": null,
+      "url_bando": "https://autonomie.regione.emilia-romagna.it/polizia-locale/bando-per-contributi-alle-polizie-locali-anno-2025",
+      "url_domanda": "https://autonomie.regione.emilia-romagna.it/polizia-locale/bando-per-contributi-alle-polizie-locali-anno-2025",
+      "data_apertura": null,
+      "data_scadenza": "2026-05-14",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "enti_locali"
+      ],
+      "settori": [
+        "pubblica_amministrazione"
+      ],
+      "finalita": [
+        "sicurezza",
+        "innovazione"
+      ],
+      "keywords": [
+        "polizia locale",
+        "emilia-romagna",
+        "lr 24/2003"
+      ],
+      "descrizione": "Contributi per corpi di polizia locale (art. 15 L.R. 24/2003). Aggiornare link all’avviso annualità corrente su portale Autonomie / Città sicure.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2",
+      "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02erlr23eno",
+      "titolo": "Emilia-Romagna L.R. 23/2000 — Itinerari turistici enogastronomici (contributi promozione)",
+      "ente": "Regione Emilia-Romagna",
+      "tipo_ente": "regione",
+      "regione": "Emilia-Romagna",
+      "provincia": null,
+      "url_bando": "https://agricoltura.regione.emilia-romagna.it/dop-igp/strade-dei-vini-e-dei-sapori/norme-e-atti/legge-regionale-7-aprile-2000-n-23-disciplina-degli-itinerari-turistici-enogastronomici-dellemilia-romagna",
+      "url_domanda": "https://agricoltura.regione.emilia-romagna.it/dop-igp/strade-dei-vini-e-dei-sapori/norme-e-atti/legge-regionale-7-aprile-2000-n-23-disciplina-degli-itinerari-turistici-enogastronomici-dellemilia-romagna",
+      "data_apertura": null,
+      "data_scadenza": "2026-05-15",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "associazioni",
+        "imprese"
+      ],
+      "settori": [
+        "turismo",
+        "agroalimentare"
+      ],
+      "finalita": [
+        "turismo",
+        "promozione"
+      ],
+      "keywords": [
+        "itinerari",
+        "enogastronomia",
+        "emilia-romagna"
+      ],
+      "descrizione": "Contributi per promozione itinerari turistici enogastronomici. Avvisi annuali in BUR; norma di riferimento sulla pagina Agricoltura regionale.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2",
+      "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02mintstaffh",
+      "titolo": "Ministero del Turismo — Staff House Titolo II (alloggi lavoratori turismo e somministrazione)",
+      "ente": "Ministero del Turismo",
+      "tipo_ente": "ministero",
+      "regione": "Nazionale",
+      "provincia": null,
+      "url_bando": "https://www.ministeroturismo.gov.it/staff-house-titolo-ii-fissazione-dei-termini-di-presentazione-delle-domande/",
+      "url_domanda": "https://www.ministeroturismo.gov.it/staff-house-titolo-ii-fissazione-dei-termini-di-presentazione-delle-domande/",
+      "data_apertura": "2026-04-02",
+      "data_scadenza": "2026-05-05",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 500000,
+      "contributo_max": 5000000,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "imprese"
+      ],
+      "settori": [
+        "turismo",
+        "ristorazione"
+      ],
+      "finalita": [
+        "turismo",
+        "lavoro"
+      ],
+      "keywords": [
+        "staff house",
+        "turismo",
+        "alloggi"
+      ],
+      "descrizione": "Contributo a fondo perduto per riqualificazione immobili destinati a ospitare lavoratori comparto turistico-ricettivo e somministrazione. Gestione anche tramite Invitalia.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2"
+    },
+    {
+      "id": "imp26g02fseplusdis",
+      "titolo": "FSE+ Emilia-Romagna — Orientamento e transizione scuola-lavoro giovani con disabilità",
+      "ente": "Regione Emilia-Romagna",
+      "tipo_ente": "regione",
+      "regione": "Emilia-Romagna",
+      "provincia": null,
+      "url_bando": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2025/orientamento-e-formazione-a-sostegno-della-transizione-scuola-lavoro-dei-giovani-con-disabilita-a-f-2025-2026",
+      "url_domanda": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2025/orientamento-e-formazione-a-sostegno-della-transizione-scuola-lavoro-dei-giovani-con-disabilita-a-f-2025-2026",
+      "data_apertura": null,
+      "data_scadenza": "2026-05-20",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "enti_formazione",
+        "enti_pubblici"
+      ],
+      "settori": [
+        "formazione",
+        "sociale"
+      ],
+      "finalita": [
+        "inclusione",
+        "formazione"
+      ],
+      "keywords": [
+        "fse+",
+        "disabilita",
+        "scuola-lavoro"
+      ],
+      "descrizione": "Priorità FSE+ inclusione: percorsi per la transizione scuola-lavoro di giovani con disabilità (annualità indicata nel bando).",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2"
+    },
+    {
+      "id": "imp26g02fsesummer",
+      "titolo": "FSE+ Emilia-Romagna — Summer camp e seminari orientativi 2026",
+      "ente": "Regione Emilia-Romagna",
+      "tipo_ente": "regione",
+      "regione": "Emilia-Romagna",
+      "provincia": null,
+      "url_bando": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2026/summer-camp-e-seminari-orientativi-anno-2026",
+      "url_domanda": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2026/summer-camp-e-seminari-orientativi-anno-2026",
+      "data_apertura": null,
+      "data_scadenza": "2026-05-07",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "enti_formazione"
+      ],
+      "settori": [
+        "formazione"
+      ],
+      "finalita": [
+        "orientamento",
+        "giovani"
+      ],
+      "keywords": [
+        "summer camp",
+        "fse+",
+        "orientamento"
+      ],
+      "descrizione": "Risorse FSE+ per summer camp orientativi e seminari (enti accreditati; presentazione tramite SIFER).",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2"
+    },
+    {
+      "id": "imp26g02lombcompinv",
+      "titolo": "FESR Lombardia — Competenze e innovazione per transizione industriale (azione 1.4.1)",
+      "ente": "Regione Lombardia",
+      "tipo_ente": "regione",
+      "regione": "Lombardia",
+      "provincia": null,
+      "url_bando": "https://www.bandi.regione.lombardia.it/servizi/servizio/bandi/dettaglio/ricerca-innovazione/ricerca-sviluppo-innovazione/competenze-innovazione-RLF12024041983",
+      "url_domanda": "https://www.bandi.regione.lombardia.it/servizi/servizio/bandi/dettaglio/ricerca-innovazione/ricerca-sviluppo-innovazione/competenze-innovazione-RLF12024041983",
+      "data_apertura": "2025-01-15",
+      "data_scadenza": "2027-06-30",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": 10000,
+      "contributo_max": 50000,
+      "percentuale": 80,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "MPMI"
+      ],
+      "settori": [
+        "tutti"
+      ],
+      "finalita": [
+        "formazione",
+        "innovazione",
+        "transizione"
+      ],
+      "keywords": [
+        "lombardia",
+        "fesr",
+        "competenze",
+        "1.4.1"
+      ],
+      "descrizione": "Contributi per sviluppo competenze e sostenibilità imprese. Verificare sul portale se lo sportello è aperto o sospeso e se è prevista una nuova finestra.",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2",
+      "needs_url_verification": true
+    },
+    {
+      "id": "imp26g02pugliaatcta",
+      "titolo": "Puglia (ATC Taranto) — Miglioramento ambientale e incremento faunistico",
+      "ente": "Regione Puglia / ATC Taranto",
+      "tipo_ente": "regione",
+      "regione": "Puglia",
+      "provincia": "TA",
+      "url_bando": "https://www.regione.puglia.it/web/foreste-biodiversita/-/atc-ta-bando-di-miglioramento-ambientale-per-l-incremento-faunistico-2026",
+      "url_domanda": "https://www.regione.puglia.it/web/foreste-biodiversita/-/atc-ta-bando-di-miglioramento-ambientale-per-l-incremento-faunistico-2026",
+      "data_apertura": null,
+      "data_scadenza": "2026-04-28",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": null,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "imprese_agricole"
+      ],
+      "settori": [
+        "caccia",
+        "ambiente"
+      ],
+      "finalita": [
+        "fauna",
+        "habitat"
+      ],
+      "keywords": [
+        "taranto",
+        "atc",
+        "faunistica",
+        "puglia"
+      ],
+      "descrizione": "Bando per opere di miglioramento faunistico su territorio ATC Taranto (domande presso ATC).",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2"
+    },
+    {
+      "id": "imp26g02pugliafeampa",
+      "titolo": "Puglia — PN FEAMPA investimenti in acquacoltura sostenibile (azioni 3–6)",
+      "ente": "Regione Puglia",
+      "tipo_ente": "regione",
+      "regione": "Puglia",
+      "provincia": null,
+      "url_bando": "https://www.regione.puglia.it/web/feampa-21-27/-/pn-feampa-2021-2027-avviso-pubblico-per-gli-investimenti-nel-settore-dell-acquacoltura-sostenibile-azioni-3-4-5-e-6-interventi-221303-221402-221502-e-221609-",
+      "url_domanda": "https://www.regione.puglia.it/web/feampa-21-27/-/pn-feampa-2021-2027-avviso-pubblico-per-gli-investimenti-nel-settore-dell-acquacoltura-sostenibile-azioni-3-4-5-e-6-interventi-221303-221402-221502-e-221609-",
+      "data_apertura": "2026-03-30",
+      "data_scadenza": "2026-06-27",
+      "stato": "aperto",
+      "dotazione": null,
+      "contributo_min": null,
+      "contributo_max": null,
+      "percentuale": 50,
+      "tipo_contributo": "fondo_perduto",
+      "beneficiari": [
+        "MPMI"
+      ],
+      "settori": [
+        "acquacoltura",
+        "pesca"
+      ],
+      "finalita": [
+        "sostenibilita",
+        "investimenti"
+      ],
+      "keywords": [
+        "feampa",
+        "acquacoltura",
+        "puglia"
+      ],
+      "descrizione": "Avviso FEAMPA 2021-2027 per micro e PMI acquicole: transizione energetica, competitività, resilienza e salute (azioni 3–6).",
+      "data_scraping": "2026-04-03T14:00:00Z",
+      "fonte_scraping": "import_manuale_gruppo2"
     },
     {
       "id": "ei_wmumqc",

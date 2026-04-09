@@ -1,6 +1,6 @@
 # Import bandi da lista aggregatore — lavorazione a gruppi da 10
 
-**Progressione:** Gruppo 1 importato in `data/bandi.json` (9 nuovi `id` + aggiornamento `laz001donneimpresa`). Per Gruppo 2 scrivi **continua** nella chat.
+**Progressione:** Gruppo 1 importato. **Gruppo 2 importato** (10 nuovi `id` prefisso `imp26g02…`). Per Gruppo 3 scrivi **continua**.
 
 **Regola:** titoli pubblici parafrasati; `url_bando` solo fonti istituzionali. Verificare ogni URL prima del merge in `bandi.json`.
 

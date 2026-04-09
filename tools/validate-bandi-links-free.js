@@ -5,6 +5,8 @@
  * Nessuna API a pagamento.
  *
  * Uso: node tools/validate-bandi-links-free.js [--limit=50]
+ *
+ * Per il database Supabase (migliaia di record): tools/validate-bandi-supabase.js
  */
 
 const fs = require('fs');

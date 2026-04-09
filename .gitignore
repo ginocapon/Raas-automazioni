@@ -1,3 +1,6 @@
 node_modules/
 supabase/.temp/
 deno.lock
+
+# Report generato (validazione link Supabase, rigenerabile)
+data/bandi-supabase-link-report.json

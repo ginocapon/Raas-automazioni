@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "project": "RaaS Automazioni",
   "description": "Mappa dei file skill da caricare per ogni tipo di task. Obiettivo: ridurre token consumati caricando solo le regole necessarie.",
   "always_load": ["skill-essentials.md"],
@@ -48,6 +48,7 @@
     "audit-settimanale": {
       "description": "Audit automatico settimanale CRONOLOG (venerdì 07:00 CET)",
       "load": ["skill-essentials.md", "skill-seo.md", "skill-context.md"],
+      "note": "Workflow include validazione link data/bandi.json; bandi DB: strumenti in tools/ + bandi-supabase.mdc",
       "token_saving": "basso"
     },
     "nuova-landing": {
@@ -64,6 +65,13 @@
     "admin-bandi": {
       "description": "Modifiche admin.html, sistema bandi, Supabase",
       "load": ["skill-essentials.md", "skill-context.md"],
+      "note": "Schema URL: colonna `url` su public.bandi — vedi .cursor/rules/bandi-supabase.mdc",
+      "token_saving": "medio"
+    },
+    "verifica-bandi-supabase": {
+      "description": "Validazione link, coerenza titoli, monitoraggio bandi DB Supabase",
+      "load": ["skill-essentials.md", "skill-context.md"],
+      "note": "Regola Cursor: .cursor/rules/bandi-supabase.mdc — prompt tools/PROMPT-AGENT-BANDI-SUPABASE.txt",
       "token_saving": "medio"
     },
     "analisi-competitor": {

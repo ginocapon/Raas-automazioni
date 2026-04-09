@@ -49,8 +49,10 @@ Carica SOLO i file necessari per il task — vedi tabella sotto.
 - **Ogni venerdi ore 07:00 CET** — audit automatico
 - GitHub Actions workflow `.github/workflows/weekly-audit.yml`
 - Rapporto creato come GitHub Issue con label `audit-settimanale`
+- Il rapporto include anche **validazione link** su `data/bandi.json` (`url_bando`) tramite `tools/validate-bandi-links-free.js`
+- **Bandi Supabase (PostgreSQL):** colonna URL canonica **`url`** su `public.bandi` (vedi `.cursor/rules/bandi-supabase.mdc`); prompt operativo in `tools/PROMPT-AGENT-BANDI-SUPABASE.txt`
 - Autorizzazione **permanente** — attivo fino a revoca esplicita
-- Riferimento regole: `skill-seo.md` (19 controlli automatizzati)
+- Riferimento regole: `skill-seo.md` (19 controlli automatizzati) + sezione bandi sopra
 
 ### Pubblicazione:
 - Regola d'oro: "Se non hai fonte verificabile, NON inserire il dato"

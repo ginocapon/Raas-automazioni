@@ -1,0 +1,48 @@
+---
+description: Verifica e monitoraggio bandi (Supabase PostgreSQL, tabella public.bandi)
+globs:
+  - tools/validate-bandi*.js
+  - tools/audit-bandi*.js
+  - tools/http-verify-url.js
+  - tools/http-fetch-page-title.js
+  - tools/bandi-link-policy.js
+  - data/bandi.json
+  - bandi.html
+  - app.html
+  - admin.html
+alwaysApply: false
+---
+
+# Bandi — schema, strumenti, comportamento assistente
+
+## Colonna URL (definizione unica)
+
+- **Campo canonico sul database Supabase `public.bandi`:** **`url`** (testo, link alla scheda o pagina ufficiale del bando).
+- **Deprecato / legacy:** alcuni flussi o import usano ancora **`link`** (es. vecchio `sync-bandi.js`). Il codice front-end e admin accettano `url || link` per compatibilità. **Nuovi insert e correzioni: usare solo `url`.**
+- **File locale `data/bandi.json`:** il campo si chiama **`url_bando`** (e opzionale `url_domanda`); è il fallback se Supabase non risponde.
+
+## Verifica interna (titolo vs sito)
+
+- Confrontare `titolo` con il titolo reale della pagina (`<title>` + parole nel path URL).
+- Strumenti: `tools/audit-bandi-coherence-supabase.js`, `tools/http-fetch-page-title.js`.
+- Classificare discordanze: **minima** (punteggiatura) vs **sostanziale** (obiettivo/beneficiari diversi).
+- Azioni suggerite: **AGGIORNARE** titolo se il bando è valido; **VERIFICA MANUALE** se link ambiguo o 403; **ARCHIVIARE** (`attivo = false`) se chiuso/revocato o solo dopo policy esplicita (mai inventare dati).
+
+## Policy link
+
+- Vietati aggregatori in `tools/bandi-link-policy.js` (es. `europainnovazione.com` come `url` ufficiale).
+- Validazione HTTP: `tools/validate-bandi-links-free.js` (JSON), `tools/validate-bandi-supabase.js` (DB).
+
+## Prompt operativo completo
+
+- Testo integrato per agent: **`tools/PROMPT-AGENT-BANDI-SUPABASE.txt`**.
+
+## Audit automatico venerdì mattina
+
+- Workflow: **`.github/workflows/weekly-audit.yml`** (cron venerdì ~07:00 CET).
+- Include la sezione **Validazione link `data/bandi.json`** nel rapporto Issue.
+- Per scan completa DB in locale: `bash tools/run-validate-bandi-supabase-batches.sh` e `bash tools/run-audit-coherence-bandi-supabase-batches.sh` (vedi prompt).
+
+## Etica
+
+- Mai inventare link, enti o importi. Se non verificabile: indicare **NON VERIFICABILE – CHECK MANUALE**.

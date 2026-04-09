@@ -1,4 +1,4 @@
-name: "Audit Settimanale — skill-seo.md"
+name: "Audit Settimanale — skill-seo.md + validazione bandi.json"
 
 # Ogni venerdi alle 06:00 UTC = 07:00 CET (08:00 CEST in estate)
 on:
@@ -13,7 +13,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    name: "Audit conformita' skill-seo.md"
+    name: "Audit conformita' skill-seo + link bandi (JSON)"
 
     steps:
       - name: Checkout repository
@@ -271,9 +271,22 @@ jobs:
             echo -e "$REPORT_BODY" >> audit-report.md
           fi
 
+          # Validazione link bandi (fallback locale) — prompt operativo: tools/PROMPT-AGENT-BANDI-SUPABASE.txt
+          echo "" >> audit-report.md
+          echo "### Validazione link \`data/bandi.json\`" >> audit-report.md
+          echo "" >> audit-report.md
+          echo "Campo controllato: \`url_bando\` (e \`url\` se presente). Su Supabase \`public.bandi\` la colonna canonica del link è **\`url\`** — vedi \`.cursor/rules/bandi-supabase.mdc\`." >> audit-report.md
+          echo "" >> audit-report.md
+          BANDI_FAIL=0
+          node tools/validate-bandi-links-free.js >> audit-report.md 2>&1 || BANDI_FAIL=1
+          if [ "$BANDI_FAIL" -ne 0 ]; then
+            echo "" >> audit-report.md
+            echo "*Alcuni link risultano non raggiungibili, host aggregatore (policy) o da verificare manualmente — vedi output sopra.*" >> audit-report.md
+          fi
+
           echo "" >> audit-report.md
           echo "---" >> audit-report.md
-          echo "*Audit automatico eseguito da GitHub Actions — Rif. skill-seo.md §10-15 + skill-essentials.md*" >> audit-report.md
+          echo "*Audit automatico eseguito da GitHub Actions — Rif. skill-seo.md (controlli SEO) + validazione \`data/bandi.json\` + skill-essentials.md*" >> audit-report.md
           echo "*Prossimo audit: venerdi prossimo ore 07:00 CET*" >> audit-report.md
 
           # Output per step successivo

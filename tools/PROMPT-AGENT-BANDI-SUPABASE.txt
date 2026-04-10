@@ -55,3 +55,6 @@ Prompt consigliato per Cursor (Agent) — validazione link + coerenza titoli Sup
 13) Nuove fonti + conteggio “fonti” sul sito:
    Skill Cursor (progetto): .cursor/skills/bandi-nuove-fonti/SKILL.md
    Il 65 sul hero = fonti_distinte nel DB (write-bandi-live-stats) e coincide con le 65 voci FONTI nell’Edge Function se ogni ingest usa fonte.id.
+
+14) Verifica fonti istituzionali + keyword di ricerca (regione/provincia/nazione):
+   tools/BANDI-RICERCA-FONTI-KEYWORDS.md

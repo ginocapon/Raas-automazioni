@@ -58,6 +58,10 @@ npm run verify-bandi-public-read
 sed -n '41,120p' supabase/functions/manutenzione-bandi/index.ts | grep -c '{ id:'
 ```
 
+## Ricerca fonti, keyword e verifica (lettura consigliata)
+
+- **`tools/BANDI-RICERCA-FONTI-KEYWORDS.md`** — verifica ufficialità, template keyword per Regione/Provincia/Comune/nazionale, strategie, monitoraggio, checklist UE/IT, link a incentivi.gov.it / MIMIT / Funding & Tenders.
+
 ## File chiave
 
 - `supabase/functions/manutenzione-bandi/index.ts` — array `FONTI`, parser, dedup.

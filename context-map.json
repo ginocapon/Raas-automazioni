@@ -77,7 +77,7 @@
     "nuove-fonti-bandi": {
       "description": "Aggiungere fonti ingest, verificare conteggio 65/hero, workflow keyword→discovery→FONTI→deploy",
       "load": ["skill-essentials.md", "skill-context.md"],
-      "note": "Skill progetto: .cursor/skills/bandi-nuove-fonti/SKILL.md — array FONTI in supabase/functions/manutenzione-bandi/index.ts",
+      "note": "Skill: .cursor/skills/bandi-nuove-fonti/SKILL.md — guida ricerca/keyword: tools/BANDI-RICERCA-FONTI-KEYWORDS.md — FONTI: supabase/functions/manutenzione-bandi/index.ts",
       "token_saving": "medio"
     },
     "analisi-competitor": {

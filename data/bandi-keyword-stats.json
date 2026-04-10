@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "generated_at": "2026-04-10T03:31:42.929Z",
+  "generated_at": "2026-04-10T12:53:35.997Z",
   "source": "local_json",
-  "record_count": 165,
+  "record_count": 164,
   "top_per_bucket": 45,
   "top_global": 80,
   "global": [
     {
       "term": "fondo",
-      "count": 178
+      "count": 177
     },
     {
       "term": "perduto",
-      "count": 165
+      "count": 164
     },
     {
       "term": "lombardia",
@@ -20,11 +20,11 @@
     },
     {
       "term": "romagna",
-      "count": 58
+      "count": 55
     },
     {
       "term": "emilia",
-      "count": 55
+      "count": 52
     },
     {
       "term": "camera",
@@ -36,7 +36,7 @@
     },
     {
       "term": "contributi",
-      "count": 50
+      "count": 49
     },
     {
       "term": "fiere",
@@ -107,12 +107,12 @@
       "count": 22
     },
     {
-      "term": "cultura",
+      "term": "verificare",
       "count": 21
     },
     {
-      "term": "verificare",
-      "count": 21
+      "term": "cultura",
+      "count": 20
     },
     {
       "term": "ministero",
@@ -187,15 +187,15 @@
       "count": 15
     },
     {
-      "term": "emilia romagna",
-      "count": 14
-    },
-    {
       "term": "export",
       "count": 14
     },
     {
       "term": "artigianato",
+      "count": 13
+    },
+    {
+      "term": "emilia romagna",
       "count": 13
     },
     {
@@ -1241,27 +1241,27 @@
     "Emilia-Romagna": [
       {
         "term": "romagna",
-        "count": 58
-      },
-      {
-        "term": "emilia",
         "count": 55
       },
       {
+        "term": "emilia",
+        "count": 52
+      },
+      {
         "term": "fondo",
-        "count": 26
+        "count": 25
       },
       {
         "term": "perduto",
-        "count": 21
+        "count": 20
       },
       {
         "term": "emilia romagna",
-        "count": 14
+        "count": 13
       },
       {
         "term": "contributi",
-        "count": 12
+        "count": 11
       },
       {
         "term": "fesr",
@@ -3867,11 +3867,11 @@
     "regione": [
       {
         "term": "fondo",
-        "count": 98
+        "count": 97
       },
       {
         "term": "perduto",
-        "count": 90
+        "count": 89
       },
       {
         "term": "lombardia",
@@ -3879,11 +3879,11 @@
       },
       {
         "term": "emilia",
-        "count": 50
+        "count": 47
       },
       {
         "term": "romagna",
-        "count": 50
+        "count": 47
       },
       {
         "term": "lazio",
@@ -3907,7 +3907,7 @@
       },
       {
         "term": "contributi",
-        "count": 22
+        "count": 21
       },
       {
         "term": "agricoltura",
@@ -3942,10 +3942,6 @@
         "count": 15
       },
       {
-        "term": "emilia romagna",
-        "count": 14
-      },
-      {
         "term": "investimenti",
         "count": 14
       },
@@ -3954,7 +3950,7 @@
         "count": 13
       },
       {
-        "term": "cultura",
+        "term": "emilia romagna",
         "count": 13
       },
       {
@@ -3964,6 +3960,10 @@
       {
         "term": "sport",
         "count": 13
+      },
+      {
+        "term": "cultura",
+        "count": 12
       },
       {
         "term": "digitale",

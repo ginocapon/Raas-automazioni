@@ -11,6 +11,7 @@
     "verify-bandi-public-read": "node tools/verify-bandi-public-read.js --min-count=1",
     "write-bandi-live-stats": "node tools/write-bandi-live-stats.js",
     "list-bandi-audit-candidates": "node tools/list-bandi-audit-candidates.js",
+    "resolve-europainnovazione": "node tools/resolve-europainnovazione-urls.js",
     "deploy-contact-form": "supabase functions deploy contact-form"
   },
   "engines": {

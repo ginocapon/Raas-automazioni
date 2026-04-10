@@ -48,6 +48,12 @@ Prompt consigliato per Cursor (Agent) — validazione link + coerenza titoli Sup
    - npm run list-bandi-audit-candidates  (campione + totali via REST anon)
    - tools/sql/audit-bandi-legacy-tipo-e-url.sql  (SQL Editor Supabase per elenco completo)
 
+8quater) Bonifica link europainnovazione.com → URL istituzionale o disattivazione:
+   - npm run resolve-europainnovazione -- --dry-run --limit=20
+   - export SUPABASE_SERVICE_ROLE_KEY=… && bash tools/run-resolve-europainnovazione.sh
+     (opzionale: aggiungere --perplexity se impostata PERPLEXITY_API_KEY)
+   - Residui: tools/sql/deactivate-europainnovazione-remaining.sql
+
 9) Audit automatico venerdì ~07:00 CET (GitHub Actions):
    .github/workflows/weekly-audit.yml esegue anche la sezione “Validazione link data/bandi.json”
    (stesso script del punto 8). Per il database in produzione usare i punti 1 e 3 con le variabili d’ambiente.

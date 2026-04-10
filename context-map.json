@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "project": "RaaS Automazioni",
   "description": "Mappa dei file skill da caricare per ogni tipo di task. Obiettivo: ridurre token consumati caricando solo le regole necessarie.",
   "always_load": ["skill-essentials.md"],

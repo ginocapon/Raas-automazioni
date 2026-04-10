@@ -56,6 +56,22 @@ Obiettivo allineato al prompt “AI auto-alimentante”: **stesso risultato atte
 | Keyword dinamiche | `npm run build-bandi-keywords` → `data/bandi-keyword-stats.json` (per datalist e priorità discovery) |
 | “NLP” / rilevanza | Nessun modello obbligatorio: rilevanza = **match titolo/keyword**, policy link, audit coerenza titolo–URL (`tools/audit-bandi-coherence-supabase.js` + batch shell) |
 
+### Pulizia europainnovazione.com (link non autorizzati)
+
+Record con `url` verso **europainnovazione.com** (o altri aggregatori in `tools/bandi-link-policy.js`) **non** devono restare pubblici con quel link: rischio reputazionale e uso di sito concorrente.
+
+1. **Risoluzione automatica (batch da 100)** — `tools/resolve-europainnovazione-urls.js`:
+   - Scarica la pagina aggregatore (solo per estrarre href/testo con URL PA/UE/CCIAA).
+   - Se trova un URL che passa i criteri istituzionali → `PATCH` con nuovo `url`.
+   - Altrimenti → `attivo=false` e `url` azzerato (titolo resta in DB per ricerche future da fonti autorizzate).
+   - Comandi: `npm run resolve-europainnovazione -- --dry-run --limit=20` poi con chiave service role  
+     `export SUPABASE_SERVICE_ROLE_KEY=…` e  
+     `bash tools/run-resolve-europainnovazione.sh` oppure  
+     `node tools/resolve-europainnovazione-urls.js --apply --all`.
+   - Opzionale costi API: `--perplexity` + `PERPLEXITY_API_KEY` quando dalla pagina non esce alcun link istituzionale.
+2. **Residui** — Se dopo lo script restano URL aggregatore: `tools/sql/deactivate-europainnovazione-remaining.sql` in SQL Editor.
+3. **Candidati** — `npm run list-bandi-audit-candidates` per conteggi e campione.
+
 ### Regola vincolante: solo link istituzionali in pubblicazione
 
 - **Fonti in `FONTI`**: preferire **URL istituzionali** (`.gov.it`, `europa.eu`, camere, regioni, incentivi.gov API, ecc.).
@@ -102,6 +118,10 @@ grep -c '{ id:' supabase/functions/manutenzione-bandi/index.ts
 
 # Audit legacy tipo ente + URL aggregatore (campione REST)
 npm run list-bandi-audit-candidates
+
+# Bonifica URL europainnovazione (dry-run / poi --apply con SUPABASE_SERVICE_ROLE_KEY)
+npm run resolve-europainnovazione -- --dry-run --limit=20
+# bash tools/run-resolve-europainnovazione.sh   # --apply --all
 ```
 
 ## Ricerca fonti, keyword e verifica (lettura consigliata)
@@ -116,6 +136,8 @@ npm run list-bandi-audit-candidates
 - `tools/PROMPT-AGENT-BANDI-SUPABASE.txt` — prompt operativo completo.
 - `tools/list-bandi-audit-candidates.js` — elenco candidati revisione (REST anon).
 - `tools/sql/audit-bandi-legacy-tipo-e-url.sql` — stesse query in SQL Editor.
+- `tools/resolve-europainnovazione-urls.js` — sostituzione URL o disattivazione batch.
+- `tools/sql/deactivate-europainnovazione-remaining.sql` — disattiva residui aggregatore.
 - `.cursor/rules/bandi-supabase.mdc` — schema URL, RLS, audit.
 
 ## Etica

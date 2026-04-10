@@ -99,6 +99,7 @@ Sostituisci `[settore]`, `[Regione]`, `[Provincia]`, `[Comune]`, `[ente]`.
 
 - Estrarre keyword dal corpus: `npm run build-bandi-keywords` → `data/bandi-keyword-stats.json` (`by_regione`, `by_tipo_ente`, `global`).
 - Aggiungere solo **URL verificati** in `FONTI` dentro `supabase/functions/manutenzione-bandi/index.ts`, poi deploy function.
+- Audit record problematici (legacy `camera_commercio`, URL aggregatore): `npm run list-bandi-audit-candidates` e `tools/sql/audit-bandi-legacy-tipo-e-url.sql` (vedi skill `.cursor/skills/bandi-nuove-fonti/SKILL.md`, ciclo auto-ottimizzazione).
 
 ---
 

@@ -39,8 +39,14 @@ Prompt consigliato per Cursor (Agent) — validazione link + coerenza titoli Sup
 
 8bis) Discovery nuove fonti e classificazione record:
    - Guida operativa: tools/BANDI-RICERCA-FONTI-KEYWORDS.md (matrice enti, tipologie misura, workflow intersezioni).
+   - Skill progetto (ciclo auto-aggiornante, aggregatori solo discovery → URL istituzionale):
+     .cursor/skills/bandi-nuove-fonti/SKILL.md
    - Campi `tipo_ente` e `regione` devono essere coerenti con i filtri di bandi.html
      (inclusi valore `ue` per programmi UE e regioni reali per la macro filtro “Sud Italia”).
+
+8ter) Audit candidati (legacy tipo_ente, URL aggregatore):
+   - npm run list-bandi-audit-candidates  (campione + totali via REST anon)
+   - tools/sql/audit-bandi-legacy-tipo-e-url.sql  (SQL Editor Supabase per elenco completo)
 
 9) Audit automatico venerdì ~07:00 CET (GitHub Actions):
    .github/workflows/weekly-audit.yml esegue anche la sezione “Validazione link data/bandi.json”

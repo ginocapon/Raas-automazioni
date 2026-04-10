@@ -11,6 +11,8 @@ globs:
   - data/bandi-live-stats.json
   - tools/build-bandi-keyword-stats.js
   - tools/BANDI-RICERCA-FONTI-KEYWORDS.md
+  - tools/list-bandi-audit-candidates.js
+  - tools/sql/audit-bandi-legacy-tipo-e-url.sql
   - tools/verify-bandi-public-read.js
   - supabase/migrations/20260410120000_bandi_rls_anon_access.sql
   - bandi.html

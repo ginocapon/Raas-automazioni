@@ -1,16 +1,16 @@
 ---
 name: bandi-nuove-fonti
 description: >-
-  Estende e verifica le fonti bandi (array FONTI, ingest Supabase, conteggi hero).
-  Usa quando l'utente chiede nuove fonti, allargare il monitoraggio, validare il numero
-  "fonti" sul sito, loop di discovery, keyword per regione/ente, o deploy della Edge Function manutenzione-bandi.
+  Estende e verifica le fonti bandi (array FONTI, ingest Supabase, conteggi hero), ciclo settimanale,
+  audit legacy/aggregatori, metodo discovery→link istituzionale. Usa per nuove fonti, auto-aggiornamento,
+  keyword, cron/CI, ottimizzazione FONTI, deploy manutenzione-bandi.
 ---
 
 # Skill — Nuove fonti bandi e conteggio
 
 ## Il numero sul sito è corretto?
 
-- **Fonti nel dataset (es. 65)** = valori **distinti** della colonna `fonte` su `public.bandi` con `attivo = true`. È scritto in `data/bandi-live-stats.json` (`fonti_distinte`) e rigenerato a ogni deploy da `tools/write-bandi-live-stats.js`.
+- **Fonti nel dataset** = valori **distinti** della colonna `fonte` su `public.bandi` con `attivo = true`. È scritto in `data/bandi-live-stats.json` (`fonti_distinte`) e rigenerato a ogni deploy da `tools/write-bandi-live-stats.js`.
 - **Endpoint configurati** = lunghezza dell’array `FONTI` in `supabase/functions/manutenzione-bandi/index.ts` (verificare con il comando sotto). In condizioni normali **DB distinti ≈ endpoint** (ogni riga ingest usa `fonte: fonte.id`).
 - Verifica rapida in repo:
   - `grep -c '{ id:' supabase/functions/manutenzione-bandi/index.ts` (blocco `FONTI`)
@@ -42,6 +42,49 @@ L’agente **non** può eseguire da solo 10 cicli continui di crawling sul web s
 
 Chiedi all’agente: *“Applica la skill bandi-nuove-fonti: aggiungi FONTI per [regione X] con URL verificati”* — un turno = una o più voci + review, non dieci crawl notturni autonomi.
 
+## Ciclo auto-aggiornante e ottimizzazione (metodo RaaS, senza stack Python obbligatorio)
+
+Obiettivo allineato al prompt “AI auto-alimentante”: **stesso risultato atteso** (fonti istituzionali, classificazione, schedulazione, miglioramento continuo), ma usando **ciò che il repo già implementa**. Non introdurre Scrapy / BeautifulSoup / spaCy / schedule Python come prerequisito: l’ingest è **TypeScript** sulla Edge Function `manutenzione-bandi`; gli script di supporto sono **Node**.
+
+### Cosa è già coperto nel progetto
+
+| Obiettivo (prompt generico) | Implementazione RaaS |
+|----------------------------|----------------------|
+| Scansione fonti UE / ministeri / regioni / CCIAA | Array `FONTI` + fetch in `supabase/functions/manutenzione-bandi/index.ts` (JSON/HTML/CSV/RSS) |
+| Classifica per settore / località / scadenza | Campi `regione`, `tipo_ente`, `tipo_contributo`, `settore`, `stato`, `scadenza` su `public.bandi`; filtri in `bandi.html` |
+| Aggiornamento settimanale | **Manutenzione** da `admin.html` o chiamata autenticata alla Edge Function; **audit** automatico venerdì in `.github/workflows/weekly-audit.yml` (validazione link JSON + report Issue) |
+| Keyword dinamiche | `npm run build-bandi-keywords` → `data/bandi-keyword-stats.json` (per datalist e priorità discovery) |
+| “NLP” / rilevanza | Nessun modello obbligatorio: rilevanza = **match titolo/keyword**, policy link, audit coerenza titolo–URL (`tools/audit-bandi-coherence-supabase.js` + batch shell) |
+
+### Regola vincolante: solo link istituzionali in pubblicazione
+
+- **Fonti in `FONTI`**: preferire **URL istituzionali** (`.gov.it`, `europa.eu`, camere, regioni, incentivi.gov API, ecc.).
+- **Aggregatori / siti non istituzionali**: ammessi solo come **discovery** (titoli o indici), mai come `url` finale pubblico se non si risale a una **scheda ufficiale**. La Edge Function applica già logica di arricchimento/abbinamento verso incentivi.gov e URL `.gov` dove possibile (`enrichAggregatorBandi`, `looksOfficialUrl` in `index.ts`).
+- Se un aggregatore fornisce solo il titolo: **cercare** la pagina dell’ente erogatore o la scheda su incentivi.gov prima di inserire.
+
+### Loop di auto-ottimizzazione (operativo, senza ML)
+
+1. **Misurare** — Dopo ogni ingest: `fonti_distinte`, conteggi per `tipo_ente`/`regione` (query SQL o `build-bandi-keywords`).
+2. **Qualità** — `bash tools/run-validate-bandi-supabase-batches.sh` e `bash tools/run-audit-coherence-bandi-supabase-batches.sh`; leggere Issue settimanale audit.
+3. **Pulizia candidati** — `npm run list-bandi-audit-candidates` (campione + totali) e `tools/sql/audit-bandi-legacy-tipo-e-url.sql` in SQL Editor: legacy `camera_commercio`, URL `europainnovazione.com` / altri host in `tools/bandi-link-policy.js`.
+4. **Aggiustare FONTI** — Rimuovere o sostituire endpoint che non producono record utili; aggiungere portali ufficiali dalla guida `tools/BANDI-RICERCA-FONTI-KEYWORDS.md`.
+5. **Ripetere** — Deploy function → manutenzione → aggiornare stats statiche se serve.
+
+### Output attesi (equivalenti al prompt “AI auto-alimentante”)
+
+- **Nuovi bandi** — Righe in `public.bandi` dopo manutenzione; UI `bandi.html` / app dopo refresh cache.
+- **Report di qualità** — Issue GitHub da `.github/workflows/weekly-audit.yml`; esiti batch in `data/bandi-validate-batches/` e script coherence se eseguiti.
+- **Suggerimenti** — Nuove keyword da `npm run build-bandi-keywords`; nuove fonti da `tools/BANDI-RICERCA-FONTI-KEYWORDS.md` e revisione endpoint in `FONTI`; candidati problematici da `npm run list-bandi-audit-candidates`.
+
+### Schedulazione (cron)
+
+- **GitHub Actions**: già presente audit settimanale; per ingest automatico servirebbe workflow separato con secret **service role** e chiamata HTTPS alla function (valutare rate limit e costi; spesso si preferisce manutenzione manuale o pianificata dal team).
+- Esempio generico `cron` su server: non è nel repo; se si aggiunge, usare **stessi comandi** (`node tools/…`, curl alla function), non uno script Python separato salvo scelta esplicita del team.
+
+### Notifiche
+
+- Non integrate nel core open source: possibili hook futuri (email/Telegram) su “nuovi id inseriti” tramite Supabase Database Webhooks o Action dedicata; non promettere al cliente senza implementazione.
+
 ## Comandi di riferimento (copiabili)
 
 ```bash
@@ -55,7 +98,10 @@ npm run build-bandi-keywords
 npm run verify-bandi-public-read
 
 # Quante fonti in codice
-sed -n '41,120p' supabase/functions/manutenzione-bandi/index.ts | grep -c '{ id:'
+grep -c '{ id:' supabase/functions/manutenzione-bandi/index.ts
+
+# Audit legacy tipo ente + URL aggregatore (campione REST)
+npm run list-bandi-audit-candidates
 ```
 
 ## Ricerca fonti, keyword e verifica (lettura consigliata)
@@ -68,6 +114,8 @@ sed -n '41,120p' supabase/functions/manutenzione-bandi/index.ts | grep -c '{ id:
 - `tools/write-bandi-live-stats.js` — `attivi_count`, `fonti_distinte`.
 - `tools/build-bandi-keyword-stats.js` — statistiche per suggerimenti / priorità discovery.
 - `tools/PROMPT-AGENT-BANDI-SUPABASE.txt` — prompt operativo completo.
+- `tools/list-bandi-audit-candidates.js` — elenco candidati revisione (REST anon).
+- `tools/sql/audit-bandi-legacy-tipo-e-url.sql` — stesse query in SQL Editor.
 - `.cursor/rules/bandi-supabase.mdc` — schema URL, RLS, audit.
 
 ## Etica

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-04-09T18:59:05.425Z",
+    "generated_at": "2026-04-10T07:19:42.812Z",
     "total_bandi": 172,
     "sources": [
       "aggregatore",
@@ -5869,7 +5869,7 @@
       "url_domanda": "https://www.regione.emilia-romagna.it",
       "data_apertura": null,
       "data_scadenza": "2026-02-27",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,

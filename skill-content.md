@@ -108,9 +108,14 @@ Per ogni sezione con H2:
 
 ## 8. ARTICOLI PUBBLICATI — REGISTRO COMPLETO
 
-### Italiano (20 articoli)
+### Italiano (25 articoli)
 | Slug | Stato |
 |---|---|
+| fonti-ufficiali-bandi-stampa-infoglio-2026 | Pubblicato |
+| fondi-europei-pmi-accesso-programmi-2026 | Pubblicato |
+| fondi-italiani-pmi-nazionali-regionali-2026 | Pubblicato |
+| finanziamenti-agevolati-vs-contributi-pmi-2026 | Pubblicato |
+| geopolitica-medio-oriente-pmi-italia-commercio-2026 | Pubblicato |
 | codice-puro-vs-wordpress-2026 | Pubblicato |
 | lead-generation-30-50-lead-mese-2026 | Pubblicato |
 | lead-generation-50-lead-qualificati-automazione | Pubblicato |

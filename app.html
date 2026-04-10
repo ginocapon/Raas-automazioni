@@ -641,7 +641,9 @@ async function loadBandiViaRestCols(colsStr){
     var all=[],offset=0;
     while(true){
         var url=base+'/rest/v1/bandi?select='+encodeURIComponent(colsStr)+'&attivo=eq.true&order=id.desc&limit=1000&offset='+offset;
-        var r=await fetch(url,{headers:{apikey:key,Authorization:'Bearer '+key,Accept:'application/json'}});
+        var headers={apikey:key,Authorization:'Bearer '+key,Accept:'application/json'};
+        if(offset===0)headers.Prefer='count=exact';
+        var r=await fetch(url,{headers:headers,cache:'no-store',credentials:'omit',mode:'cors'});
         if(!r.ok)return[];
         var chunk=await r.json();
         if(!Array.isArray(chunk)||!chunk.length)break;
@@ -655,6 +657,9 @@ async function loadBandi(){
     try{
         var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
         var bandiColsMin='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,stato';
+        var viaRest=await loadBandiViaRestCols(bandiCols);
+        if(!viaRest.length)viaRest=await loadBandiViaRestCols(bandiColsMin);
+        if(viaRest.length){allBandi=viaRest;renderHome();return}
         if(supabaseClient){
             try{
                 var all=[],offset=0;
@@ -670,9 +675,6 @@ async function loadBandi(){
                 if(all.length){allBandi=all;renderHome();return}
             }catch(e){console.warn('app Supabase JS:',e&&e.message?e.message:e)}
         }
-        var viaRest=await loadBandiViaRestCols(bandiCols);
-        if(!viaRest.length)viaRest=await loadBandiViaRestCols(bandiColsMin);
-        if(viaRest.length){allBandi=viaRest;renderHome();return}
         var jsonRes=await fetch('/data/bandi.json');
         var data=await jsonRes.json();
         allBandi=(data.bandi||[]).filter(function(b){return b.stato==='aperto'||b.stato==='in_arrivo'}).map(mapBando);

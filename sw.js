@@ -1,8 +1,8 @@
 // Service Worker — RaaS Bandi PWA
 // Strategia: cache-first per assets statici, network-first per dati bandi
 
-var CACHE_NAME = 'raas-bandi-v3';
-var DATA_CACHE = 'raas-bandi-data-v3';
+var CACHE_NAME = 'raas-bandi-v4';
+var DATA_CACHE = 'raas-bandi-data-v4';
 
 var STATIC_ASSETS = [
   '/app.html',
@@ -46,8 +46,14 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
   var url = new URL(e.request.url);
 
-  // Dati bandi (JSON + Supabase) -> network-first con fallback cache
-  if (url.pathname === '/data/bandi.json' || url.hostname.includes('supabase')) {
+  // Supabase API: sempre rete, mai cache SW (evita risposte stale / fallback errati sul contatore)
+  if (url.hostname.includes('supabase')) {
+    e.respondWith(fetch(e.request));
+    return;
+  }
+
+  // bandi.json locale: network-first + fallback offline
+  if (url.pathname === '/data/bandi.json') {
     e.respondWith(networkFirstData(e.request));
     return;
   }

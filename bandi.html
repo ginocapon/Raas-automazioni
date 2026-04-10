@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <title>Bandi e Finanziamenti per Imprese 2026 | RaaSAutomazioni</title>
     <meta name="description" content="Aggregatore bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane. 500+ bandi da Invitalia, SIMEST, INAIL, 20 Regioni, 105+ CCIAA.">
     <link rel="canonical" href="https://www.raasautomazioni.it/bandi">
@@ -1068,7 +1070,7 @@ async function fetchBandiPaginatedRest(colsStr){
         var url=base+'/rest/v1/bandi?select='+encodeURIComponent(colsStr)+'&attivo=eq.true&order=id.desc&limit=1000&offset='+offset;
         var headers={apikey:key,Authorization:'Bearer '+key,Accept:'application/json'};
         if(offset===0)headers.Prefer='count=exact';
-        var r=await fetch(url,{headers:headers});
+        var r=await fetch(url,{headers:headers,cache:'no-store',credentials:'omit',mode:'cors'});
         if(!r.ok){
             var errText=await r.text();
             throw new Error('REST '+r.status+': '+errText.slice(0,200));
@@ -1099,32 +1101,33 @@ function finalizeBandiRows(all,displayTotal){
 async function loadBandi(){
     var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
     var bandiColsMin='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,stato';
-    var headCount=0;
-    function tryRestThenJson(reason){
-        return fetchBandiPaginatedRest(bandiCols).then(function(pack){
+    /** 1) REST prima: stesso percorso di tools/verify-bandi-public-read.js (no supabase-js, no cache SW su API). */
+    async function loadViaRest(){
+        try{
+            var pack=await fetchBandiPaginatedRest(bandiCols);
             if(pack.rows.length){
                 var tot=pack.totalFromRange>0?pack.totalFromRange:pack.rows.length;
                 finalizeBandiRows(pack.rows,tot);
                 return true;
             }
-            return fetchBandiPaginatedRest(bandiColsMin).then(function(pack2){
-                if(pack2.rows.length){
-                    var tot2=pack2.totalFromRange>0?pack2.totalFromRange:pack2.rows.length;
-                    finalizeBandiRows(pack2.rows,tot2);
-                    return true;
-                }
-                return false;
-            });
-        }).catch(function(e){
-            console.warn('REST bandi:',reason,e.message||e);
-            return false;
-        });
+        }catch(e){console.warn('REST bandi (colonne complete):',e.message||e)}
+        try{
+            var pack2=await fetchBandiPaginatedRest(bandiColsMin);
+            if(pack2.rows.length){
+                var tot2=pack2.totalFromRange>0?pack2.totalFromRange:pack2.rows.length;
+                finalizeBandiRows(pack2.rows,tot2);
+                return true;
+            }
+        }catch(e2){console.warn('REST bandi (colonne minime):',e2.message||e2)}
+        return false;
     }
+    if(await loadViaRest())return;
+    /** 2) Fallback supabase-js (es. estensioni che bloccano fetch verso altri host ma non il client). */
     if(supabaseClient){
         try{
             var countRes=await supabaseClient.from('bandi').select(bandiCols,{count:'exact',head:true}).eq('attivo',true);
             if(countRes.error)throw countRes.error;
-            headCount=countRes.count||0;
+            var headCount=countRes.count||0;
             if(headCount>0){
                 document.getElementById('stat-bandi').textContent=headCount;
                 document.getElementById('totalBandiCount').textContent=headCount;
@@ -1142,21 +1145,11 @@ async function loadBandi(){
                 finalizeBandiRows(all,headCount>0?headCount:all.length);
                 return;
             }
-            if(headCount>0){
-                console.warn('Supabase JS: conteggio',headCount,'ma 0 righe — provo REST (CORS/blocco client).');
-                var ok=await tryRestThenJson('dopo head count');
-                if(ok)return;
-                console.warn('REST vuoto ma head era '+headCount+': controlla RLS su public.bandi per ruolo anon.');
-                allBandi=[];
-                updateStatFontiFromBandi([]);
-                return;
-            }
         }catch(e){console.warn('Supabase JS:',e.message||e)}
     }
-    var restOk=await tryRestThenJson('senza client o dopo errore JS');
-    if(restOk)return;
+    /** 3) Ultimo resort: JSON statico (solo ~165 voci) — offline o blocco totale API. */
     try{
-        console.warn('Fallback data/bandi.json (snapshot locale ~165 voci): aggiorna deploy o policy Supabase se il DB ha piu bandi.');
+        console.warn('Fallback data/bandi.json: snapshot ridotto. Verifica rete, ad-block su supabase.co e deploy bandi.html.');
         allBandi=await loadBandiFromJson();
         document.getElementById('stat-bandi').textContent=allBandi.length;
         document.getElementById('totalBandiCount').textContent=allBandi.length;

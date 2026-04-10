@@ -11,9 +11,9 @@ description: >-
 ## Il numero sul sito è corretto?
 
 - **Fonti nel dataset (es. 65)** = valori **distinti** della colonna `fonte` su `public.bandi` con `attivo = true`. È scritto in `data/bandi-live-stats.json` (`fonti_distinte`) e rigenerato a ogni deploy da `tools/write-bandi-live-stats.js`.
-- **Endpoint configurati** = lunghezza dell’array `FONTI` in `supabase/functions/manutenzione-bandi/index.ts` (oggi **65** righe `{ id: ... }` nel blocco 41–120). In condizioni normali **DB distinti ≈ endpoint** (ogni riga ingest usa `fonte: fonte.id`).
+- **Endpoint configurati** = lunghezza dell’array `FONTI` in `supabase/functions/manutenzione-bandi/index.ts` (verificare con il comando sotto). In condizioni normali **DB distinti ≈ endpoint** (ogni riga ingest usa `fonte: fonte.id`).
 - Verifica rapida in repo:
-  - `sed -n '41,120p' supabase/functions/manutenzione-bandi/index.ts | grep -c '{ id:'`
+  - `grep -c '{ id:' supabase/functions/manutenzione-bandi/index.ts` (blocco `FONTI`)
   - `npm run write-bandi-live-stats` poi leggere `data/bandi-live-stats.json`.
 
 Se `fonti_distinte` < numero di voci in `FONTI`, alcuni endpoint non producono bandi o usano `fonte` diversa da `fonte.id` (anomalia da correggere nel parser).

@@ -9,7 +9,7 @@
 // 4. URL aggregatore: match titolo sul pool incentivi.gov (gratis) o estrazione link .gov da pagina scheda; altrimenti scarto
 // 5. Deduplica, insert, disattiva scaduti, rimuovi duplicati, verifica link
 //
-// Fonti coperte: MIMIT, MUR, MASE, MASAF, Invitalia, SIMEST, INAIL, SACE, InPA,
+// Fonti coperte: MIMIT, MUR, MASE, MASAF (listing gare/avvisi), Invitalia, SIMEST, INAIL, SACE, InPA, ICE, GSE,
 //   20 Regioni + 2 Province Autonome, 105+ CCIAA, incentivi.gov.it, RNA, OpenCoesione,
 //   Horizon Europe, COSME, LIFE, 8+ aggregatori nazionali (bandi.it, telemat, bandiweb, finera, ecc.)
 
@@ -58,6 +58,9 @@ const FONTI: FonteBandi[] = [
   { id: "mimit_bandi", nome: "MIMIT — Bandi e Gare", url: "https://www.mimit.gov.it/it/incentivi", tipo: "html", regione: "Nazionale", ente: "MIMIT", tipo_ente: "ministero" },
   { id: "mur", nome: "MUR — Finanziamenti Ricerca", url: "https://www.mur.gov.it/it/aree-tematiche/ricerca/programmi-di-finanziamento", tipo: "html", regione: "Nazionale", ente: "MUR", tipo_ente: "ministero" },
   { id: "mase", nome: "MASE — Bandi Ambiente", url: "https://www.mase.gov.it/bandi", tipo: "html", regione: "Nazionale", ente: "MASE", tipo_ente: "ministero" },
+  { id: "masaf_gare", nome: "MASAF — Gare, avvisi e contributi", url: "https://www.masaf.gov.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/202", tipo: "html", regione: "Nazionale", ente: "MASAF", tipo_ente: "ministero" },
+  { id: "ice_finanziamenti", nome: "ICE — Finanziamenti internazionali", url: "https://www.ice.it/it/finanziamenti-internazionali", tipo: "html", regione: "Nazionale", ente: "ICE Agenzia", tipo_ente: "ente_nazionale" },
+  { id: "gse_imprese", nome: "GSE — Servizi e incentivi per le imprese", url: "https://www.gse.it/servizi-per-te/imprese", tipo: "html", regione: "Nazionale", ente: "GSE", tipo_ente: "ente_nazionale" },
 
   // ═══ PORTALI AGGREGATORI ═══
   { id: "opencoesione", nome: "OpenCoesione — Progetti", url: "https://opencoesione.gov.it/api/progetti.json?stato_progetto=in_corso&limit=100", tipo: "json", regione: "Nazionale", ente: "OpenCoesione", tipo_ente: "ente_nazionale" },
@@ -481,6 +484,8 @@ function looksOfficialUrl(urlStr: string): boolean {
     if (/inail\.it$/i.test(host)) return true;
     if (/simest\.it$/i.test(host)) return true;
     if (/sace\.it$/i.test(host)) return true;
+    if (/ice\.it$/i.test(host)) return true;
+    if (/gse\.it$/i.test(host)) return true;
     if (/unioncamere\.gov\.it$/i.test(host)) return true;
     if (/\.camcom\.it$/i.test(host)) return true;
     if (/\.camcom\.gov\.it$/i.test(host)) return true;

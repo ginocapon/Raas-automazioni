@@ -36,13 +36,15 @@ Il motore di discovery e l’ingest devono produrre record **compatibili** con c
 | Campo DB / JSON | Uso nel sito | Valori attesi / note |
 |-----------------|--------------|----------------------|
 | **`regione`** | Select “Regione” + ordinamento | `Nazionale` oppure nome regione esatto (es. `Veneto`). Macro **Sud Italia** nel filtro = Abruzzo, Basilicata, Calabria, Campania, Molise, Puglia, Sardegna, Sicilia (il valore sul record resta la regione singola). |
-| **`tipo_ente`** | Select “Tipo Ente” | `ministero`, `ente_nazionale`, `regione`, `cciaa`, **`ue`** (bandi/programmi UE diretti, es. Horizon), `altro`. In `FONTI`, usare lo stesso valore che deve comparire nel filtro (es. Commissione europea → `ue`). |
+| **`tipo_ente`** | Select “Tipo Ente” | `ministero`, `ente_nazionale`, `regione`, `cciaa`, **`ue`** (bandi/programmi UE diretti, es. Horizon), `altro`. In `FONTI`, usare lo stesso valore che deve comparire nel filtro (es. Commissione europea → `ue`). **Legacy:** in alcuni record compare `camera_commercio`; sul sito è equiparato al filtro “Camere di Commercio”, ma per **nuovi insert** usare `cciaa` così le keyword in `by_tipo_ente` restano coerenti. |
 | **`tipo_contributo`** | Select “Tipo Contributo” | `fondo_perduto`, `tasso_agevolato`, `misto`, `credito_imposta`. Se la fonte non espone il dato, l’ingest spesso mette `misto`: in audit manuale si può affinare. |
 | **`stato`** | Select “Stato” | `aperto`, `in_arrivo`, `chiuso`. |
 | **`settore`** | **Non** ha select dedicata: entra nella **ricerca testuale** (insieme a titolo, descrizione, ecc.) | Testo libero coerente con il corpus (es. `Digitalizzazione`, `Turismo`). Utile per intersezione semantica in UI. |
 | **`ente`** | Visualizzato in scheda; ricerca full-text | Nome erogatore riconoscibile (stesso brand del sito istituzionale quando possibile). |
 
 **Suggerimenti datalist:** `by_regione` e `by_tipo_ente` nel JSON keyword sono chiavi esatte. Per `Sud Italia` il front-end unisce i bucket delle otto regioni meridionali; in ingest non si scrive `regione: "Sud Italia"` sul record.
+
+**Campionamento produzione (REST anon, esempio):** se `tipo_ente=eq.ue` restituisce insieme vuoto, non è un bug del filtro: possono mancare insert da ingest Horizon/UE o record disattivati. Dopo deploy di `manutenzione-bandi` con endpoint UE aggiuntivi, rieseguire ingest e ricontrollare. Nei campioni “Sud” verificare URL istituzionali (evitare homepage generiche come unico link) e non usare aggregatori bloccati come `url` pubblico (vedi `tools/bandi-link-policy.js`).
 
 ---
 

@@ -3,7 +3,7 @@
 // Env vars richieste: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (automatiche in Supabase)
 //
 // Ciclo completo:
-// 1. Cerca nuovi bandi da FONTI.length endpoint (incentivi.gov.it, portali regionali, enti, CCIAA, aggregatori solo come discovery, UE)
+// 1. Cerca nuovi bandi da FONTI.length endpoint (incentivi.gov.it, portali regionali, enti, CCIAA, aggregatori solo come discovery, UE: Horizon + pagine programma Digital/LIFE/Creative/Erasmus+)
 // 2. Titoli pubblici = testo ufficiale fonte (API/CSV/HTML) senza riformulazione del titolo
 // 3. provenance_interna (jsonb): traccia listing/aggregatore e metodo risoluzione URL istituzionale
 // 4. URL aggregatore: match titolo sul pool incentivi.gov (gratis) o estrazione link .gov da pagina scheda; altrimenti scarto
@@ -120,6 +120,10 @@ const FONTI: FonteBandi[] = [
 
   // ═══ FONDI UE ═══
   { id: "eu_horizon", nome: "Horizon Europe — Calls Open", url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/calls-for-proposals?status=31094501,31094502&programmePart=43108390", tipo: "html", regione: "Nazionale", ente: "Commissione Europea", tipo_ente: "ue" },
+  { id: "eu_digital_programme", nome: "Digital Europe — Programma (portale call)", url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/digital", tipo: "html", regione: "Nazionale", ente: "Commissione Europea", tipo_ente: "ue" },
+  { id: "eu_life_programme", nome: "LIFE — Programma (portale call)", url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/life", tipo: "html", regione: "Nazionale", ente: "Commissione Europea", tipo_ente: "ue" },
+  { id: "eu_creative_europe", nome: "Creative Europe — Programma (portale call)", url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/creative-europe", tipo: "html", regione: "Nazionale", ente: "Commissione Europea", tipo_ente: "ue" },
+  { id: "eu_erasmus_plus", nome: "Erasmus+ — Programma (portale call)", url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/erasmus-plus", tipo: "html", regione: "Nazionale", ente: "Commissione Europea", tipo_ente: "ue" },
 ];
 
 // ══════════ FETCH CON RETRY ══════════

@@ -1191,6 +1191,13 @@ function regioneFilterMatch(b,r){
     if(r==='Sud Italia')return REGIONI_SUD_ITALIA.indexOf(br)!==-1;
     return br===r||br.indexOf(r)!==-1;
 }
+/** Allinea etichette legacy nel DB (es. camera_commercio) al filtro &ldquo;Camere di Commercio&rdquo; (cciaa). */
+function tipoEnteFilterMatch(b,te){
+    if(!te)return true;
+    var v=b.tipo_ente||'';
+    if(te==='cciaa')return v==='cciaa'||v==='camera_commercio';
+    return v===te;
+}
 async function loadKeywordStats(){
     try{
         var r=await fetch('/data/bandi-keyword-stats.json',{cache:'no-cache'});
@@ -1225,8 +1232,13 @@ function refreshSearchDatalist(){
             take(bandiKeywordStats.by_regione[regEl.value],1.35);
         }
     }
-    if(tipoEl&&tipoEl.value&&bandiKeywordStats.by_tipo_ente&&bandiKeywordStats.by_tipo_ente[tipoEl.value]){
-        take(bandiKeywordStats.by_tipo_ente[tipoEl.value],1.35);
+    if(tipoEl&&tipoEl.value&&bandiKeywordStats.by_tipo_ente){
+        if(tipoEl.value==='cciaa'){
+            if(bandiKeywordStats.by_tipo_ente.cciaa)take(bandiKeywordStats.by_tipo_ente.cciaa,1.35);
+            if(bandiKeywordStats.by_tipo_ente.camera_commercio)take(bandiKeywordStats.by_tipo_ente.camera_commercio,1.35);
+        }else if(bandiKeywordStats.by_tipo_ente[tipoEl.value]){
+            take(bandiKeywordStats.by_tipo_ente[tipoEl.value],1.35);
+        }
     }
     var sorted=Array.from(merged.entries()).sort(function(a,b){return b[1]-a[1]});
     for(var j=0;j<sorted.length&&j<80;j++){
@@ -1247,7 +1259,7 @@ function renderPreview(){
 }
 function applyFilters(){
     const s=document.getElementById('search').value.toLowerCase(),r=document.getElementById('filter-regione').value,te=document.getElementById('filter-tipo-ente').value,tc=document.getElementById('filter-tipo-contributo').value,st=document.getElementById('filter-stato').value;
-    filteredBandi=allBandi.filter(b=>{if(s&&!JSON.stringify(b).toLowerCase().includes(s))return false;if(r&&!regioneFilterMatch(b,r))return false;if(te&&b.tipo_ente!==te)return false;if(tc&&b.tipo_contributo!==tc)return false;if(st&&b.stato!==st)return false;return true});
+    filteredBandi=allBandi.filter(b=>{if(s&&!JSON.stringify(b).toLowerCase().includes(s))return false;if(r&&!regioneFilterMatch(b,r))return false;if(te&&!tipoEnteFilterMatch(b,te))return false;if(tc&&b.tipo_contributo!==tc)return false;if(st&&b.stato!==st)return false;return true});
     const sort=document.getElementById('sort-by').value;
     filteredBandi.sort((a,b)=>{if(sort==='titolo')return(a.titolo||'').localeCompare(b.titolo||'');if(sort==='ente')return(a.ente||'').localeCompare(b.ente||'');if(sort==='regione')return(a.regione||'').localeCompare(b.regione||'');return 0});
     renderFullList();

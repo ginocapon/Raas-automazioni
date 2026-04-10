@@ -537,10 +537,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
     <div class="hero-line"></div><div class="hero-line"></div><div class="hero-line"></div>
     <div class="container">
         <h1>&#x1F1EE;&#x1F1F9; <span class="gradient-text">Bandi e Finanziamenti</span> per Imprese</h1>
-        <p class="hero-desc">Accedi a tutti i bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane. Aggiornamento automatico giornaliero da oltre 150 fonti ufficiali.</p>
+        <p class="hero-desc">Accedi a tutti i bandi a fondo perduto, finanziamenti agevolati e incentivi per PMI italiane. Aggiornamento automatico giornaliero da fonti ufficiali; il numero di bandi e di fonti attive nel dataset è quello indicato nei riquadri sotto (allineato al database quando disponibile).</p>
         <div class="stats-bar">
             <div class="stat"><div class="stat-value" id="stat-bandi">&mdash;</div><div class="stat-label">Bandi Totali</div></div>
-            <div class="stat"><div class="stat-value">150+</div><div class="stat-label">Fonti Monitorate</div></div>
+            <div class="stat"><div class="stat-value" id="stat-fonti">&mdash;</div><div class="stat-label">Fonti nel dataset</div></div>
             <div class="stat"><div class="stat-value">24h</div><div class="stat-label">Aggiornamento</div></div>
         </div>
         <div class="bandi-blog-cta" style="margin:1.5rem auto 0;max-width:640px;padding:1rem 1.25rem;border-radius:14px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.28);text-align:left">
@@ -714,7 +714,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;color:var(--tex
         <h2 class="section-title">Perch&eacute; Usare il Nostro Aggregatore?</h2>
         <p class="section-subtitle">Risparmi ore di ricerca. Tutti i bandi italiani in un unico posto, sempre aggiornati.</p>
         <div class="info-grid">
-            <div class="info-card"><div class="icon-wrap"><i class="fas fa-sync-alt"></i></div><h3>Aggiornamento Automatico</h3><p>Scraping giornaliero da 150+ fonti ufficiali.</p></div>
+            <div class="info-card"><div class="icon-wrap"><i class="fas fa-sync-alt"></i></div><h3>Aggiornamento Automatico</h3><p>Scraping periodico da portali istituzionali e da endpoint configurati nel motore di ingest (vedi conteggio &ldquo;Fonti nel dataset&rdquo; in alto).</p></div>
             <div class="info-card"><div class="icon-wrap"><i class="fas fa-filter"></i></div><h3>Filtri Intelligenti</h3><p>Trova i bandi per regione, settore, importo.</p></div>
             <div class="info-card"><div class="icon-wrap"><i class="fas fa-euro-sign"></i></div><h3>Solo &euro;50/anno</h3><p>Un caff&egrave; al mese per migliaia di opportunit&agrave;.</p></div>
             <div class="info-card"><div class="icon-wrap"><i class="fas fa-shield-alt"></i></div><h3>Fonti Ufficiali</h3><p>Solo siti istituzionali: Ministeri, Regioni, Invitalia.</p></div>
@@ -1029,7 +1029,7 @@ async function submitRegistration(){
 function mapJsonBando(b){
     return{
         id:b.id,titolo:b.titolo,ente:b.ente,tipo_ente:b.tipo_ente,regione:b.regione,
-        stato:b.stato,tipo_contributo:b.tipo_contributo,
+        stato:b.stato,tipo_contributo:b.tipo_contributo,fonte:b.fonte_scraping||b.fonte||'',
         url:b.url_bando||b.url||'#',
         contributo_max:b.contributo_max?(b.contributo_max>=1000?'\u20AC'+Number(b.contributo_max).toLocaleString('it-IT'):b.contributo_max):null,
         contributo_min:b.contributo_min?(b.contributo_min>=1000?'\u20AC'+Number(b.contributo_min).toLocaleString('it-IT'):b.contributo_min):null,
@@ -1038,6 +1038,18 @@ function mapJsonBando(b){
         descrizione:b.descrizione,keywords:b.keywords,settori:b.settori,beneficiari:b.beneficiari
     };
 }
+function updateStatFontiFromBandi(list){
+    var el=document.getElementById('stat-fonti');
+    if(!el)return;
+    if(!list||!list.length){el.textContent='\u2014';return}
+    var seen=Object.create(null);
+    for(var i=0;i<list.length;i++){
+        var f=list[i].fonte;
+        if(f&&String(f).trim())seen[String(f).trim()]=1;
+    }
+    var n=Object.keys(seen).length;
+    el.textContent=n?String(n):'\u2014';
+}
 async function loadBandiFromJson(){
     var res=await fetch('/data/bandi.json');
     var data=await res.json();
@@ -1045,36 +1057,46 @@ async function loadBandiFromJson(){
     return bandi.map(mapJsonBando);
 }
 async function loadBandi(){
-    // Prova Supabase solo se il client e' disponibile
+    // Prova Supabase solo se il client e' disponibile.
+    // Non usare timeout breve: con migliaia di bandi il fetch richiede piu' secondi; altrimenti si cade
+    // sul JSON locale (~165 voci) e il contatore pubblico non coincide con il DB (es. 1300+ in admin).
     if(supabaseClient){
         try{
-            var supabasePromise=new Promise(async function(resolve,reject){
-                try{
-                    var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
-                    var countRes=await supabaseClient.from('bandi').select(bandiCols,{count:'exact',head:true}).eq('attivo',true);
-                    var totalCount=countRes.count||0;
-                    document.getElementById('stat-bandi').textContent=totalCount;
-                    document.getElementById('totalBandiCount').textContent=totalCount;
-                    var all=[],offset=0;
-                    while(true){
-                        var res=await supabaseClient.from('bandi').select(bandiCols).eq('attivo',true).order('id',{ascending:false}).range(offset,offset+999);
-                        if(res.error)throw res.error;
-                        if(!res.data||!res.data.length)break;
-                        all=all.concat(res.data);
-                        if(res.data.length<1000)break;
-                        offset+=1000;
-                    }
-                    all=all.map(function(b){if(!b.stato)b.stato='aperto';return b});
-                    resolve(all);
-                }catch(e){reject(e)}
-            });
-            var timeout=new Promise(function(_,reject){setTimeout(function(){reject(new Error('timeout'))},5000)});
-            allBandi=await Promise.race([supabasePromise,timeout]);
-            if(allBandi&&allBandi.length)return;
+            var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
+            var countRes=await supabaseClient.from('bandi').select(bandiCols,{count:'exact',head:true}).eq('attivo',true);
+            if(countRes.error)throw countRes.error;
+            var totalCount=countRes.count||0;
+            document.getElementById('stat-bandi').textContent=totalCount;
+            document.getElementById('totalBandiCount').textContent=totalCount;
+            var all=[],offset=0;
+            while(true){
+                var res=await supabaseClient.from('bandi').select(bandiCols).eq('attivo',true).order('id',{ascending:false}).range(offset,offset+999);
+                if(res.error)throw res.error;
+                if(!res.data||!res.data.length)break;
+                all=all.concat(res.data);
+                if(res.data.length<1000)break;
+                offset+=1000;
+            }
+            all=all.map(function(b){if(!b.stato)b.stato='aperto';return b});
+            if(all.length){
+                allBandi=all;
+                updateStatFontiFromBandi(allBandi);
+                return;
+            }
         }catch(e){console.warn('Supabase fallback al JSON locale:',e)}
     }
-    // Fallback: carica da JSON locale
-    try{allBandi=await loadBandiFromJson();document.getElementById('stat-bandi').textContent=allBandi.length;document.getElementById('totalBandiCount').textContent=allBandi.length}catch(e2){allBandi=[];document.getElementById('stat-bandi').textContent='0'}
+    try{
+        allBandi=await loadBandiFromJson();
+        document.getElementById('stat-bandi').textContent=allBandi.length;
+        document.getElementById('totalBandiCount').textContent=allBandi.length;
+        updateStatFontiFromBandi(allBandi);
+    }catch(e2){
+        allBandi=[];
+        document.getElementById('stat-bandi').textContent='0';
+        document.getElementById('totalBandiCount').textContent='0';
+        var sf=document.getElementById('stat-fonti');
+        if(sf)sf.textContent='\u2014';
+    }
 }
 function renderPreview(){
     const grid=document.getElementById('preview-grid'),load=document.getElementById('loading-preview');
@@ -1374,7 +1396,7 @@ const chatQA=[
 {k:["fondo garanzia","garanzia pmi"],a:"<b>Fondo Garanzia PMI</b> (MCC): garanzia pubblica fino all'80% su prestiti fino a €5M. Senza costi per PMI e startup. Non è un finanziamento diretto."},
 {k:["abbonamento","quanto costa","prezzo","costo"],a:"Abbonamento: <b>€50 + IVA</b>/anno (€61 totali). Accesso completo, filtri avanzati, aggiornamenti giornalieri, newsletter. Un caffè al mese per migliaia di opportunità!"},
 {k:["come abbonare","come mi abbono","pagamento"],a:"Clicca <b>'Attiva Abbonamento'</b>. Paga con <b>PayPal</b> o <b>carta Stripe</b>. Accesso immediato per 12 mesi."},
-{k:["fonti","quante fonti"],a:"Oltre <b>150 fonti</b>: 6+ Ministeri, Invitalia, SIMEST, INAIL, SACE, CDP, 20 Regioni, 105+ CCIAA, incentivi.gov.it, RNA, OpenCoesione, fondi UE."},
+{k:["fonti","quante fonti"],a:"Il numero aggiornato di <b>fonti distinte</b> nel dataset e' quello mostrato nella scheda &ldquo;Fonti nel dataset&rdquo; in questa pagina (calcolato sui bandi caricati). Il motore di manutenzione in admin interroga decine di endpoint ufficiali e aggregati."},
 {k:["aggiornamento","ogni quanto"],a:"Database aggiornato <b>ogni giorno</b> tramite scraping automatico. Nuovi bandi inseriti entro 24 ore dalla pubblicazione."},
 {k:["consulenza","aiuto","assistenza"],a:"<b>Consulenza dedicata</b> per clienti RaaS: identificazione bandi, documentazione, compilazione domande. <a href='/#contatti'>Contattaci</a>."},
 {k:["newsletter","email"],a:"Registrati per la <b>newsletter settimanale</b> con nuovi bandi. Abbonati premium ricevono alert personalizzati. Iscriviti in basso!"},

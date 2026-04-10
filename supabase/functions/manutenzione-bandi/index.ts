@@ -3,7 +3,7 @@
 // Env vars richieste: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (automatiche in Supabase)
 //
 // Ciclo completo:
-// 1. Cerca nuovi bandi da 55+ fonti (incentivi.gov.it, portali regionali, enti, CCIAA, aggregatori solo come discovery, UE)
+// 1. Cerca nuovi bandi da FONTI.length endpoint (incentivi.gov.it, portali regionali, enti, CCIAA, aggregatori solo come discovery, UE)
 // 2. Titoli pubblici = testo ufficiale fonte (API/CSV/HTML) senza riformulazione del titolo
 // 3. provenance_interna (jsonb): traccia listing/aggregatore e metodo risoluzione URL istituzionale
 // 4. URL aggregatore: match titolo sul pool incentivi.gov (gratis) o estrazione link .gov da pagina scheda; altrimenti scarto
@@ -22,7 +22,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-// ══════════ FONTI BANDI — 55+ FONTI UFFICIALI ══════════
+// ══════════ FONTI BANDI — elenco FONTI (lunghezza = numero endpoint; sito pubblico mostra fonti distinte nel DB) ══════════
 // Tipo: "json" = risposta JSON con parser generico
 //       "html" = scraping HTML di pagine bandi
 //       "csv"  = file CSV open data

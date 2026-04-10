@@ -1057,18 +1057,78 @@ async function loadBandiFromJson(){
     var bandi=(data.bandi||[]).filter(function(b){return b.stato==='aperto'||b.stato==='in_arrivo'});
     return bandi.map(mapJsonBando);
 }
+/** Caricamento diretto REST PostgREST (stessa chiave anon). Utile se @supabase/supabase-js fallisce o e' bloccato. */
+async function fetchBandiPaginatedRest(colsStr){
+    var key=SUPABASE_ANON_KEY;
+    var base=SUPABASE_URL.replace(/\/?$/,'');
+    var all=[];
+    var offset=0;
+    var totalFromRange=0;
+    while(true){
+        var url=base+'/rest/v1/bandi?select='+encodeURIComponent(colsStr)+'&attivo=eq.true&order=id.desc&limit=1000&offset='+offset;
+        var headers={apikey:key,Authorization:'Bearer '+key,Accept:'application/json'};
+        if(offset===0)headers.Prefer='count=exact';
+        var r=await fetch(url,{headers:headers});
+        if(!r.ok){
+            var errText=await r.text();
+            throw new Error('REST '+r.status+': '+errText.slice(0,200));
+        }
+        if(offset===0){
+            var cr=r.headers.get('content-range');
+            if(cr){
+                var parts=cr.split('/');
+                if(parts.length===2)totalFromRange=parseInt(parts[1],10)||0;
+            }
+        }
+        var chunk=await r.json();
+        if(!Array.isArray(chunk)||!chunk.length)break;
+        all=all.concat(chunk);
+        if(chunk.length<1000)break;
+        offset+=1000;
+    }
+    return{rows:all,totalFromRange:totalFromRange};
+}
+function finalizeBandiRows(all,displayTotal){
+    all=all.map(function(b){if(!b.stato)b.stato='aperto';return b});
+    allBandi=all;
+    updateStatFontiFromBandi(allBandi);
+    var n=(typeof displayTotal==='number'&&displayTotal>0)?displayTotal:all.length;
+    document.getElementById('stat-bandi').textContent=n;
+    document.getElementById('totalBandiCount').textContent=n;
+}
 async function loadBandi(){
-    // Prova Supabase solo se il client e' disponibile.
-    // Non usare timeout breve: con migliaia di bandi il fetch richiede piu' secondi; altrimenti si cade
-    // sul JSON locale (~165 voci) e il contatore pubblico non coincide con il DB (es. 1300+ in admin).
+    var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
+    var bandiColsMin='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,stato';
+    var headCount=0;
+    function tryRestThenJson(reason){
+        return fetchBandiPaginatedRest(bandiCols).then(function(pack){
+            if(pack.rows.length){
+                var tot=pack.totalFromRange>0?pack.totalFromRange:pack.rows.length;
+                finalizeBandiRows(pack.rows,tot);
+                return true;
+            }
+            return fetchBandiPaginatedRest(bandiColsMin).then(function(pack2){
+                if(pack2.rows.length){
+                    var tot2=pack2.totalFromRange>0?pack2.totalFromRange:pack2.rows.length;
+                    finalizeBandiRows(pack2.rows,tot2);
+                    return true;
+                }
+                return false;
+            });
+        }).catch(function(e){
+            console.warn('REST bandi:',reason,e.message||e);
+            return false;
+        });
+    }
     if(supabaseClient){
         try{
-            var bandiCols='id,titolo,descrizione,ente,regione,importo_max,tipo_contributo,tipo_ente,settore,scadenza,url,attivo,fonte,stato';
             var countRes=await supabaseClient.from('bandi').select(bandiCols,{count:'exact',head:true}).eq('attivo',true);
             if(countRes.error)throw countRes.error;
-            var totalCount=countRes.count||0;
-            document.getElementById('stat-bandi').textContent=totalCount;
-            document.getElementById('totalBandiCount').textContent=totalCount;
+            headCount=countRes.count||0;
+            if(headCount>0){
+                document.getElementById('stat-bandi').textContent=headCount;
+                document.getElementById('totalBandiCount').textContent=headCount;
+            }
             var all=[],offset=0;
             while(true){
                 var res=await supabaseClient.from('bandi').select(bandiCols).eq('attivo',true).order('id',{ascending:false}).range(offset,offset+999);
@@ -1078,15 +1138,25 @@ async function loadBandi(){
                 if(res.data.length<1000)break;
                 offset+=1000;
             }
-            all=all.map(function(b){if(!b.stato)b.stato='aperto';return b});
             if(all.length){
-                allBandi=all;
-                updateStatFontiFromBandi(allBandi);
+                finalizeBandiRows(all,headCount>0?headCount:all.length);
                 return;
             }
-        }catch(e){console.warn('Supabase fallback al JSON locale:',e)}
+            if(headCount>0){
+                console.warn('Supabase JS: conteggio',headCount,'ma 0 righe — provo REST (CORS/blocco client).');
+                var ok=await tryRestThenJson('dopo head count');
+                if(ok)return;
+                console.warn('REST vuoto ma head era '+headCount+': controlla RLS su public.bandi per ruolo anon.');
+                allBandi=[];
+                updateStatFontiFromBandi([]);
+                return;
+            }
+        }catch(e){console.warn('Supabase JS:',e.message||e)}
     }
+    var restOk=await tryRestThenJson('senza client o dopo errore JS');
+    if(restOk)return;
     try{
+        console.warn('Fallback data/bandi.json (snapshot locale ~165 voci): aggiorna deploy o policy Supabase se il DB ha piu bandi.');
         allBandi=await loadBandiFromJson();
         document.getElementById('stat-bandi').textContent=allBandi.length;
         document.getElementById('totalBandiCount').textContent=allBandi.length;

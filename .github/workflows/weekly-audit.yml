@@ -284,9 +284,22 @@ jobs:
             echo "*Alcuni link risultano non raggiungibili, host aggregatore (policy) o da verificare manualmente — vedi output sopra.*" >> audit-report.md
           fi
 
+          # Lettura pubblica Supabase (anon) — regression su RLS / API
+          echo "" >> audit-report.md
+          echo "### Controllo API pubblica Supabase — \`bandi\` attivi (chiave anon)" >> audit-report.md
+          echo "" >> audit-report.md
+          echo "Script: \`tools/verify-bandi-public-read.js\` (soglia minima 1 riga; migration RLS: \`supabase/migrations/20260410120000_bandi_rls_anon_access.sql\`)." >> audit-report.md
+          echo "" >> audit-report.md
+          SUPA_FAIL=0
+          node tools/verify-bandi-public-read.js --min-count=1 >> audit-report.md 2>&1 || SUPA_FAIL=1
+          if [ "$SUPA_FAIL" -ne 0 ]; then
+            echo "" >> audit-report.md
+            echo "*FAIL API Supabase (anon): eseguire in SQL Editor \`supabase/migrations/20260410120000_bandi_rls_anon_access.sql\` se RLS blocca la lettura.*" >> audit-report.md
+          fi
+
           echo "" >> audit-report.md
           echo "---" >> audit-report.md
-          echo "*Audit automatico eseguito da GitHub Actions — Rif. skill-seo.md (controlli SEO) + validazione \`data/bandi.json\` + skill-essentials.md*" >> audit-report.md
+          echo "*Audit automatico eseguito da GitHub Actions — Rif. skill-seo.md (controlli SEO) + validazione \`data/bandi.json\` + controllo API bandi + skill-essentials.md*" >> audit-report.md
           echo "*Prossimo audit: venerdi prossimo ore 07:00 CET*" >> audit-report.md
 
           # Output per step successivo

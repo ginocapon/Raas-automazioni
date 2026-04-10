@@ -9,6 +9,8 @@ globs:
   - data/bandi.json
   - data/bandi-keyword-stats.json
   - tools/build-bandi-keyword-stats.js
+  - tools/verify-bandi-public-read.js
+  - supabase/migrations/20260410120000_bandi_rls_anon_access.sql
   - bandi.html
   - app.html
   - admin.html
@@ -29,6 +31,11 @@ alwaysApply: false
 - Strumenti: `tools/audit-bandi-coherence-supabase.js`, `tools/http-fetch-page-title.js`.
 - Classificare discordanze: **minima** (punteggiatura) vs **sostanziale** (obiettivo/beneficiari diversi).
 - Azioni suggerite: **AGGIORNARE** titolo se il bando è valido; **VERIFICA MANUALE** se link ambiguo o 403; **ARCHIVIARE** (`attivo = false`) se chiuso/revocato o solo dopo policy esplicita (mai inventare dati).
+
+## RLS / lettura anon
+
+- Migration **`supabase/migrations/20260410120000_bandi_rls_anon_access.sql`**: abilita RLS su `public.bandi` con policy `FOR ALL` per `anon` e `authenticated` (compatibile con `admin.html` che usa la chiave anon). Applicare da Supabase SQL Editor o `supabase db push`.
+- Controllo: `npm run verify-bandi-public-read` — exit 0 se l’API REST con anon legge `attivo=true` e `Content-Range` è valido.
 
 ## Suggerimenti ricerca (batch, senza LLM)
 

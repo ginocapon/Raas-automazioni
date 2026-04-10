@@ -8,6 +8,7 @@
     "verify-links": "node tools/verify-links-perplexity.js",
     "sync-bandi": "node tools/sync-bandi.js",
     "build-bandi-keywords": "node tools/build-bandi-keyword-stats.js",
+    "verify-bandi-public-read": "node tools/verify-bandi-public-read.js --min-count=1",
     "deploy-contact-form": "supabase functions deploy contact-form"
   },
   "engines": {

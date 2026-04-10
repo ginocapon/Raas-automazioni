@@ -47,3 +47,7 @@ Prompt consigliato per Cursor (Agent) — validazione link + coerenza titoli Sup
    npm run build-bandi-keywords
    (oppure node tools/build-bandi-keyword-stats.js — opzioni --source=supabase|json|auto, --out=…)
    Genera data/bandi-keyword-stats.json; bandi.html lo usa per il datalist della ricerca.
+
+12) RLS + controllo lettura anon:
+   supabase/migrations/20260410120000_bandi_rls_anon_access.sql (applicare su progetto Supabase se serve).
+   npm run verify-bandi-public-read — deve stampare PASS (bandi attivi via chiave anon).

@@ -8,7 +8,8 @@
  *   --source=supabase solo Supabase (attivo=true)
  *   --source=json     solo file locale
  *
- * Env (opzionale): SUPABASE_URL, SUPABASE_ANON_KEY — altrimenti stessi default di validate-bandi-supabase.js
+ * Env (opzionale): SUPABASE_URL (es. https://xxxx.supabase.co, senza spazi), SUPABASE_ANON_KEY
+ * Se SUPABASE_URL è vuoto/malformato → si usa il default del repo o si ricade su data/bandi.json in modalità auto.
  *
  * Uso:
  *   node tools/build-bandi-keyword-stats.js
@@ -25,8 +26,27 @@ const ROOT = path.join(__dirname, '..');
 const DEFAULT_JSON = path.join(ROOT, 'data', 'bandi.json');
 const DEFAULT_OUT = path.join(ROOT, 'data', 'bandi-keyword-stats.json');
 
-const SUPABASE_URL =
-  process.env.SUPABASE_URL || 'https://ieeriszlalrsbfsnarih.supabase.co';
+const SUPABASE_FALLBACK = 'https://ieeriszlalrsbfsnarih.supabase.co';
+
+/** Base URL valida per REST; evita new URL(..., '') che lancia "Invalid URL". */
+function getSupabaseUrl() {
+  let s = (process.env.SUPABASE_URL || '').trim();
+  if (!s) return SUPABASE_FALLBACK;
+  if (!/^https?:\/\//i.test(s)) {
+    s = 'https://' + s.replace(/^\/+/, '');
+  }
+  try {
+    const u = new URL(s);
+    if (!u.hostname) throw new Error('no host');
+    return u.origin;
+  } catch {
+    console.warn(
+      'build-bandi-keyword-stats: SUPABASE_URL non valido, uso fallback repo. Imposta es.: export SUPABASE_URL=https://TUO_REF.supabase.co'
+    );
+    return SUPABASE_FALLBACK;
+  }
+}
+
 const PUBLIC_ANON =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllZXJpc3psYWxyc2Jmc25hcmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjEyNjAsImV4cCI6MjA4MzczNzI2MH0.Sjwu1620mMTAAoKVHgXHQ1cA-m3hFXqtCtqjAQNErQo';
 
@@ -69,7 +89,7 @@ const TOP_GLOBAL = Math.max(20, parseInt(argVal('--top-global', '80'), 10) || 80
 
 function restGet(pathAndQuery, apiKey) {
   return new Promise((resolve, reject) => {
-    const u = new URL(pathAndQuery, SUPABASE_URL);
+    const u = new URL(pathAndQuery, getSupabaseUrl());
     const opts = {
       hostname: u.hostname,
       path: u.pathname + u.search,

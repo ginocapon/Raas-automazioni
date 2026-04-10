@@ -12,8 +12,36 @@ const fs = require('fs');
 const path = require('path');
 
 const OUT = path.join(__dirname, '..', 'data', 'bandi-live-stats.json');
-const SUPABASE_URL =
-  process.env.SUPABASE_URL || 'https://ieeriszlalrsbfsnarih.supabase.co';
+const SUPABASE_FALLBACK = 'https://ieeriszlalrsbfsnarih.supabase.co';
+
+function getSupabaseUrl() {
+  let s = (process.env.SUPABASE_URL || '').trim();
+  if (
+    !s ||
+    /il[_-]?tuo[_-]?ref|your[_-]?project|xxxxxx|example\.com/i.test(s)
+  ) {
+    if (s) {
+      console.warn(
+        'write-bandi-live-stats: SUPABASE_URL sembra un segnaposto o non valido — uso URL del progetto nel codice. Per il tuo progetto: copia Project URL da Supabase → Settings → API.'
+      );
+    }
+    return SUPABASE_FALLBACK;
+  }
+  if (!/^https?:\/\//i.test(s)) {
+    s = 'https://' + s.replace(/^\/+/, '');
+  }
+  try {
+    const u = new URL(s);
+    if (!u.hostname) throw new Error();
+    return u.origin;
+  } catch {
+    console.warn(
+      'write-bandi-live-stats: SUPABASE_URL non valido — uso fallback repo.'
+    );
+    return SUPABASE_FALLBACK;
+  }
+}
+
 const ANON =
   process.env.SUPABASE_ANON_KEY ||
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
@@ -28,7 +56,7 @@ function parseTotalFromRange(cr) {
 }
 
 async function fetchPage(pathWithQuery, withCountExact) {
-  const u = new URL(pathWithQuery, SUPABASE_URL);
+  const u = new URL(pathWithQuery, getSupabaseUrl());
   const headers = {
     apikey: ANON,
     Authorization: 'Bearer ' + ANON,

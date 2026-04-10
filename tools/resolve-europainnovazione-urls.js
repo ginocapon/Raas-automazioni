@@ -417,9 +417,32 @@ async function main() {
     );
     process.exit(1);
   }
-  const readKey = serviceKey || process.env.SUPABASE_ANON_KEY ||
+  const readKey =
+    serviceKey ||
+    process.env.SUPABASE_ANON_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllZXJpc3psYWxyc2Jmc25hcmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjEyNjAsImV4cCI6MjA4MzczNzI2MH0.Sjwu1620mMTAAoKVHgXHQ1cA-m3hFXqtCtqjAQNErQo';
+    '';
+
+  if (!readKey) {
+    console.error(`
+ERRORE: manca una chiave API valida per leggere la tabella bandi.
+
+1) Apri Supabase → il TUO progetto → Settings → API
+2) Copia il Project URL e (scegli UNA delle chiavi):
+   - anon public  → per sola lettura / dry-run
+   - service_role → va bene anche per dry-run e serve per --apply
+
+Nel terminale (stessa sessione in cui lanci npm):
+
+  export SUPABASE_URL='https://XXXX.supabase.co'
+  export SUPABASE_ANON_KEY='incolla_anon_o_service_role'
+  # oppure, se usi la service role:
+  export SUPABASE_SERVICE_ROLE_KEY='incolla_service_role'
+
+Poi rilancia il comando. Non committare mai le chiavi.
+`);
+    process.exit(1);
+  }
 
   let totalReplaced = 0;
   let totalDeactivated = 0;
@@ -428,7 +451,23 @@ async function main() {
 
   do {
     batchNum++;
-    const rows = await fetchBatch(readKey, LIMIT);
+    let rows;
+    try {
+      rows = await fetchBatch(readKey, LIMIT);
+    } catch (e) {
+      if (String(e.message).includes('401')) {
+        console.error(`
+HTTP 401 — chiave rifiutata da Supabase.
+
+Controlla di aver incollato la chiave COMPLETA (anon o service_role) del progetto
+che contiene la tabella bandi, e che SUPABASE_URL corrisponda a quel progetto
+(Settings → API → Project URL).
+
+Se hai ruotato le chiavi, usa quelle attuali dalla dashboard.
+`);
+      }
+      throw e;
+    }
     if (!rows.length) {
       console.log('Nessun record con URL europainnovazione: fine.');
       break;

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """Genera 4 articoli blog da template revenue: JSON-LD sicuro + main da file body."""
+from __future__ import annotations
+
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -294,13 +297,35 @@ def patch(text: str, cfg: dict) -> str:
     return text
 
 
-def main():
-    tpl = TEMPLATE.read_text(encoding="utf-8")
+def main() -> int:
+    if not TEMPLATE.is_file():
+        print(f"ERRORE: template mancante: {TEMPLATE}", file=sys.stderr)
+        return 1
+    if not BODIES.is_dir():
+        print(f"ERRORE: cartella bodies mancante: {BODIES}", file=sys.stderr)
+        return 1
+    try:
+        tpl = TEMPLATE.read_text(encoding="utf-8")
+    except OSError as exc:
+        print(f"ERRORE: lettura template: {exc}", file=sys.stderr)
+        return 1
+
     for cfg in ARTICLES:
-        out = ROOT / "blog" / "articoli" / cfg["file"]
-        out.write_text(patch(tpl, cfg), encoding="utf-8")
+        body_path = BODIES / cfg["body"]
+        if not body_path.is_file():
+            print(f"ERRORE: body mancante per {cfg['file']}: {body_path}", file=sys.stderr)
+            return 1
+        try:
+            html = patch(tpl, cfg)
+            out = ROOT / "blog" / "articoli" / cfg["file"]
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(html, encoding="utf-8")
+        except OSError as exc:
+            print(f"ERRORE scrittura {cfg['file']}: {exc}", file=sys.stderr)
+            return 1
         print("Written", cfg["file"])
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

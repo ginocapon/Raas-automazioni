@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-05-01T08:05:45.107Z",
+    "generated_at": "2026-05-08T07:20:53.900Z",
     "total_bandi": 172,
     "sources": [
       "aggregatore",
@@ -3387,7 +3387,7 @@
       "url_domanda": "https://www.ministeroturismo.gov.it/staff-house-titolo-ii-fissazione-dei-termini-di-presentazione-delle-domande/",
       "data_apertura": "2026-04-02",
       "data_scadenza": "2026-05-05",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": 500000,
       "contributo_max": 5000000,
@@ -3462,7 +3462,7 @@
       "url_domanda": "https://formazionelavoro.regione.emilia-romagna.it/leggi-atti-bandi/bandi-regionali/bandi-per-annualita/2026/summer-camp-e-seminari-orientativi-anno-2026",
       "data_apertura": null,
       "data_scadenza": "2026-05-07",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,
@@ -5236,7 +5236,7 @@
       "url_domanda": "https://www.regione.toscana.it",
       "data_apertura": null,
       "data_scadenza": "2026-05-04",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,

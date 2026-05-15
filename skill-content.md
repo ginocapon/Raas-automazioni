@@ -108,9 +108,14 @@ Per ogni sezione con H2:
 
 ## 8. ARTICOLI PUBBLICATI — REGISTRO COMPLETO
 
-### Italiano (25 articoli)
+### Italiano (30 articoli)
 | Slug | Stato |
 |---|---|
+| automazioni-ai-pmi-guida-pratica-no-code-2026 | Pubblicato |
+| stack-strumenti-automazione-ai-pmi-2026 | Pubblicato |
+| adozione-ai-pmi-italia-dati-competenze-pnrr-2026 | Pubblicato |
+| automazione-industriale-clessidra-software-bain-pmi-2026 | Pubblicato |
+| pnrr-open-data-pmi-digitalizzazione-monitoraggio-2026 | Pubblicato |
 | fonti-ufficiali-bandi-stampa-infoglio-2026 | Pubblicato |
 | fondi-europei-pmi-accesso-programmi-2026 | Pubblicato |
 | fondi-italiani-pmi-nazionali-regionali-2026 | Pubblicato |

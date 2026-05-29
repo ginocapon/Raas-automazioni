@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-05-22T08:52:56.905Z",
+    "generated_at": "2026-05-29T09:41:31.355Z",
     "total_bandi": 172,
     "sources": [
       "aggregatore",
@@ -4154,7 +4154,7 @@
       "url_domanda": "https://www.bandi.regione.lombardia.it/servizi/servizio/bandi",
       "data_apertura": null,
       "data_scadenza": "2026-05-28",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,
@@ -6077,7 +6077,7 @@
       "url_domanda": "https://www.regione.toscana.it",
       "data_apertura": null,
       "data_scadenza": "2026-05-26",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,

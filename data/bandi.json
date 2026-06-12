@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-06-05T09:36:14.679Z",
+    "generated_at": "2026-06-12T10:00:37.301Z",
     "total_bandi": 172,
     "sources": [
       "aggregatore",
@@ -607,7 +607,7 @@
       "url_domanda": "https://www.regione.lazio.it/notizie/bando-Donne-Imprese-sostegno-imprese-femminili",
       "data_apertura": "2025-01-01",
       "data_scadenza": "2026-06-10",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": 3000000,
       "contributo_min": 10000,
       "contributo_max": 100000,

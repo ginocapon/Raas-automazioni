@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "5.0.0",
-    "generated_at": "2026-06-12T10:00:37.301Z",
+    "generated_at": "2026-06-19T10:16:59.749Z",
     "total_bandi": 172,
     "sources": [
       "aggregatore",
@@ -3124,7 +3124,7 @@
       "url_domanda": "https://www.regione.emilia-romagna.it/sport/bandi/2024/avviso-per-la-concessione-di-contributi-per-progetti-di-contrasto-allabbandono-sportivo-giovanile",
       "data_apertura": null,
       "data_scadenza": "2026-06-12",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,
@@ -6042,7 +6042,7 @@
       "url_domanda": "https://eui.eu",
       "data_apertura": null,
       "data_scadenza": "2026-06-15",
-      "stato": "aperto",
+      "stato": "chiuso",
       "dotazione": null,
       "contributo_min": null,
       "contributo_max": null,
